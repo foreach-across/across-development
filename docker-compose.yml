@@ -1,0 +1,53 @@
+version: "2.1"
+services:
+
+  mysql:
+    image: 'mysql:8.0'
+    restart: 'always'
+    ports:
+      - "3306:3306"
+    tmpfs:
+      - /var/lib/mysql:rw
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=axt
+      - MYSQL_USER=axt
+      - MYSQL_PASSWORD=across_test
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+
+  postgres:
+    image: 'postgres:14.8'
+    restart: 'always'
+    ports:
+      - "5432:5432"
+    tmpfs:
+      - /var/lib/postgresql/data:rw
+    environment:
+      - POSTGRES_DB=axt
+      - POSTGRES_USER=axt
+      - POSTGRES_PASSWORD=across_test
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    hostname: 'sqlserver'
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: across_tEst
+      MSSQL_PID: Developer
+    # TODO: https://github.com/Microsoft/mssql-docker/issues/11
+    ports:
+      - '1433:1433'
+
+  oracle:
+    image: 'gvenzl/oracle-xe:18.4.0-slim' # This is what testcontainers 1.18.1 uses
+    volumes:
+      - './docker/oracle/container-entrypoint-initdb.d:/container-entrypoint-initdb.d'
+    hostname: 'oracle'
+    environment:
+      - ORACLE_ALLOW_REMOTE=true
+      - ORACLE_ENABLE_XDB=true
+      # IT IS SAID THAT THIS IS MORE PERFORMANT IN DOCKER
+      - ORACLE_DISABLE_ASYNCH_IO=true
+      - ORACLE_PASSWORD=across_test
+    ports:
+      - '1521:1521'
