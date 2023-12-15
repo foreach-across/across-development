@@ -1,12 +1,24 @@
+# Notice: GitHub
+
+TODO
+
+
+# Notice: Deprecation
+
+TODO
+
+
 # Across local development
 
 You can use the instructions, scripts and configuration files in this
 repository to do local development on Across on your
 laptop/desktop/workstation.
 
-The instructions here do not use `testcontainers`, because:
+The instructions here do not use `testcontainers` for the relational
+databases, because:
 
-- The tests in GitLab CI/CD don't use `testcontainers` either.
+- The tests in GitLab CI/CD don't use `testcontainers` either for
+  relational databases.
 
 - It is much faster to start a database server once in the background,
   and then reuse it all the time, than to start one for each test case
@@ -15,6 +27,8 @@ The instructions here do not use `testcontainers`, because:
 
 
 # Setup ~/dev-configs for Across development
+
+TODO: Is this still needed?
 
 This allows you to easily run integration tests from both Maven and
 IntelliJ.
@@ -71,6 +85,6 @@ To run the integration tests locally, run either of:
 
 # IntelliJ
 
-Most Across repositories have an IntelliJ run configuration for each
+Many Across repositories have an IntelliJ run configuration for each
 database to run all integration tests. Obviously you need to have the
 database(s) running using `docker-compose` (see above).

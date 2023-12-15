@@ -1,0 +1,9 @@
+# Repositories for Across Framework and all modules of Across Platform,
+# in the order that they need to be build:
+across-framework
+across-autoconfigure
+across-base-modules
+across-entity-admin-modules
+across-user-auth-modules
+across-media-modules
+across-platform
