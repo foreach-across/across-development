@@ -1,4 +1,5 @@
-baseURL = 'https://foreach-across.github.com/'
+# TODO: https://beforeach.github.io/across
+baseURL = 'https://dvsp-iodigital.github.io/'
 languageCode = 'en-us'
 title = 'Foreach Across'
 theme = 'ananke'
