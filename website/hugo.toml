@@ -1,0 +1,4 @@
+baseURL = 'https://foreach-across.github.com/'
+languageCode = 'en-us'
+title = 'Foreach Across'
+theme = 'ananke'
