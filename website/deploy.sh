@@ -14,5 +14,6 @@ rm -rf public/*
 hugo
 cd public
 git restore README.md
+git add *
 git commit -a -m "$comment"
 git push

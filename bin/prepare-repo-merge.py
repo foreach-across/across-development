@@ -18,7 +18,7 @@ GROUP_MODULES = {
         # "spring-mobile-module",
     ],
     "across-entity-admin-modules": [
-        "admin-web-bootstrap-4", # The dependency on file-manager-module should be easy to break
+        "admin-web-bootstrap-4",  # The dependency on file-manager-module should be easy to break
         "bootstrap-ui-module",
         "admin-web-module",
         "entity-ui-module",
