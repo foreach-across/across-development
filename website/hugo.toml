@@ -1,0 +1,47 @@
+# TODO: https://beforeach.github.io/across
+baseURL = 'https://dvsp-iodigital.github.io/'
+languageCode = 'en-us'
+title = 'Foreach Across'
+theme = 'beautifulhugo'
+sectionPagesMenu = 'main'
+
+[module]
+
+[[module.mounts]]
+source = 'content'
+target = 'content'
+
+[[module.mounts]]
+source = '../release-notes'
+target = 'content/release-notes'
+
+[Params]
+logo = "img/logo.svg"
+favicon = "img/favicon-32x32.ico"
+# mainSections = ["post","posts"]
+
+[Author]
+github = "ForeachOS"
+
+[menus]
+[[menus.main]]
+name = 'Home'
+pageRef = '/'
+weight = 10
+[[menus.main]]
+name = 'Overview'
+#url = 'https://docs.across.dev/across-site/production/'
+pageRef = '/overview'
+weight = 20
+[[menus.main]]
+name = 'Modules'
+pageRef = '/modules'
+weight = 30
+[[menus.main]]
+name = 'Release notes'
+pageRef = '/release-notes'
+weight = 40
+[[menus.main]]
+name = 'FAQ'
+pageRef = '/faq'
+weight = 50

@@ -5,7 +5,8 @@ Into the `across-entity-admin-modules` repository.
 
 # End-to-end tests
 
-Are we running the frontend unit tests?
+Also: are we running the frontend unit tests? Not that there are a lot
+of those.
 
 End-to-end tests are at least in:
 
@@ -103,6 +104,21 @@ See the `artifact-version.sh` script for an attempt to do this with a
 one-liner. While that works in `bash`, a `.gitlab-ci.yml` variable
 value isn't evaluated in a shell. See the `gitlab-ci-cd-tryout` for a
 solution that uses a different job for tags and branches.
+
+
+# Website
+
+Store the old website in a Git repository.
+
+See the various TODO's in the `website` directory.
+
+Use GitLab CI/CD to publish the website on each push to main: draft
+articles won't be published anyway.
+
+Figure out where to store the Antora docs and the Javadocs (Cloudflare
+R2 maybe?).
+
+Point DNS to GitHub.
 
 
 # Frontend upgrades
