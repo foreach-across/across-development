@@ -1,17 +1,33 @@
-# Integrate admin-web-bootstrap-4
+# Release build
 
-Into the `across-entity-admin-modules` repository.
+We need a new release build procedure/script/tool, hopefully not as
+elaborate as AXRT.
 
+Maven has much more modern feature for release build than the old
+`maven-release-plugin`, e.g.:
 
-# End-to-end tests
+https://maven.apache.org/maven-ci-friendly.html
 
-Also: are we running the frontend unit tests? Not that there are a lot
-of those.
+And we already have that `revision` property, it's just not used for
+what it's intended.
 
-End-to-end tests are at least in:
+GitLab can do different things depending on whether a branch or a tag
+was pushed. Ideally, the value for `revision` can be derived from
+that:
 
-	across-entity-admin-modules/bootstrap-ui-module/src/main/frontend/tests/e2e
-	across-entity-admin-modules/entity-module-test-application/src/test/e2e
+- Push to `5.3` branch => `5.3-SNAPSHOT`
+- Push `v5.3.0` tag => `5.3.0`
+
+(Yes, we'll drop the `.RELEASE`, which Spring (since 5.3) and Spring
+Boot (since 2.4) have also done.
+
+The question is: how easily can this be done, preferably in the
+`variables` section of the `.gitlab-ci.yml`
+
+See the `artifact-version.sh` script for an attempt to do this with a
+one-liner. While that works in `bash`, a `.gitlab-ci.yml` variable
+value isn't evaluated in a shell. See the `gitlab-ci-cd-tryout` for a
+solution that uses a different job for tags and branches.
 
 
 # Maven configuration
@@ -48,6 +64,15 @@ memory, because an old container hasn't been stopped yet.
 	TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}
 
 
+## End-to-end tests in across-entity-admin-modules
+
+These install Cypress from the website on each and every run. See
+`e2e-tests.docker`. We should be able to use the docker image with
+Cypress and the browsers in [one
+image](https://hub.docker.com/r/cypress/included), but that requires a
+big Cypress upgrade.
+
+
 ## Custom build image
 
 Might reduce the pain of `testcontainers`, and allow for better
@@ -66,44 +91,16 @@ based on Ubuntu 22.04), and need at least the following packages:
 - `docker.io`: when using `testcontainers` through the GitLab
   Dependency Proxy.
 
+`docker-compose` is a single, statically linked binary that can be
+installed using a single `https` request:
 
-# Sync to GitHub
+https://docs.docker.com/compose/install/standalone/
 
-https://docs.gitlab.com/ee/user/project/repository/mirror/
+Docker Engine is also available as a tarball with statically linked
+binaries for `docker` and other tools (including the docker daemon,
+don't need that):
 
-https://docs.gitlab.com/ee/user/project/repository/mirror/push.html
-
-
-# Release build
-
-We need a new release build procedure/script/tool, hopefully not as
-elaborate as AXRT.
-
-Maven has much more modern feature for release build than the old
-`maven-release-plugin`, e.g.:
-
-https://maven.apache.org/maven-ci-friendly.html
-
-And we already have that `revision` property, it's just not used for
-what it's intended.
-
-GitLab can do different things depending on whether a branch or a tag
-was pushed. Ideally, the value for `revision` can be derived from
-that:
-
-- Push to `5.3` branch => `5.3-SNAPSHOT`
-- Push `v5.3.0` tag => `5.3.0`
-
-(Yes, we'll drop the `.RELEASE`, which Spring (since 5.3) and Spring
-Boot (since 2.4) have also done.
-
-The question is: how easily can this be done, preferably in the
-`variables` section of the `.gitlab-ci.yml`
-
-See the `artifact-version.sh` script for an attempt to do this with a
-one-liner. While that works in `bash`, a `.gitlab-ci.yml` variable
-value isn't evaluated in a shell. See the `gitlab-ci-cd-tryout` for a
-solution that uses a different job for tags and branches.
+https://docs.docker.com/engine/install/binaries/
 
 
 # Website
@@ -119,6 +116,26 @@ Figure out where to store the Antora docs and the Javadocs (Cloudflare
 R2 maybe?).
 
 Point DNS to GitHub.
+
+Add a pointer to the Across School presentation (Dutch). p.22 is
+broken though:
+
+https://foreachos.github.io/ax-school
+
+Perhaps add a `.github` repository to `ForeachOS` with a README.md
+that is shown for organization; see for example:
+
+https://github.com/containers/.github/tree/main/profile
+
+That is shown before the pinned repositories, which should be:
+
+	across-framework
+	across-platform
+	across-development
+	ax-docs-across-site
+
+Although perhaps we should integrate the Antora playbook into
+`across-development`?
 
 
 # Frontend upgrades
