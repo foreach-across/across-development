@@ -1,3 +1,16 @@
+# Verify number of tests
+
+Against Bamboo, before making the 5.3 release build.
+
+Keep in mind that Bamboo will likely run integration tests during the
+unit tests as well (against H2).
+
+
+# Frontend unit tests
+
+I don't think they were run on Bamboo either ...
+
+
 # Release build
 
 We need a new release build procedure/script/tool, hopefully not as
@@ -58,6 +71,11 @@ memory, because an old container hasn't been stopped yet.
 
 
 # Build optimization
+
+## Per-job type caches
+
+e.g. maven caches for maven jobs, nodejs caches for node jobs
+
 
 ## Configure testcontainers to use the GitLab Dependency Proxy
 

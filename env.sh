@@ -3,8 +3,8 @@ echo "Warning: Across is still using old maven plugins that are not multi-thread
 alias mi='mvn install'
 alias mci='mvn clean install'
 # TODO: add -T1C when multi-thread issue is fixed:
-alias miwt='mvn install -DskipTests -Dmaven.javadoc.skip=true -Djacoco.skip=true'
-alias mciwt='mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Djacoco.skip=true'
+alias miwt='mvn install -DskipTests -Djacoco.skip=true'
+alias mciwt='mvn clean install -DskipTests -Djacoco.skip=true'
 
 export JAVA8_HOME=~/.jdks/1.8
 export JAVA11_HOME=~/.jdks/11
