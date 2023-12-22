@@ -16,4 +16,14 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 # export PATH=$PWD/tools:$PATH
 
+if [[ -f data-across.yml ]]
+then
+    bin=$(realpath $PWD/bin)
+    export PATH=$bin:$PATH
+elif [[ -f ../data-across.yml ]]
+then
+    bin=$(realpath $PWD/../bin)
+    export PATH=$bin:$PATH
+fi
+
 alias axitest='mvn --fail-at-end --batch-mode clean test-compile failsafe:integration-test failsafe:verify -Dmaven.javadoc.skip=true'

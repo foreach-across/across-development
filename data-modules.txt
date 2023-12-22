@@ -1,11 +1,11 @@
 across-autoconfigure/across-autoconfigure
 across-base-modules/across-hibernate-module
 across-base-modules/spring-security-module
-#across-base-modules/spring-security-module-actuator
 across-base-modules/debug-web-module
 across-base-modules/ehcache-module
 across-base-modules/logging-module
-across-entity-admin-modules/admin-web-bootstrap-4
+across-entity-admin-modules/ax-bootstrap-4-utilities
+across-entity-admin-modules/ax-bootstrap-theme
 across-entity-admin-modules/bootstrap-ui-module
 across-entity-admin-modules/admin-web-module
 across-entity-admin-modules/entity-module

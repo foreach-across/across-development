@@ -1,3 +1,9 @@
+# direnv
+
+Switch to `direnv`: https://direnv.net/ and document it in the getting
+started.
+
+
 # Verify number of tests
 
 Against Bamboo, before making the 5.3 release build.
@@ -39,8 +45,13 @@ The question is: how easily can this be done, preferably in the
 
 See the `artifact-version.sh` script for an attempt to do this with a
 one-liner. While that works in `bash`, a `.gitlab-ci.yml` variable
-value isn't evaluated in a shell. See the `gitlab-ci-cd-tryout` for a
-solution that uses a different job for tags and branches.
+value isn't evaluated in a shell. See the `gitlab-ci-cd-tryout`
+repository for a solution that uses a different job for tags and
+branches.
+
+The script that updates the dependency versions must also run the
+`generate-dependencies.sh` script. The `test-projects` in
+`across-autoconfigure` will need to be added to the root pom.
 
 
 # Maven configuration
