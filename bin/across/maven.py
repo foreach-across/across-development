@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import List
 
-from model import DEPENDENCY_TREE_TXT, Project, ProjectArtifact, UsedArtifact, POM_XML
+from . model import DEPENDENCY_TREE_TXT, Project, ProjectArtifact, UsedArtifact, POM_XML
 
 
 def read_projects(repository_dir: Path) -> List[Project]:

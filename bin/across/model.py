@@ -4,8 +4,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Sequence, Tuple
 
-import util
-from util import eprint
+from . import util
+from . util import eprint
 
 # from maven_dtree import read_projects
 # import maven_dtree
@@ -170,12 +170,12 @@ class Repository:
 
     @staticmethod
     def read_all() -> List["Repository"]:
-        import maven_dtree
+        from . import maven
 
         result = list()
         for repo_path in find_repo_paths():
             # eprint(repo_path)
-            projects = maven_dtree.read_projects(repo_path)
+            projects = maven.read_projects(repo_path)
             result.append(Repository.create(repo_path, projects))
         return result
 

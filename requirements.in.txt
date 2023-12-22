@@ -1,3 +1,5 @@
 GitPython
 black
+graphviz
+networkx
 prettytable

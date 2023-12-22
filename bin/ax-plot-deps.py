@@ -6,7 +6,7 @@ from typing import Dict, Any
 import graphviz as gv  # type: ignore
 import networkx as ns  # type: ignore
 
-from model import Project, Repository
+from across.model import Project, Repository
 
 
 # ax-plot-deps.py | tred | dot -Tsvg > repo-deps.svg
