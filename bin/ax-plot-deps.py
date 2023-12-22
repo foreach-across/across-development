@@ -6,7 +6,9 @@ from typing import Dict, Any
 import graphviz as gv  # type: ignore
 import networkx as ns  # type: ignore
 
+from across.config import parse
 from across.model import Project, Repository
+from across.config import AcrossConfig
 
 
 # ax-plot-deps.py | tred | dot -Tsvg > repo-deps.svg
@@ -25,18 +27,25 @@ def main() -> None:
         help="Plot modules instead of repository",
         action="store_true",
     )
+    parser.add_argument(
+        "--all",
+        help="Include all modules",
+        action="store_true",
+    )
     args = parser.parse_args()
     app = Application(args)
     app.run()
 
 
 class Application:
+    config: AcrossConfig
     repos: list[Repository]
     module_id_to_repository: dict[str, Repository]
     projects: dict[str, Project]
 
     def __init__(self, args: Any):
         self.args = args
+        self.config = parse()
         self.repos = Repository.read_all()
         self.module_id_to_repository = self._build_module_id_to_repository()
         self.projects = dict()
@@ -88,13 +97,21 @@ class Application:
         )  # , graph_attr={"rankdir": "LR"})
         for repo in self.repos:
             for project in repo.projects.values():
-                if project.artifact.packaging != "pom":
-                    node_label = project.artifact.artifact_id
+                if project.artifact.packaging != "pom" and (
+                    self.args.all or project.artifact_id in self.config.modules
+                ):
+                    node_label = project.artifact_id
                     if show_versions:
                         node_label += "\n" + project.artifact.version
-                    g.node(repo.name, label=node_label)
+                    g.node(
+                        project.artifact_id,
+                        label=node_label,
+                        color=self.config.modules.get(project.artifact_id).color,
+                    )
                     for dep in project.direct_dependencies:
-                        if dep.is_foreach():
+                        if dep.is_foreach() and (
+                            self.args.all or dep.artifact_id in self.config.modules
+                        ):
                             head_project = self.projects[dep.artifact_id]
                             self._make_edge(
                                 g,

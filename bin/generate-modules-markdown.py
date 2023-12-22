@@ -9,8 +9,7 @@ GroupDict = Dict[str, Sequence[str]]
 def main():
     raw_groups = parse()
     group_tables = {
-        group_name: to_table(modules)
-        for group_name, modules in raw_groups.items()
+        group_name: to_table(modules) for group_name, modules in raw_groups.items()
     }
     print(
         """---
@@ -75,7 +74,8 @@ def to_table(modules: Sequence[str]) -> PrettyTable:
         t.add_row(
             [
                 link(
-                    module, f"https://docs.across.dev/across-site/production/{doc_module}/"
+                    module,
+                    f"https://docs.across.dev/across-site/production/{doc_module}/",
                 ),
                 link("TODO", f"https://example.com"),
                 link(

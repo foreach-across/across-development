@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Dict, List, Sequence, Tuple
 
 from . import util
-from . util import eprint
+from .util import eprint
 
 # from maven_dtree import read_projects
 # import maven_dtree
