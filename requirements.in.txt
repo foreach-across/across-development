@@ -1,5 +1,6 @@
 GitPython
 black
+dataconf
 graphviz
 networkx
 prettytable
