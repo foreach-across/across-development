@@ -11,8 +11,8 @@ from . util import eprint
 # import maven_dtree
 
 POM_XML = "pom.xml"
-EFFECTIVE_POM_XML = ".effective-pom.xml"
-DEPENDENCY_TREE_TXT = ".dependency-tree.txt"
+# EFFECTIVE_POM_XML = ".effective-pom.xml"
+DEPENDENCY_TREE_TXT = "dependency.tree.txt"
 LOCAL_SNAPSHOT = "local-SNAPSHOT"
 
 
@@ -37,7 +37,7 @@ class Artifact(object):
         return self.long_id
 
 
-@dataclass()
+@dataclass
 class ProjectArtifact(Artifact):
     # project: "Project"
     packaging: str  # TODO enum?
@@ -46,7 +46,7 @@ class ProjectArtifact(Artifact):
         return f"{super()}:{self.packaging}"
 
 
-@dataclass()
+@dataclass
 class UsedArtifact(Artifact):
     # using_project: "Project"
     type: str
@@ -212,10 +212,6 @@ def find_repo_paths() -> List[Path]:
     # cwd = Path.cwd() # gives an absolute path everywhere
     cwd = Path()
     eprint(cwd)
-    result = sorted([p.parent for p in cwd.glob("*/*/*/.git")])
-    # so we can still use the script in lower directories as well, useful in public/modules:
-    if not result:
-        result = sorted([p.parent for p in cwd.glob("*/*/.git")])
-        if not result:
-            result = sorted([p.parent for p in cwd.glob("*/.git")])
-    return result
+    result = [p.parent for p in cwd.glob("*/.git")]
+    result.remove(Path("public"))
+    return sorted(result)
