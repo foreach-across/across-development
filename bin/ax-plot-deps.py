@@ -7,7 +7,7 @@ import graphviz as gv  # type: ignore
 import networkx as ns  # type: ignore
 
 from across.config import parse
-from across.model import Project, Repository
+from across.repository import Project, Repository
 from across.config import AcrossConfig
 
 

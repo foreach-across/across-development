@@ -1,117 +1,26 @@
 import itertools
 import subprocess
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Sequence, Tuple
 
-from . import util
+from git import Repo
+
 from .util import eprint
 
-# from maven_dtree import read_projects
-# import maven_dtree
-
-POM_XML = "pom.xml"
-# EFFECTIVE_POM_XML = ".effective-pom.xml"
-DEPENDENCY_TREE_TXT = "dependency.tree.txt"
-LOCAL_SNAPSHOT = "local-SNAPSHOT"
-
-
-@dataclass
-class Artifact(object):
-    group_id: str
-    artifact_id: str
-    version: str
-
-    @property
-    def short_id(self):
-        return self.group_id + ":" + self.artifact_id
-
-    @property
-    def long_id(self):
-        return self.group_id + ":" + self.artifact_id + ":" + self.version
-
-    def is_foreach(self):
-        return self.group_id.startswith("com.foreach.")
-
-    def __str__(self):
-        return self.long_id
-
-
-@dataclass
-class ProjectArtifact(Artifact):
-    # project: "Project"
-    packaging: str  # TODO enum?
-
-    def __str__(self):
-        return f"{super()}:{self.packaging}"
-
-
-@dataclass
-class UsedArtifact(Artifact):
-    # using_project: "Project"
-    type: str
-    scope: str  # TODO enum?
-    is_optional: bool
-    is_direct_dependency: bool
-
-    def __str__(self):
-        optional = "optional" if self.is_optional else "required"
-        direct = "direct" if self.is_direct_dependency else "indirect"
-        return f"{super()}:{self.type}:{optional}:{direct}"
-
-
-class Project(object):
-    def __init__(
-        self,
-        repository_path: Path,
-        project_dir: Path,
-        project_artifact: ProjectArtifact,
-        all_dependencies: List[UsedArtifact],
-    ):
-        self.repository_path = repository_path
-        self.repository_name = util.repository_name(repository_path)
-        self.project_path = project_dir
-        self.pom_file = project_dir / POM_XML
-        assert self.pom_file.is_file()
-        self.artifact = project_artifact
-        self.all_dependencies = all_dependencies
-        self.direct_dependencies = filter(
-            lambda a: a.is_direct_dependency, all_dependencies
-        )
-
-    def __str__(self):
-        return f"Project({self.long_id})"
-
-    @property
-    def short_id(self):
-        return self.artifact.short_id
-
-    @property
-    def long_id(self):
-        return self.artifact.short_id
-
-    @property
-    def group_id(self):
-        return self.artifact.group_id
-
-    @property
-    def artifact_id(self):
-        return self.artifact.artifact_id
-
-    @property
-    def version(self):
-        return self.artifact.version
+from .maven import Project, LOCAL_SNAPSHOT, UsedArtifact
 
 
 class Repository:
+    repo: Repo
     path: Path
     name: str
     projects: Dict[str, Project]
 
-    def __init__(self, path: Path, name: str, branch: str, projects: Sequence[Project]):
+    def __init__(self, path: Path, name: str, projects: Sequence[Project]):
+        self.repo = Repo(path)
         self.path = path
         self.name = name
-        self.branch = branch
+        self.branch = self.repo.head
         self.projects = {p.artifact.artifact_id: p for p in projects}
 
     def __str__(self):
@@ -170,41 +79,21 @@ class Repository:
 
     @staticmethod
     def read_all() -> List["Repository"]:
-        from . import maven
-
         result = list()
-        for repo_path in find_repo_paths():
+        for repo_path in _find_repo_paths():
             # eprint(repo_path)
-            projects = maven.read_projects(repo_path)
+            projects = Project.read_all(repo_path)
             result.append(Repository.create(repo_path, projects))
         return result
 
     @staticmethod
     def create(repo_path: Path, projects: List[Project]) -> "Repository":
-        branch = Repository.determine_branch(repo_path)
-        repository = Repository(repo_path, repo_path.name, branch, projects)
+        repository = Repository(repo_path, repo_path.name, projects)
         eprint(repository)
         return repository
 
-    @staticmethod
-    def determine_branch(repo_path: Path) -> str:
-        # TODO: this is easier with: git rev-parse --abbrev-ref HEAD
-        process = subprocess.run(
-            ["git", "branch", "-a"], capture_output=True, text=True, cwd=repo_path
-        )
-        text = process.stdout
-        lines: List[str] = text.splitlines(keepends=False)
-        for line in lines:
-            if line.startswith("* "):
-                branch = line[2:].strip()
-                if branch.startswith("(HEAD"):
-                    # Example: * (HEAD detached at v4.1.5)
-                    return "HEAD"
-                return branch
-        raise Exception(f"{repo_path}: Could not determine branch from: \n{text}")
 
-
-def find_repo_paths() -> List[Path]:
+def _find_repo_paths() -> List[Path]:
     # return [os.path.dirname(git) for git in glob.glob("*/*/.git")]
     # The directory structure deliberately designed to have git repos only at depth 2:
     # - faster than a full recursive search, especially on Windows
@@ -213,5 +102,4 @@ def find_repo_paths() -> List[Path]:
     cwd = Path()
     eprint(cwd)
     result = [p.parent for p in cwd.glob("*/.git")]
-    result.remove(Path("public"))
     return sorted(result)

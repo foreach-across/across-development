@@ -1,13 +1,107 @@
+from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
-from .model import DEPENDENCY_TREE_TXT, Project, ProjectArtifact, UsedArtifact, POM_XML
+from . import util
+from .util import eprint
+
+POM_XML = "pom.xml"
+# EFFECTIVE_POM_XML = ".effective-pom.xml"
+DEPENDENCY_TREE_TXT = "dependency.tree.txt"
+LOCAL_SNAPSHOT = "local-SNAPSHOT"
 
 
-def read_projects(repository_dir: Path) -> List[Project]:
-    dep_tree_paths = list(repository_dir.rglob(DEPENDENCY_TREE_TXT))
-    # assert len(dep_tree_paths) > 0
-    return [_parse_dependency_tree(repository_dir, path) for path in dep_tree_paths]
+@dataclass
+class Artifact(object):
+    group_id: str
+    artifact_id: str
+    version: str
+
+    @property
+    def short_id(self):
+        return self.group_id + ":" + self.artifact_id
+
+    @property
+    def long_id(self):
+        return self.group_id + ":" + self.artifact_id + ":" + self.version
+
+    def is_foreach(self):
+        return self.group_id.startswith("com.foreach.")
+
+    def __str__(self):
+        return self.long_id
+
+
+@dataclass
+class ProjectArtifact(Artifact):
+    # project: "Project"
+    packaging: str  # TODO enum?
+
+    def __str__(self):
+        return f"{super()}:{self.packaging}"
+
+
+@dataclass
+class UsedArtifact(Artifact):
+    # using_project: "Project"
+    type: str
+    scope: str  # TODO enum?
+    is_optional: bool
+    is_direct_dependency: bool
+
+    def __str__(self):
+        optional = "optional" if self.is_optional else "required"
+        direct = "direct" if self.is_direct_dependency else "indirect"
+        return f"{super()}:{self.type}:{optional}:{direct}"
+
+
+class Project(object):
+    def __init__(
+        self,
+        repository_path: Path,
+        project_dir: Path,
+        project_artifact: ProjectArtifact,
+        all_dependencies: List[UsedArtifact],
+    ):
+        self.repository_path = repository_path
+        self.repository_name = util.repository_name(repository_path)
+        self.project_path = project_dir
+        self.pom_file = project_dir / POM_XML
+        assert self.pom_file.is_file()
+        self.artifact = project_artifact
+        self.all_dependencies = all_dependencies
+        self.direct_dependencies = filter(
+            lambda a: a.is_direct_dependency, all_dependencies
+        )
+
+    def __str__(self):
+        return f"Project({self.long_id})"
+
+    @property
+    def short_id(self):
+        return self.artifact.short_id
+
+    @property
+    def long_id(self):
+        return self.artifact.short_id
+
+    @property
+    def group_id(self):
+        return self.artifact.group_id
+
+    @property
+    def artifact_id(self):
+        return self.artifact.artifact_id
+
+    @property
+    def version(self):
+        return self.artifact.version
+
+    @staticmethod
+    def read_all(repository_dir: Path) -> List["Project"]:
+        dep_tree_paths = list(repository_dir.rglob(DEPENDENCY_TREE_TXT))
+        # assert len(dep_tree_paths) > 0
+        return [_parse_dependency_tree(repository_dir, path) for path in dep_tree_paths]
 
 
 def _parse_dependency_tree(repository_path: Path, dep_tree_path: Path) -> Project:
