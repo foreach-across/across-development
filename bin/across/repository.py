@@ -1,5 +1,4 @@
 import itertools
-import subprocess
 from pathlib import Path
 from typing import Dict, List, Sequence, Tuple
 
@@ -20,7 +19,7 @@ class Repository:
         self.repo = Repo(path)
         self.path = path
         self.name = name
-        self.branch = self.repo.head
+        self.branch = str(self.repo.head)
         self.projects = {p.artifact.artifact_id: p for p in projects}
 
     def __str__(self):
@@ -78,9 +77,9 @@ class Repository:
         }
 
     @staticmethod
-    def read_all() -> List["Repository"]:
+    def read_all(directory: Path = Path().absolute()) -> List["Repository"]:
         result = list()
-        for repo_path in _find_repo_paths():
+        for repo_path in _find_repo_paths(directory):
             # eprint(repo_path)
             projects = Project.read_all(repo_path)
             result.append(Repository.create(repo_path, projects))
@@ -93,13 +92,13 @@ class Repository:
         return repository
 
 
-def _find_repo_paths() -> List[Path]:
+def _find_repo_paths(directory: Path) -> List[Path]:
     # return [os.path.dirname(git) for git in glob.glob("*/*/.git")]
     # The directory structure deliberately designed to have git repos only at depth 2:
     # - faster than a full recursive search, especially on Windows
     # - also easy in shell scripts:
     # cwd = Path.cwd() # gives an absolute path everywhere
-    cwd = Path()
-    eprint(cwd)
-    result = [p.parent for p in cwd.glob("*/.git")]
+    # cwd = Path()
+    # eprint(cwd)
+    result = [p.parent for p in directory.glob("*/.git")]
     return sorted(result)

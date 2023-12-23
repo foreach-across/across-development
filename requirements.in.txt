@@ -2,5 +2,7 @@ GitPython
 black
 dataconf
 graphviz
-networkx
+mypy
 prettytable
+shellingham
+typer
