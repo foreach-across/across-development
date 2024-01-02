@@ -1,0 +1,15 @@
+# .gitlab-ci.yml extension enables completion support in IntelliJ
+
+variables:
+  DOCKER_VERSION: "24.0"
+  # Instruct Testcontainers to use the daemon of DinD, use port 2375 for non-tls connections.
+  DOCKER_HOST: "tcp://docker:2375"
+  # Instruct Docker not to start over TLS.
+  DOCKER_TLS_CERTDIR: ""
+  # Improve performance with overlayfs.
+  DOCKER_DRIVER: overlay2
+  # Left disabled, because I assume that the docker.io CDN is faster in Amazon Frankfurt
+  # than downloading from Eindhoven.
+  # TODO: Use this when Eindhoven GitLab is moved to Amazon:
+  # TODO: Possibly better yet: use Harbor
+  #TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}

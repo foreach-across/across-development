@@ -1,0 +1,11 @@
+# .gitlab-ci.yml extension enables completion support in IntelliJ
+
+# This include file just adds the services field to unit test base job,
+# so there is no duplication.variables:
+# This means you also need to include unit-tests.gitlab-ci.yml if you include this file.
+
+.verify:
+  services:
+    - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:${DOCKER_VERSION}-dind
+      alias: docker
+      command: [ "--tls=false" ]
