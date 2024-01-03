@@ -4,6 +4,7 @@ from typing import Dict, List, Sequence, Tuple
 
 from git import Repo
 
+from .git import find_repo_paths
 from .util import eprint
 
 from .maven import Project, LOCAL_SNAPSHOT, UsedArtifact
@@ -79,7 +80,7 @@ class Repository:
     @staticmethod
     def read_all(directory: Path = Path().absolute()) -> List["Repository"]:
         result = list()
-        for repo_path in _find_repo_paths(directory):
+        for repo_path in find_repo_paths(directory):
             # eprint(repo_path)
             projects = Project.read_all(repo_path)
             result.append(Repository.create(repo_path, projects))
@@ -90,15 +91,3 @@ class Repository:
         repository = Repository(repo_path, repo_path.name, projects)
         eprint(repository)
         return repository
-
-
-def _find_repo_paths(directory: Path) -> List[Path]:
-    # return [os.path.dirname(git) for git in glob.glob("*/*/.git")]
-    # The directory structure deliberately designed to have git repos only at depth 2:
-    # - faster than a full recursive search, especially on Windows
-    # - also easy in shell scripts:
-    # cwd = Path.cwd() # gives an absolute path everywhere
-    # cwd = Path()
-    # eprint(cwd)
-    result = [p.parent for p in directory.glob("*/.git")]
-    return sorted(result)

@@ -31,6 +31,10 @@ class AcrossConfig:
     def modules(self) -> Dict[str, RepositoryConfig]:
         return self._modules
 
+    @property
+    def repository_names(self) -> List[str]:
+        return [r.name for r in self.repositories]
+
     def find_module_repository(self, module_name: str) -> Optional[RepositoryConfig]:
         return self._modules.get(module_name)
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from typing import Sequence, Dict
+from typing import Sequence, Dict, List
 
 from prettytable import PrettyTable, MARKDOWN
 
-GroupDict = Dict[str, Sequence[str]]
+GroupDict = Dict[str, List[str]]
 
 
 def main():
@@ -38,7 +38,7 @@ title: Modules
 
 
 def parse() -> GroupDict:
-    result = dict()
+    result: GroupDict = dict()
     with open("data-modules.txt") as ins:
         for line in ins.readlines():
             line = line.strip()
@@ -47,7 +47,8 @@ def parse() -> GroupDict:
                 if group in result:
                     modules = result[group]
                 else:
-                    modules = result[group] = []
+                    modules = list()
+                    result[group] = modules
                 modules.append(module)
     return result
 
