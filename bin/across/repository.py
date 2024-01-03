@@ -19,7 +19,7 @@ class Repository:
         self.repo = Repo(path)
         self.path = path
         self.name = name
-        self.branch = str(self.repo.head)
+        self.branch = str(self.repo.active_branch)
         self.projects = {p.artifact.artifact_id: p for p in projects}
 
     def __str__(self):
