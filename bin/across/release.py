@@ -3,12 +3,15 @@ import sys
 import tempfile
 from io import TextIOWrapper
 from pathlib import Path
-from typing import Dict, List, TextIO, Union, Text
+from typing import Dict, List, TextIO, Union
 
 import typer
+from git import Repo
+from git.objects import Commit
 from semver import Version
 
 from across import build
+from across.build import poll_gitlab_pipeline
 from .config import AcrossConfig
 from .git import GitRepositoryCollection, GitRepository
 from .util import system
@@ -65,8 +68,11 @@ def start(
     _update_version_properties()
     _ask_user_confirmation(repo_name, repo_version)
     _quick_local_build()
-    # TODO: commit and push; this will trigger the regular build in GitLab
-    # TODO: monitor the build in GitLab
+    msg = f"Release {repo_version} by across.py release"
+    commit = _commit_and_push(new_repository.repo, msg)
+    print("commit: ", commit.hexsha)
+    pipeline = poll_gitlab_pipeline(repo_name, commit.hexsha)
+    print(f"pipeline: {pipeline.status}")
     # TODO: when the build is successful: create and push tag
     # TODO: tag-triggered pipeline in GitLab will run frontend jobs + deploy to Sonatype OSS (but no other jobs)
 
@@ -115,6 +121,7 @@ def _clone(orig_repository: GitRepository, stash_clone: bool) -> GitRepository:
     clone_dir = Path(tmp_repo_dir, orig_repository.name)
     if clone_dir.exists():
         repository = GitRepository(orig_repository.config, clone_dir)
+        # TODO: also check for unpushed commits!
         if repository.repo.is_dirty():
             if stash_clone:
                 os.chdir(clone_dir)
@@ -170,9 +177,18 @@ def _quick_local_build():
     system("mvn clean package -DskipTests")
 
 
+def _commit_and_push(repo: Repo, msg: str) -> Commit:
+    repo.git.add(update=True)  # git add -u
+    commit = repo.index.commit(msg)
+    repo.remote("origin").push()
+    return commit
+
+
 @app.command()
 def poll(repo_name: str):
-    build.poll(repo_name)
+    build.poll_gitlab_pipeline(
+        repo_name.strip("/"), "fb1757a257ce469c63ee29efb9f90c062cbcc94c"
+    )
 
 
 @app.command()
