@@ -8,6 +8,7 @@ from typing import Dict, List, TextIO, Union, Text
 import typer
 from semver import Version
 
+from across import build
 from .config import AcrossConfig
 from .git import GitRepositoryCollection, GitRepository
 from .util import system
@@ -167,6 +168,11 @@ def _ask_user_confirmation(repo_name, repo_version):
 
 def _quick_local_build():
     system("mvn clean package -DskipTests")
+
+
+@app.command()
+def poll(repo_name: str):
+    build.poll(repo_name)
 
 
 @app.command()

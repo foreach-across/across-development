@@ -4,6 +4,7 @@ dataconf
 graphviz
 mypy
 prettytable
+python-gitlab
 semver
 shellingham
 typer
