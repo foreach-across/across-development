@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from typing import Dict, Sequence
 
@@ -5,8 +6,11 @@ import typer
 
 from .config import AcrossConfig
 from .repository import Repository
+from .util import system
 
 app = typer.Typer()
+
+MAVEN_VERSIONS_PLUGIN_VERSION = "2.16.2"
 
 
 # @app.command()
@@ -37,19 +41,19 @@ def start(repo_name: str):
     repositories = Repository.read_all(directory)
     repos_by_name = {repo.name: repo for repo in repositories}
     repository = repos_by_name[repo_name]
-    versions_by_repo_name = determine_versions(repositories)
-    print(versions_by_repo_name)
-
-    _write_versions_properties(repository.path, config)
-
-    # We'll need to execute two maven commands:
-    # mvn versions:2.16.2:update-parent -DskipResolution=true -DparentVersion=5.3.0-alpha-1
-    # mvn versions:2.16.2:set-property -DpropertiesVersionsFile=versions.properties
-    # Take care of the particular structure in across-autoconfigure with the test-projects
-    # We should just include all those test-projects in the top-level pom
+    repo_versions = _determine_versions(repositories)
+    print(repo_versions)
+    _write_versions_properties(repository.path, config, repo_versions)
+    os.chdir(repository.path)
+    if repo_name != "across-framework":
+        _update_parent(repo_versions["across-framework"])
+    _update_version_properties()
+    system("git status")
 
 
-def determine_versions(repositories: Sequence[Repository]) -> Dict[str, str]:  # repo-name -> version
+def _determine_versions(
+    repositories: Sequence[Repository],
+) -> Dict[str, str]:  # repo-name -> version
     for repository in repositories:
         print(f"Fetching from {repository.name}")
         for remote in repository.repo.remotes:
@@ -58,23 +62,47 @@ def determine_versions(repositories: Sequence[Repository]) -> Dict[str, str]:  #
     for repository in repositories:
         tags = [str(tag) for tag in repository.repo.tags]
         print(tags)
-        branch_tags = sorted(filter(lambda t: t.startswith(f"v{repository.branch}"), tags))
+        branch_tags = sorted(
+            filter(lambda t: t.startswith(f"v{repository.branch}"), tags)
+        )
         print(branch_tags)
         if branch_tags:
             last_tag = branch_tags[-1]
             result[repository.name] = "TODO:" + last_tag  # TODO
         else:
             result[repository.name] = f"v{repository.branch}.0"
+    print(f"Versions: {result}")
     return result
 
 
-def _write_versions_properties(repo_path: Path, config: AcrossConfig):
-    new_version = "0.0.1"
+def _write_versions_properties(
+    repo_path: Path, config: AcrossConfig, repo_versions: Dict[str, str]
+):
     path = Path(repo_path, "versions.properties")
     print(f"Writing {path}")
     with open(path, "w") as output:
         for repo_config in config.repositories:
+            new_version = repo_versions[repo_config.name]
             output.write(f"{repo_config.name}.version={new_version}\n")
+
+
+def _update_parent(across_framework_version: str):
+    cmd = [
+        "mvn",
+        f"versions:{MAVEN_VERSIONS_PLUGIN_VERSION}:update-parent",
+        "-DskipResolution=true",
+        f"-DparentVersion={across_framework_version}",
+    ]
+    system(" ".join(cmd))
+
+
+def _update_version_properties():
+    cmd = [
+        "mvn",
+        f"versions:{MAVEN_VERSIONS_PLUGIN_VERSION}:set-property",
+        "-DpropertiesVersionsFile=versions.properties",
+    ]
+    system(" ".join(cmd))
 
 
 @app.command()
