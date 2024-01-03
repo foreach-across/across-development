@@ -14,16 +14,20 @@ export JAVA21_HOME=~/.jdks/21
 export JAVA_HOME=$JAVA8_HOME
 export PATH=$JAVA_HOME/bin:$PATH
 
-# export PATH=$PWD/tools:$PATH
-
+export ACROSS_DEV_DIR
 if [[ -f data-across.yml ]]
 then
-    bin=$(realpath $PWD/bin)
-    export PATH=$bin:$PATH
+    ACROSS_DEV_DIR=$(realpath "$PWD")
 elif [[ -f ../data-across.yml ]]
 then
-    bin=$(realpath $PWD/../bin)
-    export PATH=$bin:$PATH
+    ACROSS_DEV_DIR=$(realpath "$PWD"/..)
+fi
+
+if [[ -z "$ACROSS_DEV_DIR"  ]]
+then
+    echo 'Warning: Could not determine ACROSS_DEV_DIR!'
+else
+    export PATH=$ACROSS_DEV_DIR/bin:$PATH
 fi
 
 alias axitest='mvn --fail-at-end --batch-mode clean test-compile failsafe:integration-test failsafe:verify -Dmaven.javadoc.skip=true'
