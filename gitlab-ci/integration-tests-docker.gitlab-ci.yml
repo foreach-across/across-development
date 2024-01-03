@@ -1,0 +1,117 @@
+# .gitlab-ci.yml extension enables completion support in IntelliJ
+
+# In contrast to unit-tests-docker.gitlab-ci.yml, this file does not override a small part of
+# integration-tests.gitlab-ci.yml. The reason is you cannot "merge" arrays in .gitlab-ci.yml files,
+# but you can merge hash-maps/objects:
+# https://docs.gitlab.com/ee/ci/yaml/includes.html#merge-method-for-include
+# This also means you include either integration-tests.gitlab-ci.yml or integration-tests-docker.gitlab-ci.yml,
+# but never both.
+
+.itest:
+  stage: test
+  # Objects are merged in .gitlab-ci.yml files, but arrays are overwritten; so this needs to be duplicated in each itest job:
+  #  services:
+  #    - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:${DOCKER_VERSION}-dind
+  #      alias: docker
+  #      command: [ "--tls=false" ]
+  script:
+    # - 'mvn $MAVEN_CLI_OPTS dependency:purge-local-repository -DmanualInclude=com.foreach -DreResolve=false'
+    - find $CI_PROJECT_DIR/.m2/repository/com/foreach/ -type d -name "*-SNAPSHOT" | xargs rm -rf || echo "No snapshots to delete"
+    - 'mvn $MAVEN_CLI_OPTS test-compile failsafe:integration-test failsafe:verify -DacrossTest.datasource="$ACROSS_TEST_DATASOURCE"'
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - '**/target/failsafe-reports/TEST-*.xml'
+
+itest:h2:
+  extends:
+    - .itest
+  variables:
+    ACROSS_TEST_DATASOURCE: h2
+  services:
+    - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:${DOCKER_VERSION}-dind
+      alias: docker
+      command: [ "--tls=false" ]
+
+itest:mssql:
+  extends:
+    - .itest
+  variables:
+    ACROSS_TEST_DATASOURCE: mssql
+  services:
+    - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:${DOCKER_VERSION}-dind
+      alias: docker
+      command: [ "--tls=false" ]
+    - name: mcr.microsoft.com/mssql/server:2017-latest
+      alias: 'mssql'
+      variables:
+        ACCEPT_EULA: Y
+        MSSQL_SA_PASSWORD: across_tEst
+        MSSQL_PID: Developer
+
+itest:mysql:
+  extends:
+    - .itest
+  variables:
+    ACROSS_TEST_DATASOURCE: mysql
+  services:
+    - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:${DOCKER_VERSION}-dind
+      alias: docker
+      command: [ "--tls=false" ]
+    - name: '${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/mysql:8.0'
+      alias: mysql
+      variables:
+        MYSQL_ROOT_PASSWORD: ''
+        MYSQL_DATABASE: axt
+        MYSQL_USER: axt
+        MYSQL_PASSWORD: across_test
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+
+itest:oracle:
+  extends:
+    - .itest
+  variables:
+    ACROSS_TEST_DATASOURCE: oracle
+  services:
+    - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:${DOCKER_VERSION}-dind
+      alias: docker
+      command: [ "--tls=false" ]
+    - name: '${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/gvenzl/oracle-xe:18.4.0-slim' # This what testcontainers 1.18.1 uses
+      alias: 'oracle'
+      variables:
+        ORACLE_ALLOW_REMOTE: 'true'
+        ORACLE_ENABLE_XDB: 'true'
+        # IT IS SAID THAT THIS IS MORE PERFORMANT IN DOCKER
+        ORACLE_DISABLE_ASYNCH_IO: 'true'
+        ORACLE_PASSWORD: across_test
+      # You cannot mount volumes in a service container, this is a workaround for that:
+      # Solution inspired by: https://stackoverflow.com/questions/72201392/mounting-a-volume-for-a-gitlab-service
+      # Doesn't work: the /docker-entrypoint-initdb.d directory doesn't exist in the image, and creating it gives:
+      #   mkdir: cannot create directory '/docker-entrypoint-initdb.d/': Permission denied
+      # However: /container-entrypoint-initdb.d does exist! See: https://github.com/gvenzl/oci-oracle-xe/issues/108
+      # entrypoint: ['/bin/bash', "-c", 'echo "c" > /container-entrypoint-initdb.d/init.sql && container-entrypoint.sh']
+      entrypoint:
+        - '/bin/bash'
+        - '-c'
+        - |
+          echo "$ORACLE_INIT_SQL" > /container-entrypoint-initdb.d/init.sql
+          cat /container-entrypoint-initdb.d/*
+          wc -l /container-entrypoint-initdb.d/*
+          container-entrypoint.sh
+
+itest:postgresql:
+  extends:
+    - .itest
+  variables:
+    ACROSS_TEST_DATASOURCE: postgres
+  services:
+    - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:${DOCKER_VERSION}-dind
+      alias: docker
+      command: [ "--tls=false" ]
+    - name: '${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/postgres:14.8'
+      alias: postgres
+      variables:
+        POSTGRES_DB: axt
+        POSTGRES_USER: axt
+        POSTGRES_PASSWORD: across_test
