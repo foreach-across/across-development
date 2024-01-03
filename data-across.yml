@@ -1,0 +1,55 @@
+---
+repositories:
+  - name: across-framework
+    modules:
+      - across-core
+      - across-web
+      - across-test
+
+  - name: across-autoconfigure
+    modules:
+      - across-autoconfigure
+
+  - name: across-base-modules
+    color: orange
+    modules:
+      - across-hibernate-module
+      - spring-security-module
+      - debug-web-module
+      - ehcache-module
+      - logging-module
+
+  - name: across-entity-admin-modules
+    color: green
+    modules:
+      - ax-bootstrap-4-utilities
+      - ax-bootstrap-theme
+      - bootstrap-ui-module
+      - admin-web-module
+      - entity-module
+      - application-info-module
+      - properties-module
+
+  - name: across-user-auth-modules
+    color: red
+    modules:
+      - spring-security-acl-module
+      - user-module
+      - ldap-module
+      - oauth2-module
+
+  - name: across-media-modules
+    color: blue
+    modules:
+      - file-manager-module
+      - imageserver-client
+      - imageserver-core
+      - imageserver-admin
+      - web-cms-module
+
+  - name: across-platform
+    modules:
+      - across-application-parent
+      - across-module-parent
+      - across-platform-bom
+      - across-platform-dependencies
