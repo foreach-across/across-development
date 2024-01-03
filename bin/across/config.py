@@ -16,6 +16,7 @@ class RepositoryConfig:
 
 @dataclass
 class AcrossConfig:
+    git_root_url: str
     repositories: List[RepositoryConfig]
 
     # modules: Dict[str, Repository]
