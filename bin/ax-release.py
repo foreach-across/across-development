@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import sys
 import tempfile
@@ -12,9 +14,9 @@ from semver import Version
 
 from across import build
 from across.build import poll_gitlab_pipeline
-from .config import AcrossConfig
-from .git import GitRepositoryCollection, GitRepository
-from .util import system
+from across.config import AcrossConfig
+from across.git import GitRepositoryCollection, GitRepository
+from across.util import system
 
 app = typer.Typer()
 

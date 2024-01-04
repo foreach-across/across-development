@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 import typer
 
-import across.release
 from across.plot import Plotter
 
 app = typer.Typer()
-app.add_typer(across.release.app, name="release", help="Start and finish a release")
 
 
-# Doesn't work: makes it: across.py plot plot
-# app.add_typer(plot.app, name="plot", help="Plot dependencies")
-@app.command()
+@app.command(
+    help="""
+    Output dependencies between repositories and/or modules, which can be plotted using GraphViz:
+    ax-dependencies.py [OPTIONS] | tred | dot -Tsvg > deps.svg
+    """
+)
 def plot(
     modules: bool = True,
     repositories: bool = False,

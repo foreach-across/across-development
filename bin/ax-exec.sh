@@ -9,7 +9,7 @@
 
 set -e
 
-repos=$(grep -v '#' "${ACROSS_DEV_DIR}/data-repositories.txt")
+repos=$(ax-list.py repositories)
 
 for repo in ${repos}; do
   cd "${repo}"
