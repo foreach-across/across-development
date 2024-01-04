@@ -43,10 +43,13 @@ class GitRepository:
             last_tag = branch_tags[-1]
             last_version = Version.parse(last_tag[1:])
             return Version(
-                last_version.major, last_version.minor, last_version.patch + 1
+                last_version.major,
+                last_version.minor,
+                last_version.patch + 1,
+                "M1",  # TODO
             )
         else:
-            return Version.parse(f"{self.branch}.0")
+            return Version.parse(f"{self.branch}.0-M1")  # TODO
 
     def fetch(self):
         for remote in self.repo.remotes:
