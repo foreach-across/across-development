@@ -23,6 +23,8 @@
     reports:
       junit:
         - '**/target/failsafe-reports/TEST-*.xml'
+  rules:
+    - if: $CI_COMMIT_TAG == null
 
 itest:h2:
   extends:
