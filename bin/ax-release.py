@@ -3,9 +3,7 @@
 import os
 import sys
 import tempfile
-from io import TextIOWrapper
 from pathlib import Path
-from typing import Dict, List, TextIO, Union
 
 import typer
 from git import Repo
@@ -15,8 +13,8 @@ from semver import Version
 from across import build
 from across.build import poll_gitlab_pipeline
 from across.config import AcrossConfig
-from across.git import GitRepositoryCollection, GitRepository
-from across.util import system
+from across.git import GitRepositoryCollection, GitRepository, RepositoryVersions
+from across.util import system, eprint
 
 app = typer.Typer()
 
@@ -45,12 +43,16 @@ MAVEN_VERSIONS_PLUGIN_VERSION = "2.16.2"
 
 @app.command()
 def start(
+    release_plan_path: str,
     repo_name: str,
     stash_clone: bool = False,
 ):
     repo_name = repo_name.strip("/")  # using shell completion will often add a /
     directory, config = AcrossConfig.load()
+    release_plan = RepositoryVersions.parse(config, Path(release_plan_path))
+    release_plan.print("Release plan is:")
     repo_collection = GitRepositoryCollection(directory, config)
+    repo_collection.check_release_plan(release_plan, repo_name)
     orig_repository = repo_collection.repositories_by_name[repo_name]
     if orig_repository.repo.is_dirty():
         raise Exception(f"{repo_name} is dirty")
@@ -59,14 +61,25 @@ def start(
     if dirty_dependency_repos:
         raise Exception(f"{[ddr.name for ddr in dirty_dependency_repos]} is dirty.")
     repo_collection.fetch_all()
-    repo_versions = _determine_latest_versions(dependency_repos)
-    print(repo_versions)
-    repo_version = orig_repository.determine_next_version()
-    _write_versions_properties(sys.stdout, repo_versions, repo_version)
+    # TODO: if the release plan is a partial plan, then we still need this:
+    # latest_versions = RepositoryVersions.latest_versions(dependency_repos)
+    # latest_versions.print("Latest versions of dependencies:")
+    dependency_versions = release_plan.determine_subset(dependency_repos)
+    dependency_versions.print("Dependency versions:")
+    # repo_version = orig_repository.determine_next_version()
+    repo_version = release_plan.versions[repo_name]
+    print(f"New version of {repo_name} to be released: {repo_version}")
+    print("versions.properties to be fed to versions-maven-plugin:")
+    dependency_versions.write_versions_properties(
+        sys.stdout, repo_version, prefix="   "
+    )
+    print()
     new_repository = _clone(orig_repository, stash_clone)
-    _write_versions_properties(new_repository.path, repo_versions, repo_version)
+    dependency_versions.write_versions_properties(new_repository.path, repo_version)
     if repo_name != "across-framework":
-        _update_parent(repo_versions["across-framework"])
+        # The parent pom of across-framework is Spring Boot, so nothing to do in that case.
+        # For all other repositories, the parent pom is across-framework:
+        _update_parent(dependency_versions.versions["across-framework"])
     _update_version_properties()
     _ask_user_confirmation(repo_name, repo_version)
     _quick_local_build()
@@ -77,43 +90,6 @@ def start(
     print(f"pipeline: {pipeline.status}")
     # TODO: when the build is successful: create and push tag
     # TODO: tag-triggered pipeline in GitLab will run frontend jobs + deploy to Sonatype OSS (but no other jobs)
-
-
-def _determine_latest_versions(
-    repositories: List[GitRepository],
-) -> Dict[str, Version]:  # repo-name -> version
-    errored_repo_names = list()
-    result = dict()
-    for repository in repositories:
-        latest_version = repository.determine_latest_version()
-        if latest_version:
-            result[repository.name] = latest_version
-        else:
-            errored_repo_names.append(repository.name)
-    print(f"Versions: {result}")
-    if errored_repo_names:
-        raise Exception(f"Could not determine latest version for: {errored_repo_names}")
-    return result
-
-
-def _write_versions_properties(
-    output_or_path: Union[Path, TextIO],
-    repo_versions: Dict[str, Version],
-    repo_version: Version,
-):
-    if isinstance(output_or_path, Path):
-        directory: Path = output_or_path
-        path = Path(directory, "versions.properties")
-        print(f"Writing {path}")
-        with open(path, "w") as output1:
-            _write_versions_properties(output1, repo_versions, repo_version)
-    elif isinstance(output_or_path, TextIOWrapper):
-        output2: TextIO = output_or_path
-        output2.write(f"revision={repo_version}\n")
-        for name, version in repo_versions.items():
-            output2.write(f"{name}.version={version}\n")
-    else:
-        raise Exception(f"Cannot write to {output_or_path.__class__}")
 
 
 def _clone(orig_repository: GitRepository, stash_clone: bool) -> GitRepository:
@@ -170,7 +146,7 @@ def _ask_user_confirmation(repo_name, repo_version):
         f"Are you sure you want to release {repo_name}:{repo_version}?"
     )
     if not confirmed:
-        print("Not releasing!")
+        eprint("Not releasing!")
         raise typer.Abort()
     print("Releasing it!")
 
