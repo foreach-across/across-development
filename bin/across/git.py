@@ -1,13 +1,17 @@
+import os
+import tempfile
 from dataclasses import dataclass
 from io import TextIOWrapper
 from pathlib import Path
 from typing import Dict, List, Sequence, Optional, Union, TextIO
 
 import yaml
-from git import Repo
+from git import Repo, Tag
+from git.objects import Commit
 from semver import Version
 
 from .config import RepositoryConfig, AcrossConfig
+from .util import system
 
 
 class GitRepository:
@@ -61,6 +65,44 @@ class GitRepository:
     def fetch(self):
         for remote in self.repo.remotes:
             remote.fetch()
+
+    def clone(self, stash_clone: bool) -> "GitRepository":
+        tmp_repo_dir = Path(tempfile.gettempdir(), "across-releases").absolute()
+        if not tmp_repo_dir.exists():
+            tmp_repo_dir.mkdir()
+        clone_dir = Path(tmp_repo_dir, self.name)
+        if clone_dir.exists():
+            repository = GitRepository(self.config, clone_dir)
+            # TODO: also check for unpushed commits!
+            if repository.repo.is_dirty():
+                if stash_clone:
+                    os.chdir(clone_dir)
+                    print(f"Stashing dirty context in {clone_dir}")
+                    system("git stash")
+                else:
+                    raise Exception(f"Clone dir is dirty: {clone_dir}")
+            repository.fetch()
+        else:
+            os.chdir(tmp_repo_dir)
+            url = self.repo.remote("origin").url
+            system(f"git clone {url}")
+            repository = GitRepository(self.config, clone_dir)
+        os.chdir(repository.path)
+        if repository.branch != self.branch:
+            system(f"git checkout {self.branch}")
+        system(f"git pull --ff-only")  # we don't want git pull to do a merge!
+        return repository
+
+    def commit_and_push(self, version: Version) -> Commit:
+        self.repo.git.add(update=True)  # git add -u
+        commit = self.repo.index.commit(_message(version))
+        self.repo.remotes.origin.push()
+        return commit
+
+    def tag_and_push(self, version: Version) -> Tag:
+        tag = self.repo.create_tag(f"v{version}", message=_message(version))
+        self.repo.remotes.origin.push(tag)
+        return tag
 
 
 class GitRepositoryCollection:
@@ -179,6 +221,7 @@ class RepositoryVersions:
             print(f"Writing {path}")
             with open(path, "w") as output1:
                 self.write_versions_properties(output1, repo_version, prefix)
+            return path
         elif isinstance(output_or_path, TextIOWrapper):
             output2: TextIO = output_or_path
             output2.write(f"{prefix}revision={repo_version}\n")
@@ -221,9 +264,5 @@ def find_repo_paths(directory: Path, repo_names: Sequence[str] = []) -> List[Pat
     return sorted(result)
 
 
-def repo_path(repo: Repo) -> Path:
-    return Path(repo.git_dir).absolute().parent
-
-
-def repo_name(repo: Repo) -> str:
-    return repo_path(repo).name
+def _message(version: Version) -> str:
+    return f"Release {version} by ax-release.py"
