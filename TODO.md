@@ -17,43 +17,6 @@ unit tests as well (against H2).
 I don't think they were run on Bamboo either ...
 
 
-# Release build
-
-We need a new release build procedure/script/tool, hopefully not as
-elaborate as AXRT.
-
-Maven has much more modern feature for release build than the old
-`maven-release-plugin`, e.g.:
-
-https://maven.apache.org/maven-ci-friendly.html
-
-And we already have that `revision` property, it's just not used for
-what it's intended.
-
-GitLab can do different things depending on whether a branch or a tag
-was pushed. Ideally, the value for `revision` can be derived from
-that:
-
-- Push to `5.3` branch => `5.3-SNAPSHOT`
-- Push `v5.3.0` tag => `5.3.0`
-
-(Yes, we'll drop the `.RELEASE`, which Spring (since 5.3) and Spring
-Boot (since 2.4) have also done.
-
-The question is: how easily can this be done, preferably in the
-`variables` section of the `.gitlab-ci.yml`
-
-See the `artifact-version.sh` script for an attempt to do this with a
-one-liner. While that works in `bash`, a `.gitlab-ci.yml` variable
-value isn't evaluated in a shell. See the `gitlab-ci-cd-tryout`
-repository for a solution that uses a different job for tags and
-branches.
-
-The script that updates the dependency versions must also run the
-`generate-dependencies.sh` script. The `test-projects` in
-`across-autoconfigure` will need to be added to the root pom.
-
-
 # Maven configuration
 
 `across-autoconfigure` also has widely varying build times, and an
@@ -201,7 +164,7 @@ this. I've manually verified that it works for the frontend builds in
 A quick tryout indicated that this works: Spring Boot 2.4 defines the
 right Maven plugin versions for reproducible builds except for
 `maven-javadoc-plugin`: while it has the right minimal version, that
-version would have to be configured with `notimestamp`. Instead I
+version would have to be configured with `notimestamp`. Instead, I
 choose to upgrade the plugin to the latest version, which does that
 automatically when the `project.build.outputTimestamp` is set.
 

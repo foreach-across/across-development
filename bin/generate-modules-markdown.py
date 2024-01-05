@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-from typing import Sequence, Dict
+from typing import Sequence, Dict, List
 
 from prettytable import PrettyTable, MARKDOWN
 
-GroupDict = Dict[str, Sequence[str]]
+GroupDict = Dict[str, List[str]]
 
 
 def main():
     raw_groups = parse()
     group_tables = {
-        group_name: to_table(modules)
-        for group_name, modules in raw_groups.items()
+        group_name: to_table(modules) for group_name, modules in raw_groups.items()
     }
     print(
         """---
@@ -39,7 +38,7 @@ title: Modules
 
 
 def parse() -> GroupDict:
-    result = dict()
+    result: GroupDict = dict()
     with open("data-modules.txt") as ins:
         for line in ins.readlines():
             line = line.strip()
@@ -48,7 +47,8 @@ def parse() -> GroupDict:
                 if group in result:
                     modules = result[group]
                 else:
-                    modules = result[group] = []
+                    modules = list()
+                    result[group] = modules
                 modules.append(module)
     return result
 
@@ -75,7 +75,8 @@ def to_table(modules: Sequence[str]) -> PrettyTable:
         t.add_row(
             [
                 link(
-                    module, f"https://docs.across.dev/across-site/production/{doc_module}/"
+                    module,
+                    f"https://docs.across.dev/across-site/production/{doc_module}/",
                 ),
                 link("TODO", f"https://example.com"),
                 link(
