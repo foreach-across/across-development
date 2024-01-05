@@ -1,6 +1,6 @@
 # .gitlab-ci.yml extension enables completion support in IntelliJ
 
-deploy:foreach:
+.deploy:
   stage: deploy
   variables:
     TZ: "UTC" # Generally recommended for reproducible builds, and we're skipping tests in this job anyway.
@@ -13,11 +13,20 @@ deploy:foreach:
     # For reproducible builds, we have to run the build twice:
     - mvn $MAVEN_CLI_OPTS clean install -DskipTests
     - mvn $MAVEN_CLI_OPTS clean verify artifact:compare -DskipTests
-    - mvn $MAVEN_CLI_OPTS --settings ci_settings.xml --activate-profiles deploy,across deploy -DskipTests
-#  only:
-#    variables:
-#      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-#
+    - mvn $MAVEN_CLI_OPTS --settings ci_settings.xml --activate-profiles deploy,$MAVEN_PROFILE deploy -DskipTests
 
-# TODO: on push of a tag, run a deploy to Sonatype
-# Disadvantage is that that will run all integration tests again, unless we want disable those on a tag push
+deploy:foreach:
+  extends:
+    - .deploy
+  variables:
+    MAVEN_PROFILE: across
+  rules:
+    - if: $CI_COMMIT_TAG == null
+
+deploy:sonatype:
+  extends:
+    - .deploy
+  variables:
+    MAVEN_PROFILE: sonatype
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^v.*/
