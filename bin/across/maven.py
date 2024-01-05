@@ -2,13 +2,34 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
+import semver
+
 from . import util
-from .util import eprint
+from .util import system
 
 POM_XML = "pom.xml"
 # EFFECTIVE_POM_XML = ".effective-pom.xml"
 DEPENDENCY_TREE_TXT = "dependency.tree.txt"
 LOCAL_SNAPSHOT = "local-SNAPSHOT"
+
+MAVEN_VERSIONS_PLUGIN_VERSION = "2.16.2"
+
+
+# Wrapper around semver.Version that allows X.Y for X.Y-SNAPSHOT
+class Version(semver.Version):
+    @staticmethod
+    def parse(s: str) -> "Version":  # type: ignore[override]
+        if s.count(".") == 1:
+            # assuming it's X.Y:
+            s += ".666"
+        sv = semver.Version.parse(s)
+        return Version(sv.major, sv.minor, sv.patch, sv.prerelease, sv.build)
+
+    def __str__(self):
+        result = super().__str__()
+        if self.patch == 666:
+            return result.replace(".666", "")
+        return result
 
 
 @dataclass
@@ -102,6 +123,29 @@ class Project(object):
         dep_tree_paths = list(repository_dir.rglob(DEPENDENCY_TREE_TXT))
         # assert len(dep_tree_paths) > 0
         return [_parse_dependency_tree(repository_dir, path) for path in dep_tree_paths]
+
+
+def update_parent(across_framework_version: Version):
+    cmd = [
+        "mvn",
+        f"versions:{MAVEN_VERSIONS_PLUGIN_VERSION}:update-parent",
+        "-DskipResolution=true",
+        f"-DparentVersion={across_framework_version}",
+    ]
+    system(" ".join(cmd))
+
+
+def update_version_properties(version_properties_path: Path):
+    cmd = [
+        "mvn",
+        f"versions:{MAVEN_VERSIONS_PLUGIN_VERSION}:set-property",
+        f"-DpropertiesVersionsFile={version_properties_path}",
+    ]
+    system(" ".join(cmd))
+
+
+def maven_clean_install_without_tests():
+    system("mvn clean install -DskipTests")
 
 
 def _parse_dependency_tree(repository_path: Path, dep_tree_path: Path) -> Project:

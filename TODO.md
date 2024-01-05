@@ -201,7 +201,7 @@ this. I've manually verified that it works for the frontend builds in
 A quick tryout indicated that this works: Spring Boot 2.4 defines the
 right Maven plugin versions for reproducible builds except for
 `maven-javadoc-plugin`: while it has the right minimal version, that
-version would have to be configured with `notimestamp`. Instead I
+version would have to be configured with `notimestamp`. Instead, I
 choose to upgrade the plugin to the latest version, which does that
 automatically when the `project.build.outputTimestamp` is set.
 

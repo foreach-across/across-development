@@ -1,10 +1,12 @@
-GitPython
 black
 dataconf
+GitPython
 graphviz
 mypy
 prettytable
 python-gitlab
+PyYAML
 semver
 shellingham
 typer
+types-PyYAML

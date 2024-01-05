@@ -8,9 +8,13 @@ from typing import Dict, List, Sequence, Optional, Union, TextIO
 import yaml
 from git import Repo, Tag
 from git.objects import Commit
-from semver import Version
 
 from .config import RepositoryConfig, AcrossConfig
+from .maven import (
+    Version,
+    update_parent,
+    update_version_properties,
+)
 from .util import system
 
 
@@ -27,7 +31,7 @@ class GitRepository:
         self.repo = Repo(path)
 
     @property
-    def branch(self) -> str:
+    def active_branch_name(self) -> str:
         return str(self.repo.active_branch)
 
     @property
@@ -40,7 +44,9 @@ class GitRepository:
 
     def determine_latest_version(self) -> Optional[Version]:
         tags = [str(tag) for tag in self.repo.tags]
-        branch_tags = filter(lambda t: t.startswith(f"v{self.branch}."), tags)
+        branch_tags = filter(
+            lambda t: t.startswith(f"v{self.active_branch_name}."), tags
+        )
         branch_versions = sorted([Version.parse(tag[1:]) for tag in branch_tags])
         if branch_versions:
             return branch_versions[-1]
@@ -49,7 +55,9 @@ class GitRepository:
 
     def determine_next_version(self) -> Version:
         tags = [str(tag) for tag in self.repo.tags]
-        branch_tags = sorted(filter(lambda t: t.startswith(f"v{self.branch}."), tags))
+        branch_tags = sorted(
+            filter(lambda t: t.startswith(f"v{self.active_branch_name}."), tags)
+        )
         if branch_tags:
             last_tag = branch_tags[-1]
             last_version = Version.parse(last_tag[1:])
@@ -60,7 +68,7 @@ class GitRepository:
                 "M1",  # TODO
             )
         else:
-            return Version.parse(f"{self.branch}.0-M1")  # TODO
+            return Version.parse(f"{self.active_branch_name}.0-M1")  # TODO
 
     def fetch(self):
         for remote in self.repo.remotes:
@@ -87,21 +95,39 @@ class GitRepository:
             url = self.repo.remote("origin").url
             system(f"git clone {url}")
             repository = GitRepository(self.config, clone_dir)
-        os.chdir(repository.path)
-        if repository.branch != self.branch:
-            system(f"git checkout {self.branch}")
+        repository.chdir()
+        if repository.active_branch_name != self.active_branch_name:
+            system(f"git checkout {self.active_branch_name}")
         system(f"git pull --ff-only")  # we don't want git pull to do a merge!
         return repository
+
+    def chdir(self):
+        os.chdir(self.path)
+
+    def update_pom_files(self, dependency_versions: "RepositoryVersions", revision):
+        self.chdir()
+        version_properties_path = dependency_versions.write_versions_properties(
+            self.path, revision
+        )
+        if self.name == "across-platform":
+            os.chdir(Path(self.path, "across-platform-dependencies"))
+            update_parent(dependency_versions.versions["across-framework"])
+        elif self.name != "across-framework":
+            # The parent pom of across-framework is Spring Boot, so nothing to do in that case.
+            # For all other repositories, the parent pom is across-framework:
+            update_parent(dependency_versions.versions["across-framework"])
+        self.chdir()
+        update_version_properties(version_properties_path)
 
     def commit_and_push(self, version: Version) -> Commit:
         self.repo.git.add(update=True)  # git add -u
         commit = self.repo.index.commit(_message(version))
-        self.repo.remotes.origin.push()
+        self.repo.remote("origin").push()
         return commit
 
     def tag_and_push(self, version: Version) -> Tag:
         tag = self.repo.create_tag(f"v{version}", message=_message(version))
-        self.repo.remotes.origin.push(tag)
+        self.repo.remote("origin").push(tag.name)
         return tag
 
 
@@ -154,6 +180,29 @@ class GitRepositoryCollection:
             repository = self.repositories_by_name[repo_name]
             if branch_name not in repository.branch_names:
                 raise Exception(f"Branch {branch_name} does not exist in {repo_name}")
+
+    def check_dirty(self):
+        dirty_repos = list()
+        for repository in self.repositories:
+            if repository.repo.is_dirty():
+                dirty_repos += repository.name
+        if dirty_repos:
+            raise Exception(f"{dirty_repos} are dirty (uncommitted changes)!")
+
+    def determine_snapshot_versions(self) -> "RepositoryVersions":
+        result = dict()
+        for repository in self.repositories:
+            # This assumes the branch is named something like X.Y:
+            bv = Version.parse(repository.active_branch_name)
+            result[repository.name] = Version(bv.major, bv.minor, bv.patch, "SNAPSHOT")
+        return RepositoryVersions(result)
+
+    def execute_for_each(self, cmd):
+        old_wd = os.getcwd()
+        for repository in self.repositories:
+            os.chdir(repository.path)
+            system(cmd)
+        os.chdir(old_wd)
 
 
 @dataclass
@@ -212,7 +261,7 @@ class RepositoryVersions:
     def write_versions_properties(
         self,
         output_or_path: Union[Path, TextIO],
-        repo_version: Version,
+        revision: Version | None,
         prefix="",
     ):
         if isinstance(output_or_path, Path):
@@ -220,11 +269,12 @@ class RepositoryVersions:
             path = Path(directory, "versions.properties")
             print(f"Writing {path}")
             with open(path, "w") as output1:
-                self.write_versions_properties(output1, repo_version, prefix)
+                self.write_versions_properties(output1, revision, prefix)
             return path
         elif isinstance(output_or_path, TextIOWrapper):
             output2: TextIO = output_or_path
-            output2.write(f"{prefix}revision={repo_version}\n")
+            if revision:
+                output2.write(f"{prefix}revision={revision}\n")
             for name, version in self.versions.items():
                 output2.write(f"{prefix}{name}.version={version}\n")
         else:
