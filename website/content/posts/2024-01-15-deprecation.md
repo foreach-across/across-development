@@ -1,7 +1,7 @@
 ---
 title: "Across deprecation"
-date: 2024-01-15T13:00:00+01:00
-author: Davy Verstappen
+date: 2024-01-11T13:00:00+01:00
+author: Davy
 draft: true
 pin: true
 ---
