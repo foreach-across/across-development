@@ -31,3 +31,10 @@ else
 fi
 
 alias axitest='mvn --fail-at-end --batch-mode clean test-compile failsafe:integration-test failsafe:verify -Dmaven.javadoc.skip=true'
+
+# TestNumericFormElementConfiguration
+export LC_MONETARY="nl_BE.UTF-8"
+export LC_NUMERIC="nl_BE.UTF-8"
+
+# TestDateTimeFormElementConfiguration
+export LC_TIME="en_US.UTF-8"
