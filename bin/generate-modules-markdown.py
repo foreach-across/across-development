@@ -24,7 +24,7 @@ title: Modules
     )
     for group, table in group_tables.items():
         table.set_style(MARKDOWN)
-        print(f"# {group}")
+        print(f"## {group}")
         print()
         print(f"[GitHub](https://github.com/foreachos/{group})")
         print()
@@ -42,7 +42,7 @@ def parse() -> GroupDict:
     with open("data-modules.txt") as ins:
         for line in ins.readlines():
             line = line.strip()
-            if line and not line.startswith("#"):
+            if line and not line.startswith("##"):
                 (group, module) = line.split("/")
                 if group in result:
                     modules = result[group]

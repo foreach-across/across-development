@@ -1,0 +1,61 @@
+<div>
+
+    {{ $repo_name := index .Params 0 }}
+    {{ $across := .Site.Data.across }}
+
+
+<!--
+    {{ with $across.git_root_url }}
+    <div>Git: {{ . }}</div>
+    {{ else }}
+    {{ errorf "No git_root_url in '%s': %s" $across .Position }}
+    {{ end }}
+-->
+
+<!--
+    <ol>
+        {{ range $across.repositories }}
+        <li>
+            Repo: {{ .name }}
+        </li>
+        {{ end }}
+    </ol>
+-->
+
+    {{ $repos := where $across.repositories ".name" "eq" $repo_name }}
+
+<!--
+    <ol>
+        {{ range $repos }}
+        <li>
+            Repo: {{ .name }}
+        </li>
+        {{ end }}
+    </ol>
+-->
+
+<!--
+    {{ with index $repos 0 }}
+    <p>Found repo: {{ .name }}</p>
+    <table>
+        {{ range .modules }}
+        <tr>
+            <td>{{ . }}</td>
+            <td><img src="https://img.shields.io/maven-central/v/com.foreach.across.modules/{{ . }}" alt="{{ . }}"/></td>
+            <td><a href="https://foreach.atlassian.net/projects/AXP/issues">AXP</a></td>
+        </tr>
+        {{ end }}
+    </table>
+    {{ else }}
+    {{ errorf "Not found in $repos" .Position }}
+    {{ end }}
+-->
+
+    {{ with index $repos 0 }}
+    {{ partial "repo-modules.html" . }}
+    {{ else }}
+    {{ errorf "$repo_name not found in $repos" .Position }}
+    {{ end }}
+
+
+</div>

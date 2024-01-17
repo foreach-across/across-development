@@ -15,10 +15,10 @@ export JAVA_HOME=$JAVA8_HOME
 export PATH=$JAVA_HOME/bin:$PATH
 
 export ACROSS_DEV_DIR
-if [[ -f data-across.yml ]]
+if [[ -f across.yml ]]
 then
     ACROSS_DEV_DIR=$(realpath "$PWD")
-elif [[ -f ../data-across.yml ]]
+elif [[ -f ../across.yml ]]
 then
     ACROSS_DEV_DIR=$(realpath "$PWD"/..)
 fi

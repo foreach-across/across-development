@@ -1,4 +1,9 @@
-# What is Across Framework?
+---
+title: Overview
+toc: true
+---
+
+## What is Across Framework?
 
 Across is a Java framework for developing your application using a
 modular approach.  It provides a way to define application modules as
@@ -23,7 +28,7 @@ An Across module:
 - is a single Spring ApplicationContext
 
 
-# An Across application
+## An Across application
 
 - specifies the modules to use
 
@@ -35,7 +40,7 @@ An Across module:
 - runs as a Spring Boot application
 
 
-# Across Platform
+## Across Platform
 
 Across Platform is a set of Across modules that help developers
 assemble applications.
@@ -44,7 +49,7 @@ The list of modules (with pointers to documentation and Git) can be
 found [here](/modules).
 
 
-# Learn more
+## Learn more
 
 [Arne and Steven gave a presentation about Across at Devoxx Belgium in November 2017](https://www.youtube.com/watch?v=00Jn3d12L2M)
 

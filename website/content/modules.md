@@ -6,8 +6,10 @@ title: Modules
 
 [Across Framework and Platform documentation](https://across.dev/documentation)
 
+{{< repo-modules across-framework >}}
 
-# across-autoconfigure
+
+## across-autoconfigure
 
 [GitHub](https://github.com/foreachos/across-autoconfigure)
 
@@ -18,7 +20,10 @@ title: Modules
 | [across-autoconfigure](https://docs.across.dev/across-site/production/across-autoconfigure/) | [TODO](https://example.com) | [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/across-autoconfigure/) | [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/across-autoconfigure/) | [Bitbucket](https://bitbucket.org/beforeach/across-autoconfigure/) | [TODO](https://example.com) |
 
 
-# across-base-modules
+{{< repo-modules across-autoconfigure >}}
+
+
+## across-base-modules
 
 [GitHub](https://github.com/foreachos/across-base-modules)
 
@@ -32,24 +37,29 @@ title: Modules
 |         [ehcache-module](https://docs.across.dev/across-site/production/ehcache-module/)         | [TODO](https://example.com) |     [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/ehcache-module/)      |      [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/ehcache-module/)     |      [Bitbucket](https://bitbucket.org/beforeach/ehcache-module/)     | [TODO](https://example.com) |
 |         [logging-module](https://docs.across.dev/across-site/production/logging-module/)         | [TODO](https://example.com) |     [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/logging-module/)      |      [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/logging-module/)     |      [Bitbucket](https://bitbucket.org/beforeach/logging-module/)     | [TODO](https://example.com) |
 
+{{< repo-modules across-base-modules >}}
 
-# across-entity-admin-modules
+## across-entity-admin-modules
 
 [GitHub](https://github.com/foreachos/across-entity-admin-modules)
 
 [GitLab (internal only!)](https://gitlab.isaac.nl/antwerpen/across/across-entity-admin-modules)
 
-|                                                Doc                                                 |           Javadoc           |                                               Maven Central                                                |                                    Maven Central (raw)                                    |                           Bitbucket (legacy)                          |        Jira (unused)        |
-|:--------------------------------------------------------------------------------------------------:|:---------------------------:|:----------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------:|:---------------------------------------------------------------------:|:---------------------------:|
-|   [admin-web-bootstrap-4](https://docs.across.dev/across-site/production/admin-web-bootstrap-4/)   | [TODO](https://example.com) |  [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/admin-web-bootstrap-4/)  |  [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/admin-web-bootstrap-4/)  |  [Bitbucket](https://bitbucket.org/beforeach/admin-web-bootstrap-4/)  | [TODO](https://example.com) |
-|     [bootstrap-ui-module](https://docs.across.dev/across-site/production/bootstrap-ui-module/)     | [TODO](https://example.com) |   [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/bootstrap-ui-module/)   |   [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/bootstrap-ui-module/)   |   [Bitbucket](https://bitbucket.org/beforeach/bootstrap-ui-module/)   | [TODO](https://example.com) |
-|        [admin-web-module](https://docs.across.dev/across-site/production/admin-web-module/)        | [TODO](https://example.com) |    [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/admin-web-module/)     |     [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/admin-web-module/)    |     [Bitbucket](https://bitbucket.org/beforeach/admin-web-module/)    | [TODO](https://example.com) |
-|           [entity-module](https://docs.across.dev/across-site/production/entity-module/)           | [TODO](https://example.com) |      [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/entity-module/)      |      [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/entity-module/)      |      [Bitbucket](https://bitbucket.org/beforeach/entity-module/)      | [TODO](https://example.com) |
-| [application-info-module](https://docs.across.dev/across-site/production/application-info-module/) | [TODO](https://example.com) | [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/application-info-module/) | [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/application-info-module/) | [Bitbucket](https://bitbucket.org/beforeach/application-info-module/) | [TODO](https://example.com) |
-|       [properties-module](https://docs.across.dev/across-site/production/properties-module/)       | [TODO](https://example.com) |    [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/properties-module/)    |    [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/properties-module/)    |    [Bitbucket](https://bitbucket.org/beforeach/properties-module/)    | [TODO](https://example.com) |
+|                                                 Doc                                                  |           Javadoc           |                                                Maven Central                                                |                                    Maven Central (raw)                                     |                           Bitbucket (legacy)                           |        Jira (unused)        |
+|:----------------------------------------------------------------------------------------------------:|:---------------------------:|:-----------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------:|:---------------------------:|
+| [ax-bootstrap-4-utilities](https://docs.across.dev/across-site/production/ax-bootstrap-4-utilities/) | [TODO](https://example.com) | [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/ax-bootstrap-4-utilities/) | [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/ax-bootstrap-4-utilities/) | [Bitbucket](https://bitbucket.org/beforeach/ax-bootstrap-4-utilities/) | [TODO](https://example.com) |
+|       [ax-bootstrap-theme](https://docs.across.dev/across-site/production/ax-bootstrap-theme/)       | [TODO](https://example.com) |    [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/ax-bootstrap-theme/)    |    [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/ax-bootstrap-theme/)    |    [Bitbucket](https://bitbucket.org/beforeach/ax-bootstrap-theme/)    | [TODO](https://example.com) |
+|      [bootstrap-ui-module](https://docs.across.dev/across-site/production/bootstrap-ui-module/)      | [TODO](https://example.com) |    [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/bootstrap-ui-module/)   |   [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/bootstrap-ui-module/)    |   [Bitbucket](https://bitbucket.org/beforeach/bootstrap-ui-module/)    | [TODO](https://example.com) |
+|         [admin-web-module](https://docs.across.dev/across-site/production/admin-web-module/)         | [TODO](https://example.com) |     [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/admin-web-module/)     |     [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/admin-web-module/)     |     [Bitbucket](https://bitbucket.org/beforeach/admin-web-module/)     | [TODO](https://example.com) |
+|            [entity-module](https://docs.across.dev/across-site/production/entity-module/)            | [TODO](https://example.com) |       [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/entity-module/)      |      [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/entity-module/)       |      [Bitbucket](https://bitbucket.org/beforeach/entity-module/)       | [TODO](https://example.com) |
+|  [application-info-module](https://docs.across.dev/across-site/production/application-info-module/)  | [TODO](https://example.com) |  [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/application-info-module/) | [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/application-info-module/)  | [Bitbucket](https://bitbucket.org/beforeach/application-info-module/)  | [TODO](https://example.com) |
+|        [properties-module](https://docs.across.dev/across-site/production/properties-module/)        | [TODO](https://example.com) |     [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/properties-module/)    |    [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/properties-module/)     |    [Bitbucket](https://bitbucket.org/beforeach/properties-module/)     | [TODO](https://example.com) |
 
 
-# across-user-auth-modules
+{{< repo-modules across-entity-admin-modules >}}
+
+
+## across-user-auth-modules
 
 [GitHub](https://github.com/foreachos/across-user-auth-modules)
 
@@ -62,8 +72,10 @@ title: Modules
 |                [ldap-module](https://docs.across.dev/across-site/production/ldap-module/)                | [TODO](https://example.com) |         [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/ldap-module/)        |        [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/ldap-module/)         |        [Bitbucket](https://bitbucket.org/beforeach/ldap-module/)         | [TODO](https://example.com) |
 |              [oauth2-module](https://docs.across.dev/across-site/production/oauth2-module/)              | [TODO](https://example.com) |        [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/oauth2-module/)       |       [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/oauth2-module/)        |       [Bitbucket](https://bitbucket.org/beforeach/oauth2-module/)        | [TODO](https://example.com) |
 
+{{< repo-modules across-user-auth-modules >}}
 
-# across-media-modules
+
+## across-media-modules
 
 [GitHub](https://github.com/foreachos/across-media-modules)
 
@@ -78,3 +90,4 @@ title: Modules
 |      [web-cms-module](https://docs.across.dev/across-site/production/web-cms-module/)      | [TODO](https://example.com) |   [Maven Central](https://central.sonatype.com/artifact/com.foreach.across.modules/web-cms-module/)    |    [Raw](https://repo1.maven.org/maven2/com/foreach/across/modules/web-cms-module/)   |    [Bitbucket](https://bitbucket.org/beforeach/web-cms-module/)   | [TODO](https://example.com) |
 
 
+{{< repo-modules across-media-modules >}}

@@ -1,0 +1,6 @@
+{{ with .Site.Data.user0123.Name }}
+{{ else }}
+{{ errorf "no Name for value for parameter 'name': %s" .Position }}
+{{ end }}
+
+<div>Short Description of {{ .Site.Data.user0123.Name }}: <p>{{ index .Site.Data.User0123 "Short Description" | markdownify }}</p></div>

@@ -4,7 +4,7 @@ from typing import List, Optional, Dict, Tuple
 
 import dataconf
 
-ACROSS_CONFIG_FILE_NAME = "data-across.yml"
+ACROSS_CONFIG_FILE_NAME = "across.yml"
 
 
 @dataclass
@@ -42,8 +42,8 @@ class AcrossConfig:
     @staticmethod
     def load(directory: Path = Path().absolute()) -> Tuple[Path, "AcrossConfig"]:
         """
-        Returns The directory of the root repository (containing data-across.yml)
-        and the contents of the data-across.yml file.
+        Returns The directory of the root repository (containing across.yml)
+        and the contents of the across.yml file.
         """
         file = _find_config_file(directory)
         if file:

@@ -1,0 +1,63 @@
+{{ $repo := . }}
+
+<p>TODO</p>
+<ul>
+    <li>across-hibernate-module -> hibernate-jpa-module; Or fix on docs.across.dev</li>
+    <li>Javadoc links use camel-case names.</li>
+    <li>Add Jira key in repo and/or modules</li>
+</ul>
+
+<table>
+    <tr>
+        <td>
+            <img src="/img/logos/github-mark.svg" height="32"/>
+        </td>
+        <td>
+            <a href="https://github.com/ForeachOS/{{ $repo.name }}">GitHub</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="/img/logos/gitlab-mark.svg" height="40"/>
+        </td>
+        <td>
+            <a href="https://gitlab.isaac.nl/antwerpen/across/{{ $repo.name }}">GitLab</a> (Internal only!)
+        </td>
+    </tr>
+</table>
+
+<table width="100%">
+    {{ range .modules }}
+    <tr>
+        <td>
+            {{ . }}
+        </td>
+        <td>
+            <a href="https://docs.across.dev/across-site/production/{{ . }}">Reference</a>
+        </td>
+        <td>
+            <!-- TODO This uses the camel-case name: e.g. BootstrapUiModule -->
+            <a href="https://docs.across.dev/across-standard-modules/{{ . }}/">API</a>
+        </td>
+        <td>
+            <a href="https://central.sonatype.com/artifact/com.foreach.across.modules/{{ . }}/">
+                <img src="https://img.shields.io/maven-central/v/com.foreach.across.modules/{{ . }}"
+                     alt="Maven central link for {{ . }}"/>
+            </a>
+        </td>
+        <!--
+                <td>
+                    <a href="https://github.com/ForeachOS/{{ $repo.name }}">
+                        <img src="/img/github-mark.svg" width="32" alt="GitHub for {{ . }}"/>
+                    </a>
+                </td>
+        -->
+        <td>
+            <a href="https://bitbucket.org/beforeach/{{ . }}">Bitbucket</a></td>
+        <td>
+            <!-- TODO: Add Jira key in repo and/or modules -->
+            <a href="https://foreach.atlassian.net/projects/TODO/issues">Jira</a>
+        </td>
+    </tr>
+    {{ end }}
+</table>

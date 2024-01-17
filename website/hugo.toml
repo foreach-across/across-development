@@ -2,10 +2,19 @@
 baseURL = 'https://dvsp-iodigital.github.io/'
 languageCode = 'en-us'
 title = 'Foreach Across'
-theme = 'beautifulhugo'
+theme = 'ananke'
+#theme = 'beautifulhugo' # Bootstrap, but v3; Does not support ToC
+#theme = 'hextra'
+#theme = 'perplex'
+#theme = 'hugo-whisper-theme' # Pretty useless
+#theme = 'paige'
+#theme = 'hugo-geekdoc'
 sectionPagesMenu = 'main'
 
 [module]
+
+#[[module.imports]]
+#path = 'github.com/gethinode/hinode'
 
 [[module.mounts]]
 source = 'content'
@@ -15,13 +24,26 @@ target = 'content'
 source = '../release-notes'
 target = 'content/release-notes'
 
+[[module.mounts]]
+source = '../docs'
+target = 'content/docs'
+
+[[module.mounts]]
+source = '..'
+target = 'data'
+includeFiles = '*.yml'
+
 [Params]
 logo = "img/logo.svg"
 favicon = "img/favicon-32x32.ico"
 # mainSections = ["post","posts"]
 
+# https://github.com/halogenica/beautifulhugo?tab=readme-ov-file#self-hosted-assets-for-gdpr--eu-dsgvo-compliance:
+selfHosted = true
+
 [Author]
 github = "ForeachOS"
+website = "https://across.dev"
 
 [menus]
 [[menus.main]]
@@ -37,11 +59,19 @@ weight = 20
 name = 'Modules'
 pageRef = '/modules'
 weight = 30
-[[menus.main]]
-name = 'Release notes'
-pageRef = '/release-notes'
-weight = 40
+#[[menus.main]]
+#name = 'Release notes'
+#pageRef = '/release-notes'
+#weight = 40
+#[[menus.main]]
+#name = 'Blog'
+#pageRef = '/blog'
+#weight = 50
 [[menus.main]]
 name = 'FAQ'
 pageRef = '/faq'
-weight = 50
+weight = 60
+[[menus.docs]]
+name = 'Docs'
+pageRef = '/docs'
+weight = 70
