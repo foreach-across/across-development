@@ -156,10 +156,10 @@ def _parse_dependency_tree(repository_path: Path, dep_tree_path: Path) -> Projec
         raise Exception(
             f"{project_path}: could not find {DEPENDENCY_TREE_TXT}: {please_run_dtree}"
         )
-    if dep_tree_path.stat().st_mtime < pom_path.stat().st_mtime:
-        raise Exception(
-            f"{project_path}: {POM_XML} is newer than {DEPENDENCY_TREE_TXT}: {please_run_dtree}"
-        )
+    # if dep_tree_path.stat().st_mtime < pom_path.stat().st_mtime:
+    #     raise Exception(
+    #         f"{project_path}: {POM_XML} is newer than {DEPENDENCY_TREE_TXT}: {please_run_dtree}"
+    #     )
     lines = dep_tree_path.read_text().splitlines()
     project_line = lines[0]
     dependency_lines = filter(lambda line: len(line.strip()) > 0, lines[1:])

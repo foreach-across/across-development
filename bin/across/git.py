@@ -27,7 +27,7 @@ class GitRepository:
     def __init__(self, config: RepositoryConfig, path: Path):
         self.config = config
         self.path = path
-        self.name = config.name
+        self.name = config.id
         self.repo = Repo(path)
 
     @property
@@ -142,7 +142,7 @@ class GitRepositoryCollection:
         self.config = config
         for repository_config in config.repositories:
             repository = GitRepository(
-                repository_config, Path(directory, repository_config.name)
+                repository_config, Path(directory, repository_config.id)
             )
             self.repositories_by_name[repository.name] = repository
             self.repositories.append(repository)
@@ -225,7 +225,7 @@ class RepositoryVersions:
         releases = dict()
         wrong_repo_names = list()
         for repo_name, version in tmp.items():
-            if repo_name not in config.repository_names:
+            if repo_name not in config.repository_ids:
                 wrong_repo_names.append(repo_name)
             releases[repo_name] = Version.parse(version)
         if wrong_repo_names:

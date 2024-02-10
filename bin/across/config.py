@@ -8,10 +8,29 @@ ACROSS_CONFIG_FILE_NAME = "across.yml"
 
 
 @dataclass
+class ModuleConfig:
+    id: str
+    name: Optional[str]
+    key: Optional[str]
+    java_package: Optional[str]
+    java_class: Optional[
+        str
+    ]  # class is a keyword, and dataconf cannot use an alternative field name
+    refdoc: Optional[str]
+    javadoc: Optional[str]
+    bitbucket: Optional[str]
+    description: Optional[str]
+
+
+@dataclass
 class RepositoryConfig:
-    name: str
+    id: str
     color: Optional[str]
-    modules: List[str]
+    modules: List[ModuleConfig]
+    key: Optional[str]
+    bitbucket: Optional[str]
+    refdoc: Optional[str]
+    group: Optional[str] = "com.foreach.across.modules"
 
 
 @dataclass
@@ -25,7 +44,7 @@ class AcrossConfig:
         self._modules = dict()
         for repository in self.repositories:
             for module in repository.modules:
-                self._modules[module] = repository
+                self._modules[module.id] = repository
         # print(self._modules)
 
     @property
@@ -33,8 +52,8 @@ class AcrossConfig:
         return self._modules
 
     @property
-    def repository_names(self) -> List[str]:
-        return [r.name for r in self.repositories]
+    def repository_ids(self) -> List[str]:
+        return [r.id for r in self.repositories]
 
     def find_module_repository(self, module_name: str) -> Optional[RepositoryConfig]:
         return self._modules.get(module_name)
@@ -57,7 +76,7 @@ class AcrossConfig:
 
     def find_repository_config(self, repo_name) -> Optional[RepositoryConfig]:
         for repository in self.repositories:
-            if repository.name == repo_name:
+            if repository.id == repo_name:
                 return repository
         return None
 

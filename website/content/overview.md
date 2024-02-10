@@ -3,9 +3,9 @@ title: Overview
 toc: true
 ---
 
-## What is Across Framework?
+## Across Framework
 
-Across is a Java framework for developing your application using a
+{{< across >}} is a Java framework for developing your application using a
 modular approach.  It provides a way to define application modules as
 well as the infrastructure to run the entire application.  Geared
 towards developers with a love for Spring, Across is both free and

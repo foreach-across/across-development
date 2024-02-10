@@ -33,6 +33,15 @@ source = '..'
 target = 'data'
 includeFiles = '*.yml'
 
+[permalinks]
+
+[permalinks.page]
+blog = "/:section/:year/:month/:day/:slug/"
+#docs = "/modules5/:sections[1:]/:filename"
+#[permalinks.section]
+##posts = '/articles/'
+#docs = '/modules5/:sections[1:]'
+
 [Params]
 #site_logo = "img/logo.svg" # Ananke, but doesn't work
 logo = "img/logo.svg"
