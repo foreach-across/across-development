@@ -42,7 +42,7 @@ blog = "/:section/:year/:month/:day/:slug/"
 ##posts = '/articles/'
 #docs = '/modules5/:sections[1:]'
 
-[Params]
+[params]
 #site_logo = "img/logo.svg" # Ananke, but doesn't work
 logo = "img/logo.svg"
 favicon = "img/favicon-32x32.ico"
@@ -51,6 +51,23 @@ mainSections = ["release-note", "release-notes", "blog", "blogs"]
 
 # https://github.com/halogenica/beautifulhugo?tab=readme-ov-file#self-hosted-assets-for-gdpr--eu-dsgvo-compliance:
 selfHosted = true
+
+[[params.ananke_socials]]
+name = "Foreach"
+url = "https://foreach.be/"
+
+[[params.ananke_socials]]
+name = "linkedin"
+url = "https://www.linkedin.com/company/iodigital-com/"
+
+[[params.ananke_socials]]
+name = "youtube"
+url = "https://www.youtube.com/watch?v=00Jn3d12L2M"
+
+[[params.ananke_socials]]
+name = "github"
+url = "https://github.com/ForeachOS/"
+
 
 [Author]
 github = "ForeachOS"
@@ -74,15 +91,20 @@ weight = 20
 #pageRef = '/modules'
 #weight = 30
 
+[[menus.main]]
+name = 'Docs'
+url = 'https://docs.across.dev/across-site/production/across/'
+weight = 40
+
 #[[menus.main]]
 #name = 'Release notes'
 #pageRef = '/release-notes'
-#weight = 40
+#weight = 50
 
 #[[menus.main]]
 #name = 'Blog'
 #pageRef = '/blog'
-#weight = 50
+#weight = 60
 
 #[[menus.main]]
 #name = 'Maintenance'

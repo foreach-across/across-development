@@ -1,4 +1,4 @@
 ---
 title: Release Notes
-weight: 40
+weight: 50
 ---
