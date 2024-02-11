@@ -89,10 +89,10 @@ weight = 20
 #pageRef = '/docs'
 #weight = 70
 
-[[menus.main]]
-name = 'FAQ'
-pageRef = '/faq'
-weight = 80
+#[[menus.main]]
+#name = 'FAQ'
+#pageRef = '/faq'
+#weight = 80
 
 [[menus.main]]
 name = 'Old'
