@@ -46,7 +46,8 @@ blog = "/:section/:year/:month/:day/:slug/"
 #site_logo = "img/logo.svg" # Ananke, but doesn't work
 logo = "img/logo.svg"
 favicon = "img/favicon-32x32.ico"
-# mainSections = ["post","posts"]
+# Shows the release notes on the home page
+mainSections = ["release-note", "release-notes", "blog", "blogs"]
 
 # https://github.com/halogenica/beautifulhugo?tab=readme-ov-file#self-hosted-assets-for-gdpr--eu-dsgvo-compliance:
 selfHosted = true
@@ -68,10 +69,10 @@ name = 'Overview'
 pageRef = '/overview'
 weight = 20
 
-[[menus.main]]
-name = 'Modules'
-pageRef = '/modules'
-weight = 30
+#[[menus.main]]
+#name = 'Modules'
+#pageRef = '/modules'
+#weight = 30
 
 #[[menus.main]]
 #name = 'Release notes'

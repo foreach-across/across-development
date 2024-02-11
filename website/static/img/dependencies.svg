@@ -11,14 +11,20 @@
 <!-- across&#45;autoconfigure -->
 <g id="node1" class="node">
 <title>across&#45;autoconfigure</title>
+<g id="a_node1"><a xlink:href="https://foreach-across.github.io/modules/across-autoconfigure" xlink:title="across&#45;autoconfigure">
 <ellipse fill="none" stroke="black" cx="420.74" cy="-162" rx="107.48" ry="18"/>
 <text text-anchor="middle" x="420.74" y="-158.3" font-family="Times,serif" font-size="14.00">across&#45;autoconfigure</text>
+</a>
+</g>
 </g>
 <!-- across&#45;web -->
 <g id="node2" class="node">
 <title>across&#45;web</title>
+<g id="a_node2"><a xlink:href="https://foreach-across.github.io/modules/across-web" xlink:title="across&#45;web">
 <ellipse fill="none" stroke="black" cx="513.74" cy="-90" rx="62.29" ry="18"/>
 <text text-anchor="middle" x="513.74" y="-86.3" font-family="Times,serif" font-size="14.00">across&#45;web</text>
+</a>
+</g>
 </g>
 <!-- across&#45;autoconfigure&#45;&gt;across&#45;web -->
 <g id="edge1" class="edge">
@@ -29,8 +35,11 @@
 <!-- across&#45;core -->
 <g id="node3" class="node">
 <title>across&#45;core</title>
+<g id="a_node3"><a xlink:href="https://foreach-across.github.io/modules/across-core" xlink:title="across&#45;core">
 <ellipse fill="none" stroke="black" cx="513.74" cy="-18" rx="63.89" ry="18"/>
 <text text-anchor="middle" x="513.74" y="-14.3" font-family="Times,serif" font-size="14.00">across&#45;core</text>
+</a>
+</g>
 </g>
 <!-- across&#45;web&#45;&gt;across&#45;core -->
 <g id="edge2" class="edge">
@@ -41,14 +50,20 @@
 <!-- ehcache&#45;module -->
 <g id="node4" class="node">
 <title>ehcache&#45;module</title>
+<g id="a_node4"><a xlink:href="https://foreach-across.github.io/modules/ehcache-module" xlink:title="ehcache&#45;module">
 <ellipse fill="none" stroke="orange" cx="452.74" cy="-522" rx="85.29" ry="18"/>
 <text text-anchor="middle" x="452.74" y="-518.3" font-family="Times,serif" font-size="14.00">ehcache&#45;module</text>
+</a>
+</g>
 </g>
 <!-- debug&#45;web&#45;module -->
 <g id="node5" class="node">
 <title>debug&#45;web&#45;module</title>
+<g id="a_node5"><a xlink:href="https://foreach-across.github.io/modules/debug-web-module" xlink:title="debug&#45;web&#45;module">
 <ellipse fill="none" stroke="orange" cx="357.74" cy="-378" rx="98.58" ry="18"/>
 <text text-anchor="middle" x="357.74" y="-374.3" font-family="Times,serif" font-size="14.00">debug&#45;web&#45;module</text>
+</a>
+</g>
 </g>
 <!-- ehcache&#45;module&#45;&gt;debug&#45;web&#45;module -->
 <g id="edge3" class="edge">
@@ -59,8 +74,11 @@
 <!-- spring&#45;security&#45;module -->
 <g id="node6" class="node">
 <title>spring&#45;security&#45;module</title>
+<g id="a_node6"><a xlink:href="https://foreach-across.github.io/modules/spring-security-module" xlink:title="spring&#45;security&#45;module">
 <ellipse fill="none" stroke="orange" cx="420.74" cy="-306" rx="118.08" ry="18"/>
 <text text-anchor="middle" x="420.74" y="-302.3" font-family="Times,serif" font-size="14.00">spring&#45;security&#45;module</text>
+</a>
+</g>
 </g>
 <!-- debug&#45;web&#45;module&#45;&gt;spring&#45;security&#45;module -->
 <g id="edge4" class="edge">
@@ -71,8 +89,11 @@
 <!-- across&#45;hibernate&#45;module -->
 <g id="node8" class="node">
 <title>across&#45;hibernate&#45;module</title>
+<g id="a_node8"><a xlink:href="https://foreach-across.github.io/modules/across-hibernate-module" xlink:title="across&#45;hibernate&#45;module">
 <ellipse fill="none" stroke="orange" cx="420.74" cy="-234" rx="125.38" ry="18"/>
 <text text-anchor="middle" x="420.74" y="-230.3" font-family="Times,serif" font-size="14.00">across&#45;hibernate&#45;module</text>
+</a>
+</g>
 </g>
 <!-- spring&#45;security&#45;module&#45;&gt;across&#45;hibernate&#45;module -->
 <g id="edge8" class="edge">
@@ -83,8 +104,11 @@
 <!-- across&#45;test -->
 <g id="node7" class="node">
 <title>across&#45;test</title>
+<g id="a_node7"><a xlink:href="https://foreach-across.github.io/modules/across-test" xlink:title="across&#45;test">
 <ellipse fill="none" stroke="black" cx="607.74" cy="-162" rx="61.99" ry="18"/>
 <text text-anchor="middle" x="607.74" y="-158.3" font-family="Times,serif" font-size="14.00">across&#45;test</text>
+</a>
+</g>
 </g>
 <!-- across&#45;test&#45;&gt;across&#45;web -->
 <g id="edge5" class="edge">
@@ -107,8 +131,11 @@
 <!-- logging&#45;module -->
 <g id="node9" class="node">
 <title>logging&#45;module</title>
+<g id="a_node9"><a xlink:href="https://foreach-across.github.io/modules/logging-module" xlink:title="logging&#45;module">
 <ellipse fill="none" stroke="orange" cx="215.74" cy="-450" rx="82.59" ry="18"/>
 <text text-anchor="middle" x="215.74" y="-446.3" font-family="Times,serif" font-size="14.00">logging&#45;module</text>
+</a>
+</g>
 </g>
 <!-- logging&#45;module&#45;&gt;debug&#45;web&#45;module -->
 <g id="edge9" class="edge">
@@ -119,14 +146,20 @@
 <!-- properties&#45;module -->
 <g id="node10" class="node">
 <title>properties&#45;module</title>
+<g id="a_node10"><a xlink:href="https://foreach-across.github.io/modules/properties-module" xlink:title="properties&#45;module">
 <ellipse fill="none" stroke="green" cx="651.74" cy="-522" rx="96.38" ry="18"/>
 <text text-anchor="middle" x="651.74" y="-518.3" font-family="Times,serif" font-size="14.00">properties&#45;module</text>
+</a>
+</g>
 </g>
 <!-- entity&#45;module -->
 <g id="node11" class="node">
 <title>entity&#45;module</title>
+<g id="a_node11"><a xlink:href="https://foreach-across.github.io/modules/entity-module" xlink:title="entity&#45;module">
 <ellipse fill="none" stroke="green" cx="906.74" cy="-450" rx="75.29" ry="18"/>
 <text text-anchor="middle" x="906.74" y="-446.3" font-family="Times,serif" font-size="14.00">entity&#45;module</text>
+</a>
+</g>
 </g>
 <!-- properties&#45;module&#45;&gt;entity&#45;module -->
 <g id="edge10" class="edge">
@@ -137,8 +170,11 @@
 <!-- admin&#45;web&#45;module -->
 <g id="node12" class="node">
 <title>admin&#45;web&#45;module</title>
+<g id="a_node12"><a xlink:href="https://foreach-across.github.io/modules/admin-web-module" xlink:title="admin&#45;web&#45;module">
 <ellipse fill="none" stroke="green" cx="696.74" cy="-378" rx="98.58" ry="18"/>
 <text text-anchor="middle" x="696.74" y="-374.3" font-family="Times,serif" font-size="14.00">admin&#45;web&#45;module</text>
+</a>
+</g>
 </g>
 <!-- entity&#45;module&#45;&gt;admin&#45;web&#45;module -->
 <g id="edge11" class="edge">
@@ -155,8 +191,11 @@
 <!-- bootstrap&#45;ui&#45;module -->
 <g id="node13" class="node">
 <title>bootstrap&#45;ui&#45;module</title>
+<g id="a_node13"><a xlink:href="https://foreach-across.github.io/modules/bootstrap-ui-module" xlink:title="bootstrap&#45;ui&#45;module">
 <ellipse fill="none" stroke="green" cx="696.74" cy="-306" rx="104.78" ry="18"/>
 <text text-anchor="middle" x="696.74" y="-302.3" font-family="Times,serif" font-size="14.00">bootstrap&#45;ui&#45;module</text>
+</a>
+</g>
 </g>
 <!-- admin&#45;web&#45;module&#45;&gt;bootstrap&#45;ui&#45;module -->
 <g id="edge15" class="edge">
@@ -173,8 +212,11 @@
 <!-- ax&#45;bootstrap&#45;4&#45;utilities -->
 <g id="node14" class="node">
 <title>ax&#45;bootstrap&#45;4&#45;utilities</title>
+<g id="a_node14"><a xlink:href="https://foreach-across.github.io/modules/ax-bootstrap-4-utilities" xlink:title="ax&#45;bootstrap&#45;4&#45;utilities">
 <ellipse fill="none" stroke="green" cx="680.74" cy="-234" rx="116.18" ry="18"/>
 <text text-anchor="middle" x="680.74" y="-230.3" font-family="Times,serif" font-size="14.00">ax&#45;bootstrap&#45;4&#45;utilities</text>
+</a>
+</g>
 </g>
 <!-- bootstrap&#45;ui&#45;module&#45;&gt;ax&#45;bootstrap&#45;4&#45;utilities -->
 <g id="edge13" class="edge">
@@ -185,8 +227,11 @@
 <!-- application&#45;info&#45;module -->
 <g id="node15" class="node">
 <title>application&#45;info&#45;module</title>
+<g id="a_node15"><a xlink:href="https://foreach-across.github.io/modules/application-info-module" xlink:title="application&#45;info&#45;module">
 <ellipse fill="none" stroke="green" cx="474.74" cy="-450" rx="119.68" ry="18"/>
 <text text-anchor="middle" x="474.74" y="-446.3" font-family="Times,serif" font-size="14.00">application&#45;info&#45;module</text>
+</a>
+</g>
 </g>
 <!-- application&#45;info&#45;module&#45;&gt;debug&#45;web&#45;module -->
 <g id="edge16" class="edge">
@@ -203,8 +248,11 @@
 <!-- ax&#45;bootstrap&#45;theme -->
 <g id="node16" class="node">
 <title>ax&#45;bootstrap&#45;theme</title>
+<g id="a_node16"><a xlink:href="https://foreach-across.github.io/modules/ax-bootstrap-theme" xlink:title="ax&#45;bootstrap&#45;theme">
 <ellipse fill="none" stroke="green" cx="712.74" cy="-450" rx="100.98" ry="18"/>
 <text text-anchor="middle" x="712.74" y="-446.3" font-family="Times,serif" font-size="14.00">ax&#45;bootstrap&#45;theme</text>
+</a>
+</g>
 </g>
 <!-- ax&#45;bootstrap&#45;theme&#45;&gt;admin&#45;web&#45;module -->
 <g id="edge18" class="edge">
@@ -215,8 +263,11 @@
 <!-- imageserver&#45;core -->
 <g id="node17" class="node">
 <title>imageserver&#45;core</title>
+<g id="a_node17"><a xlink:href="https://foreach-across.github.io/modules/imageserver-core" xlink:title="imageserver&#45;core">
 <ellipse fill="none" stroke="blue" cx="642.74" cy="-666" rx="91.78" ry="18"/>
 <text text-anchor="middle" x="642.74" y="-662.3" font-family="Times,serif" font-size="14.00">imageserver&#45;core</text>
+</a>
+</g>
 </g>
 <!-- imageserver&#45;core&#45;&gt;ehcache&#45;module -->
 <g id="edge19" class="edge">
@@ -227,8 +278,11 @@
 <!-- file&#45;manager&#45;module -->
 <g id="node18" class="node">
 <title>file&#45;manager&#45;module</title>
+<g id="a_node18"><a xlink:href="https://foreach-across.github.io/modules/file-manager-module" xlink:title="file&#45;manager&#45;module">
 <ellipse fill="none" stroke="blue" cx="626.74" cy="-594" rx="105.88" ry="18"/>
 <text text-anchor="middle" x="626.74" y="-590.3" font-family="Times,serif" font-size="14.00">file&#45;manager&#45;module</text>
+</a>
+</g>
 </g>
 <!-- imageserver&#45;core&#45;&gt;file&#45;manager&#45;module -->
 <g id="edge20" class="edge">
@@ -239,8 +293,11 @@
 <!-- imageserver&#45;client -->
 <g id="node19" class="node">
 <title>imageserver&#45;client</title>
+<g id="a_node19"><a xlink:href="https://foreach-across.github.io/modules/imageserver-client" xlink:title="imageserver&#45;client">
 <ellipse fill="none" stroke="blue" cx="847.74" cy="-594" rx="97.48" ry="18"/>
 <text text-anchor="middle" x="847.74" y="-590.3" font-family="Times,serif" font-size="14.00">imageserver&#45;client</text>
+</a>
+</g>
 </g>
 <!-- imageserver&#45;core&#45;&gt;imageserver&#45;client -->
 <g id="edge21" class="edge">
@@ -257,8 +314,11 @@
 <!-- web&#45;cms&#45;module -->
 <g id="node20" class="node">
 <title>web&#45;cms&#45;module</title>
+<g id="a_node20"><a xlink:href="https://foreach-across.github.io/modules/web-cms-module" xlink:title="web&#45;cms&#45;module">
 <ellipse fill="none" stroke="blue" cx="910.74" cy="-666" rx="88.28" ry="18"/>
 <text text-anchor="middle" x="910.74" y="-662.3" font-family="Times,serif" font-size="14.00">web&#45;cms&#45;module</text>
+</a>
+</g>
 </g>
 <!-- web&#45;cms&#45;module&#45;&gt;entity&#45;module -->
 <g id="edge23" class="edge">
@@ -275,14 +335,20 @@
 <!-- imageserver&#45;admin -->
 <g id="node21" class="node">
 <title>imageserver&#45;admin</title>
+<g id="a_node21"><a xlink:href="https://foreach-across.github.io/modules/imageserver-admin" xlink:title="imageserver&#45;admin">
 <ellipse fill="none" stroke="blue" cx="100.74" cy="-666" rx="100.98" ry="18"/>
 <text text-anchor="middle" x="100.74" y="-662.3" font-family="Times,serif" font-size="14.00">imageserver&#45;admin</text>
+</a>
+</g>
 </g>
 <!-- user&#45;module -->
 <g id="node22" class="node">
 <title>user&#45;module</title>
+<g id="a_node22"><a xlink:href="https://foreach-across.github.io/modules/user-module" xlink:title="user&#45;module">
 <ellipse fill="none" stroke="red" cx="349.74" cy="-594" rx="68.49" ry="18"/>
 <text text-anchor="middle" x="349.74" y="-590.3" font-family="Times,serif" font-size="14.00">user&#45;module</text>
+</a>
+</g>
 </g>
 <!-- imageserver&#45;admin&#45;&gt;user&#45;module -->
 <g id="edge25" class="edge">
@@ -305,8 +371,11 @@
 <!-- spring&#45;security&#45;acl&#45;module -->
 <g id="node23" class="node">
 <title>spring&#45;security&#45;acl&#45;module</title>
+<g id="a_node23"><a xlink:href="https://foreach-across.github.io/modules/spring-security-acl-module" xlink:title="spring&#45;security&#45;acl&#45;module">
 <ellipse fill="none" stroke="red" cx="215.74" cy="-522" rx="133.78" ry="18"/>
 <text text-anchor="middle" x="215.74" y="-518.3" font-family="Times,serif" font-size="14.00">spring&#45;security&#45;acl&#45;module</text>
+</a>
+</g>
 </g>
 <!-- user&#45;module&#45;&gt;spring&#45;security&#45;acl&#45;module -->
 <g id="edge28" class="edge">
@@ -329,8 +398,11 @@
 <!-- ldap&#45;module -->
 <g id="node24" class="node">
 <title>ldap&#45;module</title>
+<g id="a_node24"><a xlink:href="https://foreach-across.github.io/modules/ldap-module" xlink:title="ldap&#45;module">
 <ellipse fill="none" stroke="red" cx="286.74" cy="-666" rx="67.69" ry="18"/>
 <text text-anchor="middle" x="286.74" y="-662.3" font-family="Times,serif" font-size="14.00">ldap&#45;module</text>
+</a>
+</g>
 </g>
 <!-- ldap&#45;module&#45;&gt;user&#45;module -->
 <g id="edge31" class="edge">
@@ -341,8 +413,11 @@
 <!-- oauth2&#45;module -->
 <g id="node25" class="node">
 <title>oauth2&#45;module</title>
+<g id="a_node25"><a xlink:href="https://foreach-across.github.io/modules/oauth2-module" xlink:title="oauth2&#45;module">
 <ellipse fill="none" stroke="red" cx="452.74" cy="-666" rx="79.89" ry="18"/>
 <text text-anchor="middle" x="452.74" y="-662.3" font-family="Times,serif" font-size="14.00">oauth2&#45;module</text>
+</a>
+</g>
 </g>
 <!-- oauth2&#45;module&#45;&gt;user&#45;module -->
 <g id="edge32" class="edge">

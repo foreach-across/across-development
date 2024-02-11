@@ -1,0 +1,52 @@
+{{ if index .Params "repo-id" }}
+
+{{ $repo_id := index .Params "repo-id" }}
+{{ $module_id := .File.BaseFileName }}
+
+{{ $across := .Site.Data.across }}
+
+{{ $repos := where $across.repositories ".id" "eq" $repo_id }}
+{{ with index $repos 0 }}
+{{ $modules := where .modules ".id" "eq" $module_id }}
+{{ partial "module.html" (dict "repo" (index $repos 0) "module" (index $modules 0)) }}
+{{ else }}
+{{ errorf $repo_id " not found in " $repos }}
+{{ end }}
+
+{{ else }} <!-- original Ananke menu-contextual.html -->
+
+{{/*
+Use Hugo's native Table of contents feature. You must set `toc: true` in your parameters for this to show.
+https://gohugo.io/content-management/toc/
+*/}}
+
+{{- if .Params.toc -}}
+<div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">{{ i18n "whatsInThis" . }}</p>
+    {{ .TableOfContents }}
+</div>
+{{- end -}}
+
+{{/*
+Use Hugo's native related content feature to pull in content that may have similar parameters, like tags. etc.
+https://gohugo.io/content-management/related/
+*/}}
+
+{{ $related := .Site.RegularPages.Related . | first 15 }}
+
+{{ with $related }}
+<div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">{{ i18n "related" }}</p>
+    <ul class="pa0 list">
+        {{ range . }}
+        <li  class="mb2">
+            <a href="{{ .RelPermalink }}">
+                {{- .Title -}}
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+
+{{ end }}

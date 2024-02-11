@@ -1,0 +1,127 @@
+{{ $repo := .repo }}
+{{ $module := .module }}
+
+<h3>Quick links</h3>
+
+<!-- Stolen from the old Across website: -->
+<style>
+    a.m-quick__link {
+        display: block;
+        margin: .6rem 0rem;
+        padding: 10px;
+        border: 1px solid #DBE0E1;
+        background-color: #f9f9fA;
+        text-decoration: none;
+        font-size: 1rem;
+        color: #1F3141;
+        font-weight: 600;
+    }
+</style>
+
+<table width="100%">
+
+    {{ $bitbucket_repo := cond (.bitbucket | not | not) .bitbucket $module.id }}
+    {{ $group_id := cond ($repo.group | not | not) $repo.group "com.foreach.across.modules" }}
+
+    {{ $ref_doc := $module.id }}
+    {{ if $module.refdoc }}
+    {{ $ref_doc = $module.refdoc }}
+    {{ else if $repo.refdoc }}
+    {{ $ref_doc = $repo.refdoc }}
+    {{ end }}
+
+    {{ $java_doc := printf "across-standard-modules/%s" (index $module "java-class") }}
+    {{ if $module.javadoc }}
+    {{ $java_doc = printf "across-standard-modules/%s" $module.javadoc }}
+    {{ else if $repo.javadoc }}
+    {{ $java_doc = printf "across-standard-modules/%s" $repo.javadoc }}
+    {{ else if eq $repo.id "across-framework" }}
+    {{ $java_doc = "across" }}
+    {{ else if eq $repo.id "across-autoconfigure" }}
+    {{ $java_doc = "across-autoconfigure" }}
+    {{ else if eq $repo.id "across-platform" }}
+    {{ $java_doc = "across-platform" }}
+    {{ end }}
+
+    {{ $bitbucket := $module.id }}
+    {{ if $module.bitbucket }}
+    {{ $bitbucket = $module.bitbucket }}
+    {{ else if $repo.bitbucket }}
+    {{ $bitbucket = $repo.bitbucket }}
+    {{ end }}
+
+    <tr>
+        <td>
+            <a class="m-quick__link"
+               href="https://github.com/ForeachOS/{{ $repo.id }}"
+               target="github-{{ $repo.id }}">
+                GitHub
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="m-quick__link"
+               href="https://gitlab.isaac.nl/antwerpen/across/{{ $repo.id }}"
+               target="gitlab-{{ $repo.id }}">
+                GitLab
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="m-quick__link"
+               href="https://docs.across.dev/across-site/production/{{ $ref_doc }}"
+               target="refdoc-{{ $module.id }}"
+            >
+                Documentation
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="m-quick__link" href="https://docs.across.dev/{{ $java_doc }}"
+               target="javadoc-{{ $module.id }}"
+            >
+                Javadoc API
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="m-quick__link"
+               href="https://central.sonatype.com/artifact/{{ $group_id }}/{{ $module.id }}"
+               target="maven-central-{{ $module.id }}"
+            >
+                <img style="vertical-align: middle"
+                     src="https://img.shields.io/maven-central/v/{{ $group_id }}/{{ $module.id }}"
+                     alt="Maven central link for {{ $module.id }}"/>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<h3>Legacy links</h3>
+
+<table width="100%">
+    <tr>
+        <td>
+            <a class="m-quick__link"
+               href="https://bitbucket.org/beforeach/{{ $bitbucket }}"
+               target="bitbucket-{{ $module.id }}">
+                Bitbucket
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{ if $module.key }}
+            <a class="m-quick__link"
+               href="https://foreach.atlassian.net/projects/{{ $module.key }}/issues"
+               target="jira-{{ $module.id }}">
+                Jira
+            </a>
+            {{ end }}
+        </td>
+    </tr>
+</table>
