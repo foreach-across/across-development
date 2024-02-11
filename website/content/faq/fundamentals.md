@@ -58,7 +58,7 @@ For simplicity’s sake however, you can consider them the same.
 ### What is the Across bootstrap?
 
 The Across bootstrap is the actual starting of the application. During
-the bootstrapping phase the entire Spring `ApplicationContext` hierarchy
+the bootstrapping phase the entire Spring `ApplicationContext` hierarchy
 of an application is created.
 
 A typical Across application has the following bootstrap phases:

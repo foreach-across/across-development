@@ -1,6 +1,8 @@
 ---
 weight: 301
 title: Hibernate JPA module
+aliases:
+  - AcrossHibernateJpaModule
 
 repo-id: across-base-modules
 module-name: AcrossHibernateJpaModule

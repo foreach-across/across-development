@@ -93,7 +93,7 @@ before it gets started:
 1.  Your module can provide a `@ModuleConfiguration` class in its
     extension packages. A `@ModuleConfiguration` is like a regular
     `@Configuration` which will be added to the target module instead of
-    the module that declares it.  See the [reference documentation on
+    the module that declares it.  See the [reference documentation on
     `@ModuleConfiguration`](../reference-docs%3Fsection=moduleconfiguration.html)
     for more information.
 2.  Your module descriptor can implement the `prepareForBootstrap()`

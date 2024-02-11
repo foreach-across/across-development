@@ -1,6 +1,8 @@
 ---
 weight: 404
 title: Admin Web
+aliases:
+  - AdminWebModule
 
 repo-id: across-entity-admin-modules
 module-name: AdminWebModule

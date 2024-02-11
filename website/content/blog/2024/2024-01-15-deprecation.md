@@ -17,7 +17,6 @@ See also: https://confluence.hosted-tools.com/display/AX/Across+Alternatives
 
 Refer to https://spring.io/projects/spring-modulith
 
-
 # Some alternatives
 
 ## User authentication and management
@@ -41,7 +40,6 @@ passkeys, dealing with new vulnerabilities every week, fending off
 hackers or even nation-state cyberwarfare? In a platform you manage
 yourself?
 
-
 ## Image Server
 
 - [Cloudinary](https://cloudinary.com/)
@@ -49,7 +47,6 @@ yourself?
 - [Akamai image optimization](https://techdocs.akamai.com/ivm/docs/optimize-images)
 
 - [Cloudflare Images](https://www.cloudflare.com/developer-platform/cloudflare-images/)
-
 
 ## File Manager
 

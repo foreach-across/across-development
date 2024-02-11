@@ -56,9 +56,10 @@ selfHosted = true
 name = "Foreach"
 url = "https://foreach.be/"
 
-[[params.ananke_socials]]
-name = "linkedin"
-url = "https://www.linkedin.com/company/iodigital-com/"
+# Ananke adds a share button for each post, so disabling this:
+#[[params.ananke_socials]]
+#name = "linkedin"
+#url = "https://www.linkedin.com/company/iodigital-com/"
 
 [[params.ananke_socials]]
 name = "youtube"
