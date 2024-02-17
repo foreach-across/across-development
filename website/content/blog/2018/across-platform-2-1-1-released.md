@@ -32,16 +32,16 @@ updates.
 ### Auto-configuration support
 
 Auto-configuration support has been added for [Spring Cloud
-OpenFeign](https://docs.across.dev/across-site/production/across-autoconfigure/1.0.1/starters/spring-cloud.html#_spring_cloud_openfeign)
+OpenFeign](https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.1/starters/spring-cloud.html#_spring_cloud_openfeign)
 and
-[GraphQL](https://docs.across.dev/across-site/production/across-autoconfigure/1.0.1/starters/contributed-starters.html#_spring_boot_graphql)
+[GraphQL](https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.1/starters/contributed-starters.html#_spring_boot_graphql)
 starters.
 
 ### BootstrapUiModule 2.1.0
 
 New component has been added to make it easier to [change the control
 names of generated form
-controls](https://docs.across.dev/across-site/production/bootstrap-ui-module/2.1.0/guides/prefixing-control-names.html).
+controls](https://foreach-across.github.io/ref-docs-5/bootstrap-ui-module/2.1.0/guides/prefixing-control-names.html).
 
 ### WebCmsModule 0.0.5
 
@@ -81,12 +81,12 @@ Links to the different what's new sections of the updated modules:
 
 |                                                                                                                                  |                 |
 |----------------------------------------------------------------------------------------------------------------------------------|-----------------|
-| [Across Platform](https://docs.across.dev/across-site/production/across/2.1.1/releases/platform/2.1.1.html)                      | `2.1.1.RELEASE` |
-| [Across Core & Web](https://docs.across.dev/across-site/production/across/2.1.1/releases/core-artifacts/releases-3.x.html#3-1-0) | `3.1.0.RELEASE` |
-| [Auto-configuration Support](https://docs.across.dev/across-site/production/across-autoconfigure/1.0.1/index.html)               | `1.0.1.RELEASE` |
-| [BootstrapUiModule](https://docs.across.dev/across-site/production/bootstrap-ui-module/2.1.0/releases/2.x.html#2-1-0)            | `2.1.0.RELEASE` |
-| [WebCmsModule](https://docs.across.dev/across-site/production/web-cms-module/0.0.5/releases/0.0.x.html#0-0-5)                    | `0.0.5.RELEASE` |
-| [SpringSecurityModule](https://docs.across.dev/across-site/production/spring-security-module/3.0.2/releases/3.x.html#3-0-2)      | `3.0.2.RELEASE` |
-| [OAuth2Module](https://docs.across.dev/across-site/production/oauth2-module/2.0.1/releases/2.x.html#2-0-1)                       | `2.0.1.RELEASE` |
-| [EntityModule](https://docs.across.dev/across-site/production/entity-module/3.1.0/releases/3.x.html#3-1-0)                       | `3.1.0.RELEASE` |
-| [DynamicFormsModule](https://docs.across.dev/across-site/production/dynamic-forms-module/0.0.1/releases/0.0.x.html#0-0-1)        | `0.0.1.RELEASE` |
+| [Across Platform](https://foreach-across.github.io/ref-docs-5/across/2.1.1/releases/platform/2.1.1.html)                      | `2.1.1.RELEASE` |
+| [Across Core & Web](https://foreach-across.github.io/ref-docs-5/across/2.1.1/releases/core-artifacts/releases-3.x.html#3-1-0) | `3.1.0.RELEASE` |
+| [Auto-configuration Support](https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.1/index.html)               | `1.0.1.RELEASE` |
+| [BootstrapUiModule](https://foreach-across.github.io/ref-docs-5/bootstrap-ui-module/2.1.0/releases/2.x.html#2-1-0)            | `2.1.0.RELEASE` |
+| [WebCmsModule](https://foreach-across.github.io/ref-docs-5/web-cms-module/0.0.5/releases/0.0.x.html#0-0-5)                    | `0.0.5.RELEASE` |
+| [SpringSecurityModule](https://foreach-across.github.io/ref-docs-5/spring-security-module/3.0.2/releases/3.x.html#3-0-2)      | `3.0.2.RELEASE` |
+| [OAuth2Module](https://foreach-across.github.io/ref-docs-5/oauth2-module/2.0.1/releases/2.x.html#2-0-1)                       | `2.0.1.RELEASE` |
+| [EntityModule](https://foreach-across.github.io/ref-docs-5/entity-module/3.1.0/releases/3.x.html#3-1-0)                       | `3.1.0.RELEASE` |
+| [DynamicFormsModule](https://foreach-across.github.io/ref-docs-5/dynamic-forms-module/0.0.1/releases/0.0.x.html#0-0-1)        | `0.0.1.RELEASE` |

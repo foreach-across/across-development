@@ -13,7 +13,7 @@ It is the first release using the Spring Boot 2 line.
 Upgrading from 2.1.5 will not be trivial, due to major upgrades in the
 Spring line as well. Developers are encouraged to thorougly read the
 separate module release notes and follow the [migration
-guide](https://docs.across.dev/across-site/production/migration/platform-2.1-to-5.0/index.html)
+guide](https://foreach-across.github.io/ref-docs-5/migration/platform-2.1-to-5.0/index.html)
 when upgrading.
 
 <!--more-->
@@ -88,26 +88,26 @@ themability for across applications.
 
 |                                                                                                                              |               |
 |------------------------------------------------------------------------------------------------------------------------------|---------------|
-| [Across](https://docs.across.dev/across-site/production/across/releases/core-artifacts/releases-5.x.html#5-0-0)              | 5.0.1.RELEASE |
-| [Across Autoconfigure](https://docs.across.dev/across-site/production/across-autoconfigure/index.html)                       | 2.0.0.RELEASE |
-| [AcrossHibernateModule](https://docs.across.dev/across-site/production/hibernate-jpa-module/releases/4.x.html#4-0-0)         | 4.0.0.RELEASE |
-| [SpringSecurityModule](https://docs.across.dev/across-site/production/spring-security-module/releases/4.x.html#4-0-0)        | 4.0.0.RELEASE |
-| [DebugWebModule](https://docs.across.dev/across-site/production/debug-web-module/releases/3.x.html#3-0-0)                    | 3.0.0.RELEASE |
-| [LoggingModule](https://docs.across.dev/across-site/production/logging-module/releases/3.x.html#3-0-0)                       | 3.0.0.RELEASE |
-| [EhCacheModule](https://docs.across.dev/across-site/production/ehcache-module/releases/2.x.html#2-0-0)                       | 2.0.0.RELEASE |
-| [SpringMobileModule](https://docs.across.dev/across-site/production/spring-mobile-module/releases/3.x.html#3-0-0)            | 3.0.0.RELEASE |
-| [BootstrapUiModule](https://docs.across.dev/across-site/production/bootstrap-ui-module/releases/3.x.html#3-0-0)              | 3.0.0.RELEASE |
-| [AdminWebModule](https://docs.across.dev/across-site/production/admin-web-module/releases/4.x.html#4-0-0)                    | 4.0.0.RELEASE |
-| [ApplicationInfoModule](https://docs.across.dev/across-site/production/application-info-module/releases/2.x.html#2-0-0)      | 2.0.0.RELEASE |
-| [EntityModule](https://docs.across.dev/across-site/production/entity-module/releases/4.x.html#4-0-0)                         | 4.0.0.RELEASE |
-| [SpringSecurityAclModule](https://docs.across.dev/across-site/production/spring-security-acl-module/releases/4.x.html#4-0-0) | 4.0.0.RELEASE |
-| [PropertiesModule](https://docs.across.dev/across-site/production/properties-module/releases/2.x.html#2-0-0)                 | 2.0.0.RELEASE |
-| [UserModule](https://docs.across.dev/across-site/production/user-module/releases/3.x.html#4-0-0)                             | 4.0.0.RELEASE |
-| [OAuth2Module](https://docs.across.dev/across-site/production/oauth2-module/releases/3.x.html#3-0-0)                         | 3.0.0.RELEASE |
-| [LdapModule](https://docs.across.dev/across-site/production/ldap-module/releases/2.x.html#2-0-0)                             | 2.0.0.RELEASE |
-| [SpringBatchModule](https://docs.across.dev/across-site/production/spring-batch-module/releases/2.x.html#2-0-0)              | 2.0.0.RELEASE |
-| [FileManagerModule](https://docs.across.dev/across-site/production/file-manager-module/releases/2.x.html#2-0-0)              | 2.0.0.RELEASE |
+| [Across](https://foreach-across.github.io/ref-docs-5/across/releases/core-artifacts/releases-5.x.html#5-0-0)              | 5.0.1.RELEASE |
+| [Across Autoconfigure](https://foreach-across.github.io/ref-docs-5/across-autoconfigure/index.html)                       | 2.0.0.RELEASE |
+| [AcrossHibernateModule](https://foreach-across.github.io/ref-docs-5/hibernate-jpa-module/releases/4.x.html#4-0-0)         | 4.0.0.RELEASE |
+| [SpringSecurityModule](https://foreach-across.github.io/ref-docs-5/spring-security-module/releases/4.x.html#4-0-0)        | 4.0.0.RELEASE |
+| [DebugWebModule](https://foreach-across.github.io/ref-docs-5/debug-web-module/releases/3.x.html#3-0-0)                    | 3.0.0.RELEASE |
+| [LoggingModule](https://foreach-across.github.io/ref-docs-5/logging-module/releases/3.x.html#3-0-0)                       | 3.0.0.RELEASE |
+| [EhCacheModule](https://foreach-across.github.io/ref-docs-5/ehcache-module/releases/2.x.html#2-0-0)                       | 2.0.0.RELEASE |
+| [SpringMobileModule](https://foreach-across.github.io/ref-docs-5/spring-mobile-module/releases/3.x.html#3-0-0)            | 3.0.0.RELEASE |
+| [BootstrapUiModule](https://foreach-across.github.io/ref-docs-5/bootstrap-ui-module/releases/3.x.html#3-0-0)              | 3.0.0.RELEASE |
+| [AdminWebModule](https://foreach-across.github.io/ref-docs-5/admin-web-module/releases/4.x.html#4-0-0)                    | 4.0.0.RELEASE |
+| [ApplicationInfoModule](https://foreach-across.github.io/ref-docs-5/application-info-module/releases/2.x.html#2-0-0)      | 2.0.0.RELEASE |
+| [EntityModule](https://foreach-across.github.io/ref-docs-5/entity-module/releases/4.x.html#4-0-0)                         | 4.0.0.RELEASE |
+| [SpringSecurityAclModule](https://foreach-across.github.io/ref-docs-5/spring-security-acl-module/releases/4.x.html#4-0-0) | 4.0.0.RELEASE |
+| [PropertiesModule](https://foreach-across.github.io/ref-docs-5/properties-module/releases/2.x.html#2-0-0)                 | 2.0.0.RELEASE |
+| [UserModule](https://foreach-across.github.io/ref-docs-5/user-module/releases/3.x.html#4-0-0)                             | 4.0.0.RELEASE |
+| [OAuth2Module](https://foreach-across.github.io/ref-docs-5/oauth2-module/releases/3.x.html#3-0-0)                         | 3.0.0.RELEASE |
+| [LdapModule](https://foreach-across.github.io/ref-docs-5/ldap-module/releases/2.x.html#2-0-0)                             | 2.0.0.RELEASE |
+| [SpringBatchModule](https://foreach-across.github.io/ref-docs-5/spring-batch-module/releases/2.x.html#2-0-0)              | 2.0.0.RELEASE |
+| [FileManagerModule](https://foreach-across.github.io/ref-docs-5/file-manager-module/releases/2.x.html#2-0-0)              | 2.0.0.RELEASE |
 | [ImageServerModules](http://project-docs.foreach.be/projects/image-server/6.0.0.RELEASE/reference/6.0.0.RELEASE/reference/)  | 6.0.0.RELEASE |
-| [WebCmsModule](https://docs.across.dev/across-site/production/web-cms-module/releases/0.1.x.html#0-1-0)                      | 0.1.0.RELEASE |
-| [DynamicFormsModule](https://docs.across.dev/across-site/production/dynamic-forms-module/releases/0.1.x.html#3-2-0)          | 0.1.0.RELEASE |
+| [WebCmsModule](https://foreach-across.github.io/ref-docs-5/web-cms-module/releases/0.1.x.html#0-1-0)                      | 0.1.0.RELEASE |
+| [DynamicFormsModule](https://foreach-across.github.io/ref-docs-5/dynamic-forms-module/releases/0.1.x.html#3-2-0)          | 0.1.0.RELEASE |
 | Across Bootstrap Theme                                                                                                       | 0.0.1.RELEASE |

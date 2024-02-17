@@ -6,9 +6,9 @@ toc: true
 
 [Across Framework and Platform documentation](https://across.dev/documentation)
 
-[Application guides](https://docs.across.dev/across-site/production/guides)
+[Application guides](https://foreach-across.github.io/ref-docs-5/guides)
 
-[Legacy migration guides](https://docs.across.dev/across-site/production/migration/)
+[Legacy migration guides](https://foreach-across.github.io/ref-docs-5/migration/)
 
 New migration guides can typically be in the [Release
 notes](/release-notes).

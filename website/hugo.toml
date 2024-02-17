@@ -83,7 +83,6 @@ weight = 10
 
 [[menus.main]]
 name = 'Overview'
-#url = 'https://docs.across.dev/across-site/production/'
 pageRef = '/overview'
 weight = 20
 
@@ -94,7 +93,7 @@ weight = 20
 
 [[menus.main]]
 name = 'Docs'
-url = 'https://docs.across.dev/across-site/production/across/'
+url = 'https://foreach-across.github.io/ref-docs-5/across/'
 weight = 40
 
 #[[menus.main]]

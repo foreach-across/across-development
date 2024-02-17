@@ -47,8 +47,8 @@ Links to the different what's new sections of the updated modules:
 
 |                                                                                                                            |                 |
 |----------------------------------------------------------------------------------------------------------------------------|-----------------|
-| [Across Platform](https://docs.across.dev/across-site/production/across/releases/platform/5.x/5.0.2.html)                  | `5.0.2.RELEASE` |
-| [Across Core & Web](https://docs.across.dev/across-site/production/across/releases/core-artifacts/releases-5.x.html#5-0-2) | `5.0.2.RELEASE` |
-| [BootstrapUIModule](https://docs.across.dev/across-site/production/bootstrap-ui-module/releases/3.x.html)                  | `3.0.1.RELEASE` |
-| [FileManagerModule](https://docs.across.dev/across-site/production/file-manager-module/releases/2.x.html)                  | `2.1.0.RELEASE` |
-| [SpringSecurityAclModule](https://docs.across.dev/across-site/production/spring-security-acl-module/releases/4.x.html)     | `4.0.1.RELEASE` |
+| [Across Platform](https://foreach-across.github.io/ref-docs-5/across/releases/platform/5.x/5.0.2.html)                  | `5.0.2.RELEASE` |
+| [Across Core & Web](https://foreach-across.github.io/ref-docs-5/across/releases/core-artifacts/releases-5.x.html#5-0-2) | `5.0.2.RELEASE` |
+| [BootstrapUIModule](https://foreach-across.github.io/ref-docs-5/bootstrap-ui-module/releases/3.x.html)                  | `3.0.1.RELEASE` |
+| [FileManagerModule](https://foreach-across.github.io/ref-docs-5/file-manager-module/releases/2.x.html)                  | `2.1.0.RELEASE` |
+| [SpringSecurityAclModule](https://foreach-across.github.io/ref-docs-5/spring-security-acl-module/releases/4.x.html)     | `4.0.1.RELEASE` |

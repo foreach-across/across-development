@@ -57,8 +57,8 @@ Links to the different what's new sections of the updated modules:
 
 |                                                                                                                            |                 |
 |----------------------------------------------------------------------------------------------------------------------------|-----------------|
-| [Across Platform](https://docs.across.dev/across-site/production/across/releases/platform/2.1.5.html)                      | `2.1.5.RELEASE` |
-| [Across Core & Web](https://docs.across.dev/across-site/production/across/releases/core-artifacts/releases-3.x.html#3-2-1) | `3.2.1.RELEASE` |
-| [AdminWebModule](https://docs.across.dev/across-site/production/admin-web-module/releases/3.x.html#3-2-0)                  | `3.2.0.RELEASE` |
-| [BootstrapUiModule](https://docs.across.dev/across-site/production/bootstrap-ui-module/releases/2.x.html#2-2-2)            | `2.2.2.RELEASE` |
-| [EntityModule](https://docs.across.dev/across-site/production/entity-module/releases/3.x.html#3-4-0)                       | `3.4.0.RELEASE` |
+| [Across Platform](https://foreach-across.github.io/ref-docs-5/across/releases/platform/2.1.5.html)                      | `2.1.5.RELEASE` |
+| [Across Core & Web](https://foreach-across.github.io/ref-docs-5/across/releases/core-artifacts/releases-3.x.html#3-2-1) | `3.2.1.RELEASE` |
+| [AdminWebModule](https://foreach-across.github.io/ref-docs-5/admin-web-module/releases/3.x.html#3-2-0)                  | `3.2.0.RELEASE` |
+| [BootstrapUiModule](https://foreach-across.github.io/ref-docs-5/bootstrap-ui-module/releases/2.x.html#2-2-2)            | `2.2.2.RELEASE` |
+| [EntityModule](https://foreach-across.github.io/ref-docs-5/entity-module/releases/3.x.html#3-4-0)                       | `3.4.0.RELEASE` |

@@ -14,22 +14,22 @@ your Across application.
 Out-of-the-box it provides the following features:
 
 - an extensible [domain
-  model](https://docs.across.dev/across-site/production/web-cms-module/domain-model/assets/index.html)
+  model](https://foreach-across.github.io/ref-docs-5/web-cms-module/domain-model/assets/index.html)
   with common asset types like
-  [pages](https://docs.across.dev/across-site/production/web-cms-module/domain-model/pages/index.html),
-  [articles](https://docs.across.dev/across-site/production/web-cms-module/domain-model/publication/index.html#_webcmsarticle)
+  [pages](https://foreach-across.github.io/ref-docs-5/web-cms-module/domain-model/pages/index.html),
+  [articles](https://foreach-across.github.io/ref-docs-5/web-cms-module/domain-model/publication/index.html#_webcmsarticle)
   and
-  [redirects](https://docs.across.dev/across-site/production/web-cms-module/domain-model/redirects/index.html)
+  [redirects](https://foreach-across.github.io/ref-docs-5/web-cms-module/domain-model/redirects/index.html)
 
 - a way to manage the [URLs for these
-  assets](https://docs.across.dev/across-site/production/web-cms-module/domain-model/publication/index.html)
+  assets](https://foreach-across.github.io/ref-docs-5/web-cms-module/domain-model/publication/index.html)
 
 - a [powerful
-  model](https://docs.across.dev/across-site/production/web-cms-module/components/index.html)
+  model](https://foreach-across.github.io/ref-docs-5/web-cms-module/components/index.html)
   for building templates and managing dynamic content
 
 - an easy way to [import data using YAML
-  files](https://docs.across.dev/across-site/production/web-cms-module/importing/yaml-structure.html)
+  files](https://foreach-across.github.io/ref-docs-5/web-cms-module/importing/yaml-structure.html)
 
 A fully functional administration UI is available using [Admin
 Web](../admin-web-module) and [EntityModule](../entity-module).

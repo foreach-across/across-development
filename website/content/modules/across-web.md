@@ -17,28 +17,28 @@ On top of regular Spring MVC components, `AcrossWebModule` adds the
 following out of the box:
 
 - Thymeleaf template rendering with a custom [Thymeleaf
-  dialect](https://docs.across.dev/across-site/production/across/across-web/thymeleaf-dialect.html)
+  dialect](https://foreach-across.github.io/ref-docs-5/across/across-web/thymeleaf-dialect.html)
   for interacting with the Across web infrastructure
 
 - infrastructure for
-  [templates](https://docs.across.dev/across-site/production/across/across-web/web-views/layout-templates.html),
+  [templates](https://foreach-across.github.io/ref-docs-5/across/across-web/web-views/layout-templates.html),
   [menu
-  building](https://docs.across.dev/across-site/production/across/across-web/web-views/working-with-menus.html)
+  building](https://foreach-across.github.io/ref-docs-5/across/across-web/web-views/working-with-menus.html)
   and [registering web
-  resources](https://docs.across.dev/across-site/production/across/across-web/web-views/web-resources.html)
+  resources](https://foreach-across.github.io/ref-docs-5/across/across-web/web-views/web-resources.html)
 
 - a [programmatic model for creating UI
-  components](https://docs.across.dev/across-site/production/across/across-web/web-views/view-elements.html)
+  components](https://foreach-across.github.io/ref-docs-5/across/across-web/web-views/view-elements.html)
   from code
 
 - support for [prefixing request mappings and adding custom request
-  condition](https://docs.across.dev/across-site/production/across/across-web/basic-features/custom-request-mapping-support.html) -
+  condition](https://foreach-across.github.io/ref-docs-5/across/across-web/basic-features/custom-request-mapping-support.html) -
   extending default `@RequestMapping` behaviour
 
 - auto configuration of static resources with [client-side
-  caching](https://docs.across.dev/across-site/production/across/across-web/configuration/resource-versioning.html#client-side-caching)
+  caching](https://foreach-across.github.io/ref-docs-5/across/across-web/configuration/resource-versioning.html#client-side-caching)
   and [url
-  versioning](https://docs.across.dev/across-site/production/across/across-web/configuration/resource-versioning.html#resource-url-versioning)
+  versioning](https://foreach-across.github.io/ref-docs-5/across/across-web/configuration/resource-versioning.html#resource-url-versioning)
 
 
 ### Artifacts

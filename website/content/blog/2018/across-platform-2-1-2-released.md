@@ -115,14 +115,14 @@ Links to the different what's new sections of the updated modules:
 
 |                                                                                                                                  |                 |
 |----------------------------------------------------------------------------------------------------------------------------------|-----------------|
-| [Across Platform](https://docs.across.dev/across-site/production/across/2.1.2/releases/platform/2.1.2.html)                      | `2.1.2.RELEASE` |
-| [Across Core & Web](https://docs.across.dev/across-site/production/across/2.1.2/releases/core-artifacts/releases-3.x.html#3-1-1) | `3.1.1.RELEASE` |
-| [Auto-configuration Support](https://docs.across.dev/across-site/production/across-autoconfigure/1.0.2/index.html)               | `1.0.2.RELEASE` |
-| [AdminWebModule](https://docs.across.dev/across-site/production/admin-web-module/3.1.0/releases/3.x.html#3-1-0)                  | `3.1.0.RELEASE` |
-| [BootstrapUiModule](https://docs.across.dev/across-site/production/bootstrap-ui-module/2.1.1/releases/2.x.html#2-1-1)            | `2.1.1.RELEASE` |
-| [DynamicFormsModule](https://docs.across.dev/across-site/production/dynamic-forms-module/0.0.2/releases/0.0.x.html#0-0-2)        | `0.0.2.RELEASE` |
-| [EntityModule](https://docs.across.dev/across-site/production/entity-module/3.2.0/releases/3.x.html#3-2-0)                       | `3.2.0.RELEASE` |
-| [FileManagerModule](https://docs.across.dev/across-site/production/file-manager-module/1.3.0/releases/1.x.html#1-3-0)            | `1.3.0.RELEASE` |
-| [OAuth2Module](https://docs.across.dev/across-site/production/oauth2-module/2.1.0/releases/2.x.html#2-1-0)                       | `2.1.0.RELEASE` |
-| [UserModule](https://docs.across.dev/across-site/production/user-module/3.1.0/releases/3.x.html#3-1-0)                           | `3.1.0.RELEASE` |
-| [WebCmsModule](https://docs.across.dev/across-site/production/web-cms-module/0.0.6/releases/0.0.x.html#0-0-6)                    | `0.0.6.RELEASE` |
+| [Across Platform](https://foreach-across.github.io/ref-docs-5/across/2.1.2/releases/platform/2.1.2.html)                      | `2.1.2.RELEASE` |
+| [Across Core & Web](https://foreach-across.github.io/ref-docs-5/across/2.1.2/releases/core-artifacts/releases-3.x.html#3-1-1) | `3.1.1.RELEASE` |
+| [Auto-configuration Support](https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/index.html)               | `1.0.2.RELEASE` |
+| [AdminWebModule](https://foreach-across.github.io/ref-docs-5/admin-web-module/3.1.0/releases/3.x.html#3-1-0)                  | `3.1.0.RELEASE` |
+| [BootstrapUiModule](https://foreach-across.github.io/ref-docs-5/bootstrap-ui-module/2.1.1/releases/2.x.html#2-1-1)            | `2.1.1.RELEASE` |
+| [DynamicFormsModule](https://foreach-across.github.io/ref-docs-5/dynamic-forms-module/0.0.2/releases/0.0.x.html#0-0-2)        | `0.0.2.RELEASE` |
+| [EntityModule](https://foreach-across.github.io/ref-docs-5/entity-module/3.2.0/releases/3.x.html#3-2-0)                       | `3.2.0.RELEASE` |
+| [FileManagerModule](https://foreach-across.github.io/ref-docs-5/file-manager-module/1.3.0/releases/1.x.html#1-3-0)            | `1.3.0.RELEASE` |
+| [OAuth2Module](https://foreach-across.github.io/ref-docs-5/oauth2-module/2.1.0/releases/2.x.html#2-1-0)                       | `2.1.0.RELEASE` |
+| [UserModule](https://foreach-across.github.io/ref-docs-5/user-module/3.1.0/releases/3.x.html#3-1-0)                           | `3.1.0.RELEASE` |
+| [WebCmsModule](https://foreach-across.github.io/ref-docs-5/web-cms-module/0.0.6/releases/0.0.x.html#0-0-6)                    | `0.0.6.RELEASE` |

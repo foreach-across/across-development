@@ -64,8 +64,8 @@ Links to the different what's new sections of the updated modules:
 
 |                                                                                                                            |                 |
 |----------------------------------------------------------------------------------------------------------------------------|-----------------|
-| [Across Platform](https://docs.across.dev/across-site/production/across/releases/platform/5.x/5.1.0.html)                  | `5.1.0.RELEASE` |
-| [Across Core & Web](https://docs.across.dev/across-site/production/across/releases/core-artifacts/releases-5.x.html#5-1-0) | `5.1.0.RELEASE` |
-| [Across Auto Configure](https://docs.across.dev/across-site/production/across-autoconfigure/releases/2.x.html#2-1-0)       | `2.1.0.RELEASE` |
-| [AcrossHibernateModule](https://docs.across.dev/across-site/production/hibernate-jpa-module/releases/4.x.html#4-1-0)       | `4.1.0.RELEASE` |
-| [SpringSecurityModule](https://docs.across.dev/across-site/production/spring-security-module/releases/4.x.html#4-1-0)      | `4.1.0.RELEASE` |
+| [Across Platform](https://foreach-across.github.io/ref-docs-5/across/releases/platform/5.x/5.1.0.html)                  | `5.1.0.RELEASE` |
+| [Across Core & Web](https://foreach-across.github.io/ref-docs-5/across/releases/core-artifacts/releases-5.x.html#5-1-0) | `5.1.0.RELEASE` |
+| [Across Auto Configure](https://foreach-across.github.io/ref-docs-5/across-autoconfigure/releases/2.x.html#2-1-0)       | `2.1.0.RELEASE` |
+| [AcrossHibernateModule](https://foreach-across.github.io/ref-docs-5/hibernate-jpa-module/releases/4.x.html#4-1-0)       | `4.1.0.RELEASE` |
+| [SpringSecurityModule](https://foreach-across.github.io/ref-docs-5/spring-security-module/releases/4.x.html#4-1-0)      | `4.1.0.RELEASE` |

@@ -57,6 +57,6 @@ See the documentation for [Across Framework and
 Platform](https://across.dev/documentation).
 
 There are also a few [high-level guides and
-tutorials](https://docs.across.dev/across-site/production/guides/).
+tutorials](https://foreach-across.github.io/ref-docs-5/guides/).
 
 [Old website](/old)
