@@ -9,7 +9,7 @@ module-name: OAuth2Module
 Provides [OAuth 2](https://oauth.net/2/) related domain model and
 infrastructure using [Spring Security OAuth
 2](https://spring.io/projects/spring-security-oauth) and the
-[UserModule](../user-module) domain model.
+[UserModule]({{< relref "user-module.md" >}}) domain model.
 
 <!--more-->
 

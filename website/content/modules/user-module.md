@@ -7,16 +7,17 @@ module-name: UserModule
 ---
 
 Provides a domain model for users, groups, roles and permissions.
-Integrates automatically with [Admin Web Module](../admin-web-module)
-and [Security Module](../spring-security-module), so you can
-immediately authenticate with these users and perform role based
-security checks.
+Integrates automatically with [Admin Web Module]({{< relref
+"admin-web-module.md" >}}) and [Security Module]({{< relref
+"spring-security-module.md" >}}), so you can immediately authenticate
+with these users and perform role based security checks.
 
 <!--more-->
 
-When [Admin Web Module](../admin-web-module) and [Entity
-Module](../entity-module) are present, `UserModule` also provides a
-user interface for managing the different entities.
+When [Admin Web Module]({{< relref "admin-web-module.md" >}}) and
+[Entity Module]({{< relref "entity-module.md" >}}) are present,
+`UserModule` also provides a user interface for managing the different
+entities.
 
 
 ### Artifacts

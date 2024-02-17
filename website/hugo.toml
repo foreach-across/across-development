@@ -10,6 +10,7 @@ theme = 'ananke'
 #theme = 'paige'
 #theme = 'hugo-geekdoc'
 sectionPagesMenu = 'main'
+paginate = 20
 
 [module]
 

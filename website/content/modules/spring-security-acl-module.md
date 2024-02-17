@@ -16,7 +16,7 @@ using Spring security (in any module). This module requires an RDBMS
 datasource to create the tables for holding the ACL data.
 
 Components are also provided to easily build a user interface for
-updating ACLs using [EntityModule](../entity-module).
+updating ACLs using [EntityModule]({{< relref "entity-module.md" >}}).
 
 
 ### Artifacts

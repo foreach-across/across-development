@@ -32,7 +32,8 @@ Out-of-the-box it provides the following features:
   files](https://foreach-across.github.io/ref-docs-5/web-cms-module/importing/yaml-structure.html)
 
 A fully functional administration UI is available using [Admin
-Web](../admin-web-module) and [EntityModule](../entity-module).
+Web]({{< relref "admin-web-module.md" >}}) and [EntityModule]({{<
+relref "entity-module.md" >}}).
 
 
 ### Artifacts

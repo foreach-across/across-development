@@ -59,9 +59,9 @@ away the original.
 
 ### Integration with other modules
 
-[WebCmsModule](../webcms-module) has configuration options to
-automatically connect to an ImageServer as an alternative to
-Cloudinary.
+[WebCmsModule]({{< relref "web-cms-module.md" >}}) has configuration
+options to automatically connect to an ImageServer as an alternative
+to Cloudinary.
 
 
 ### Technical requirements

@@ -12,8 +12,9 @@ Java code. The controls are built on top of the Across Web ViewElement
 infrastructure.
 
 This module is a base component for building user interfaces. Other
-modules like [AdminWebModule](../admin-web-module) and
-[EntityModule](../entity-module) build on top of it.
+modules like [AdminWebModule]({{< relref "admin-web-module.md" >}})
+and [EntityModule]({{< relref "entity-module.md" >}}) build on top of
+it.
 
 <!--more-->
 
