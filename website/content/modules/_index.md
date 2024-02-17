@@ -10,7 +10,8 @@ toc: true
 
 [Legacy migration guides](https://docs.across.dev/across-site/production/migration/)
 
-New migration guides can typically be found in the [Release notes](/release-notes)
+New migration guides can typically be in the [Release
+notes](/release-notes).
 
 ![Dependencies!](/img/dependencies.svg)
 
