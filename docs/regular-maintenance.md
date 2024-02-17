@@ -4,6 +4,12 @@ weight: 90
 toc: true
 ---
 
+This page describes regular maintenance that needs to be performed,
+such as rotating GitHub sync tokens and GPG keys.
+
+<!--more-->
+
+
 ## GitHub sync token rotation
 
 The internal GitLab repositories are automatically synched to

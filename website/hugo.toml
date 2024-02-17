@@ -26,7 +26,7 @@ target = 'content/release-notes'
 
 [[module.mounts]]
 source = '../docs'
-target = 'content/docs'
+target = 'content/maintenance'
 
 [[module.mounts]]
 source = '..'

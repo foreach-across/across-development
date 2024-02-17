@@ -17,8 +17,4 @@ sidebar:
 
 IntelliJ: install the [Hugo plugin](https://plugins.jetbrains.com/plugin/13215-hugo-integration)
 
-
-Explore the following sections to learn how to use Hextra:
-
 <!--more-->
-
