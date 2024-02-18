@@ -77,17 +77,9 @@
     {{ $ref_doc = $repo.refdoc }}
     {{ end }}
 
-    {{ $java_doc := printf "across-standard-modules/%s" (index $module "java-class") }}
+    {{ $java_doc := printf "%s/%s/current/" $repo.group $module.id }}
     {{ if in (slice "ax-bootstrap-4-utilities" "ax-bootstrap-theme") $module.id }}
     {{ $java_doc = "" }}
-    {{ else if $module.javadoc }}
-    {{ $java_doc = printf "across-standard-modules/%s" $module.javadoc }}
-    {{ else if $repo.javadoc }}
-    {{ $java_doc = printf "across-standard-modules/%s" $repo.javadoc }}
-    {{ else if eq $repo.id "across-framework" }}
-    {{ $java_doc = "across" }}
-    {{ else if eq $repo.id "across-autoconfigure" }}
-    {{ $java_doc = "across-autoconfigure" }}
     {{ else if eq $repo.id "across-platform" }}
     {{ $java_doc = "" }}
     {{ end }}
@@ -115,7 +107,7 @@
         </td>
         <td width="7.5%" align="center">
             {{ if $java_doc }}
-            <a href="https://docs.across.dev/{{ $java_doc }}" target="javadoc-{{ .id }}">
+            <a href="https://foreach-across.github.io/api-docs-5/{{ $java_doc }}" target="javadoc-{{ .id }}">
                 API
             </a>
             {{ end }}

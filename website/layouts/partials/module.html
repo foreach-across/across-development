@@ -30,17 +30,11 @@
     {{ $ref_doc = $repo.refdoc }}
     {{ end }}
 
-    {{ $java_doc := printf "across-standard-modules/%s" (index $module "java-class") }}
-    {{ if $module.javadoc }}
-    {{ $java_doc = printf "across-standard-modules/%s" $module.javadoc }}
-    {{ else if $repo.javadoc }}
-    {{ $java_doc = printf "across-standard-modules/%s" $repo.javadoc }}
-    {{ else if eq $repo.id "across-framework" }}
-    {{ $java_doc = "across" }}
-    {{ else if eq $repo.id "across-autoconfigure" }}
-    {{ $java_doc = "across-autoconfigure" }}
+    {{ $java_doc := printf "%s/%s/current/" $repo.group $module.id }}
+    {{ if in (slice "ax-bootstrap-4-utilities" "ax-bootstrap-theme") $module.id }}
+    {{ $java_doc = "" }}
     {{ else if eq $repo.id "across-platform" }}
-    {{ $java_doc = "across-platform" }}
+    {{ $java_doc = "" }}
     {{ end }}
 
     {{ $bitbucket := $module.id }}
@@ -80,7 +74,8 @@
     </tr>
     <tr>
         <td>
-            <a class="m-quick__link" href="https://docs.across.dev/{{ $java_doc }}"
+            <a class="m-quick__link"
+               href="https://foreach-across.github.io/api-docs-5/{{ $java_doc }}"
                target="javadoc-{{ $module.id }}"
             >
                 Javadoc API

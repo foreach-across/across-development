@@ -99,11 +99,11 @@ def finish():
 
 
 @app.command()
-def javadoc(release_plan_path: str):
+def javadoc(release_plan_path: str, push: bool = True):
     directory, config = AcrossConfig.load()
     release_plan = ReleasePlan.parse(config, Path(release_plan_path))
     release_plan.repository_versions.print("Release plan is:")
-    javadoc = JavadocPublisher(config, release_plan)
+    javadoc = JavadocPublisher(config, release_plan, push)
     javadoc.publish()
 
 

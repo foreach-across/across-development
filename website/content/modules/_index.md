@@ -4,11 +4,13 @@ weight: 30
 toc: true
 ---
 
-[Across Framework and Platform documentation](https://across.dev/documentation)
+[Across Framework and Platform documentation](https://foreach-across.github.io/ref-docs-5/)
 
-[Application guides](https://foreach-across.github.io/ref-docs-5/guides)
+[Application guides](https://foreach-across.github.io/ref-docs-5/guides/)
 
 [Legacy migration guides](https://foreach-across.github.io/ref-docs-5/migration/)
+
+[API Javadocs](https://foreach-across.github.io/api-docs-5/)
 
 New migration guides are in the [Release notes](/release-notes).
 

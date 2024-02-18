@@ -2,6 +2,7 @@ import os
 import tempfile
 import zipfile
 from pathlib import Path
+from typing import List
 from urllib.request import urlretrieve
 
 from git import Repo
@@ -9,15 +10,16 @@ from git import Repo
 from .config import AcrossConfig
 from .git import ReleasePlan
 from .maven import Artifact
-from .util import system
+from .util import system, write_index_html, get_index_versions, Version
 
 API_DOCS_GIT_URL = "git@github.com:foreach-across/api-docs-5.git"
 
 
 class JavadocPublisher:
-    def __init__(self, config: AcrossConfig, release_plan: ReleasePlan):
+    def __init__(self, config: AcrossConfig, release_plan: ReleasePlan, push: bool):
         self.config = config
         self.release_plan = release_plan
+        self.push = push
         self.tmp_dir = Path(tempfile.gettempdir(), "across-api-docs").absolute()
         if not self.tmp_dir.exists():
             self.tmp_dir.mkdir()
@@ -45,17 +47,19 @@ class JavadocPublisher:
                     self._publish_artifact(artifact, repo)
                     commit_msg += f"\n{artifact}"
         for group_id in self.config.group_ids:
-            index_file = _write_index_html(Path(group_id), f"/{group_id}")
+            index_file = write_index_html(Path(group_id), f"/{group_id}")
             repo.git.add(index_file)
-        index_file = _write_index_html(Path(), f"/")
+        index_file = write_index_html(Path(), "/")
         repo.git.add(index_file)
         # print(comment)
         repo.git.commit("-m", commit_msg)
         repo.git.gc("--aggressive", "--keep-largest-pack")
-        repo.remote("origin").push()
         tag_msg = f"Release plan {release_name} by ax-release.py"
         tag = repo.create_tag(f"v{release_name}", message=tag_msg)
-        repo.remote("origin").push(tag.name)
+        if self.push:
+            origin = repo.remote("origin")
+            origin.push()
+            origin.push(tag.name)
 
     def clone(self) -> Repo:
         clone_dir = self.repo_dir
@@ -102,32 +106,24 @@ class JavadocPublisher:
         with zipfile.ZipFile(jar_file, "r") as zip:
             zip.extractall(version_dir)
         repo.git.add(version_dir)
-        index_file = _write_index_html(
-            artifact_dir, f"/{artifact.group_id}/{artifact.artifact_id}"
+        versions = get_index_versions(artifact_dir)
+        current_symlink = _link_current_version(artifact_dir, versions)
+        repo.git.add(current_symlink)
+        index_file = write_index_html(
+            artifact_dir,
+            f"/{artifact.group_id}/{artifact.artifact_id}",
+            [str(v) for v in versions] + ["current"],
         )
         repo.git.add(index_file)
 
 
-def _write_index_html(directory: Path, name: str) -> Path:
-    index_file = Path(directory, "index.html")
-    lines = []
-    for entry in os.listdir(directory):
-        if entry != "index.html" and not entry.startswith("."):
-            lines.append(f'<li><a href="{entry}">{entry}</a></li>')
-    lines_txt = "\n   ".join(lines)
-    content = f"""<html>
- <head>
-  <title>Index of {name}</title>
- </head>
- <body>
-  <h1>Index of {name}</h1>
-  <ul>
-   <li><a href="..">..</a></li>
-   {lines_txt}
-  </ul>
- </body>
-</html>
-"""
-    with open(index_file, "w") as index:
-        index.write(content)
-    return index_file
+# Spring uses "current" for this => so do we: https://docs.spring.io/spring-boot/docs/current/api/
+# Symbolic links work with GitHub Pages: https://github.com/s4y/gh-pages-symlink-test
+def _link_current_version(artifact_dir: Path, versions: List[Version]) -> Path:
+    current_version = versions[-1]
+    # current_file = Path(artifact_dir, str(current_version))
+    current_symlink = Path(artifact_dir, "current")
+    if current_symlink.exists():
+        current_symlink.unlink()
+    current_symlink.symlink_to(str(current_version), target_is_directory=True)
+    return current_symlink

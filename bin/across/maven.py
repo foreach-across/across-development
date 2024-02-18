@@ -2,11 +2,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
-import semver
-
 from . import util
 from .config import RepositoryConfig, ModuleConfig
-from .util import system
+from .util import system, Version
 
 POM_XML = "pom.xml"
 # EFFECTIVE_POM_XML = ".effective-pom.xml"
@@ -16,23 +14,6 @@ LOCAL_SNAPSHOT = "local-SNAPSHOT"
 MAVEN_VERSIONS_PLUGIN_VERSION = "2.16.2"
 
 MAVEN_CENTRAL_URL = "https://repo1.maven.org/maven2"
-
-
-# Wrapper around semver.Version that allows X.Y for X.Y-SNAPSHOT
-class Version(semver.Version):
-    @staticmethod
-    def parse(s: str) -> "Version":  # type: ignore[override]
-        if s.count(".") == 1:
-            # assuming it's X.Y:
-            s += ".666"
-        sv = semver.Version.parse(s)
-        return Version(sv.major, sv.minor, sv.patch, sv.prerelease, sv.build)
-
-    def __str__(self):
-        result = super().__str__()
-        if self.patch == 666:
-            return result.replace(".666", "")
-        return result
 
 
 @dataclass
