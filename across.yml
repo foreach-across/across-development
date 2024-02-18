@@ -25,6 +25,7 @@ repositories:
         name: Across Auto
 
   - id: across-base-modules
+    group: com.foreach.across.modules
     color: orange
     modules:
       - id: across-hibernate-module
@@ -56,6 +57,7 @@ repositories:
         java-class: LoggingModule
 
   - id: across-entity-admin-modules
+    group: com.foreach.across.modules
     color: green
     modules:
       - id: ax-bootstrap-4-utilities
@@ -97,6 +99,7 @@ repositories:
         java-class: PropertiesModule
 
   - id: across-user-auth-modules
+    group: com.foreach.across.modules
     color: red
     modules:
       - id: spring-security-acl-module
@@ -124,6 +127,7 @@ repositories:
 
 
   - id: across-media-modules
+    group: com.foreach.across.modules
     color: blue
     modules:
       - id: file-manager-module

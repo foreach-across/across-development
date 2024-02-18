@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional, Dict, Tuple
+from typing import List, Optional, Dict, Tuple, Set
 
 import dataconf
 
@@ -21,6 +21,10 @@ class ModuleConfig:
     bitbucket: Optional[str]
     description: Optional[str]
 
+    @property
+    def artifact_id(self) -> str:
+        return self.id
+
 
 @dataclass
 class RepositoryConfig:
@@ -30,7 +34,11 @@ class RepositoryConfig:
     key: Optional[str]
     bitbucket: Optional[str]
     refdoc: Optional[str]
-    group: Optional[str] = "com.foreach.across.modules"
+    group: str
+
+    @property
+    def group_id(self) -> str:
+        return self.group
 
 
 @dataclass
@@ -54,6 +62,16 @@ class AcrossConfig:
     @property
     def repository_ids(self) -> List[str]:
         return [r.id for r in self.repositories]
+
+    @property
+    def group_ids(self) -> Set[str]:
+        return {repo.group_id for repo in self.repositories}
+
+    def __getitem__(self, item: str) -> RepositoryConfig:
+        for repository in self.repositories:
+            if repository.id == item:
+                return repository
+        raise KeyError(f"Could not find repository {item} in {ACROSS_CONFIG_FILE_NAME}")
 
     def find_module_repository(self, module_name: str) -> Optional[RepositoryConfig]:
         return self._modules.get(module_name)

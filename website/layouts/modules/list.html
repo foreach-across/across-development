@@ -1,0 +1,23 @@
+{{ define "main" }}
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f3 tc-l center measure-wide lh-copy {{ $.Param "text_color" | default "mid-gray" }}">
+      {{- .Content -}}
+    </section>
+    <section class="cf ph3 ph5-l pv3 pv4-l f1 tc-l center measure-wide lh-copy {{ $.Param "text_color" | default "mid-gray" }}">
+    <img src="/img/dependencies.svg" alt="Dependencies!">
+    <!--
+        <object data="/img/dependencies.svg" type="image/svg+xml"/>
+        <a href="/img/dependencies.map"><img src="/img/dependencies.png" ismap="imap"></a>
+    -->
+
+    </section>
+    <section class="flex-ns flex-wrap justify-around mt5">
+      {{ range .Paginator.Pages }}
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          {{ .Render "summary" }}
+        </div>
+      {{ end }}
+    </section>
+    {{- template "_internal/pagination.html" . -}}
+  </article>
+{{ end }}

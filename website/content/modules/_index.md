@@ -10,10 +10,7 @@ toc: true
 
 [Legacy migration guides](https://foreach-across.github.io/ref-docs-5/migration/)
 
-New migration guides can typically be in the [Release
-notes](/release-notes).
-
-![Dependencies!](/img/dependencies.svg)
+New migration guides are in the [Release notes](/release-notes).
 
 
 ## across-framework

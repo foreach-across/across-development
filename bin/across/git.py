@@ -207,7 +207,6 @@ class GitRepositoryCollection:
 
 @dataclass
 class RepositoryVersions:
-    # path: Path
     versions: dict[str, Version]
 
     def print(self, explanation):
@@ -279,6 +278,24 @@ class RepositoryVersions:
                 output2.write(f"{prefix}{name}.version={version}\n")
         else:
             raise Exception(f"Cannot write to {output_or_path.__class__}")
+
+
+@dataclass
+class ReleasePlan:
+    path: Path
+    repository_versions: RepositoryVersions
+
+    @property
+    def name(self) -> str:
+        return os.path.basename(self.path.stem)
+
+    @property
+    def versions(self) -> dict[str, Version]:
+        return self.repository_versions.versions
+
+    @staticmethod
+    def parse(config: AcrossConfig, path: Path) -> "ReleasePlan":
+        return ReleasePlan(path, RepositoryVersions.parse(config, path))
 
 
 def create_repos(
