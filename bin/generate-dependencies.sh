@@ -28,8 +28,8 @@ do
   rm "$dep_file"
 done
 
-find . -name dependency.list.txt -print0 | xargs -0 cat | grep -v ':tests:' | cut -d: -f1,2,4 | sort | uniq > uniq_deps_with_version.txt
-find . -name dependency.list.txt -print0 | xargs -0 cat | grep -v ':tests:' | cut -d: -f1,2 | sort | uniq > uniq_deps_without_version.txt
+find . -name dependency.list.txt -print0 | xargs -0 cat | egrep -v ':tests:|io.netty:netty-tcnative-boringssl-static' | cut -d: -f1,2,4 | sort | uniq > uniq_deps_with_version.txt
+find . -name dependency.list.txt -print0 | xargs -0 cat | egrep -v ':tests:|io.netty:netty-tcnative-boringssl-static' | cut -d: -f1,2 | sort | uniq > uniq_deps_without_version.txt
 
 uniq_deps_with_version=$(wc -l uniq_deps_with_version.txt | cut -d' ' -f 1)
 uniq_deps_without_version=$(wc -l uniq_deps_without_version.txt | cut -d' ' -f 1)
