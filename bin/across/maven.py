@@ -2,10 +2,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
-import semver
-
 from . import util
-from .util import system
+from .config import RepositoryConfig, ModuleConfig
+from .util import system, Version
 
 POM_XML = "pom.xml"
 # EFFECTIVE_POM_XML = ".effective-pom.xml"
@@ -14,22 +13,7 @@ LOCAL_SNAPSHOT = "local-SNAPSHOT"
 
 MAVEN_VERSIONS_PLUGIN_VERSION = "2.16.2"
 
-
-# Wrapper around semver.Version that allows X.Y for X.Y-SNAPSHOT
-class Version(semver.Version):
-    @staticmethod
-    def parse(s: str) -> "Version":  # type: ignore[override]
-        if s.count(".") == 1:
-            # assuming it's X.Y:
-            s += ".666"
-        sv = semver.Version.parse(s)
-        return Version(sv.major, sv.minor, sv.patch, sv.prerelease, sv.build)
-
-    def __str__(self):
-        result = super().__str__()
-        if self.patch == 666:
-            return result.replace(".666", "")
-        return result
+MAVEN_CENTRAL_URL = "https://repo1.maven.org/maven2"
 
 
 @dataclass
@@ -44,13 +28,53 @@ class Artifact(object):
 
     @property
     def long_id(self):
-        return self.group_id + ":" + self.artifact_id + ":" + self.version
+        return f"{self.group_id}:{self.artifact_id}:{self.version}"
 
     def is_foreach(self):
         return self.group_id.startswith("com.foreach.")
 
+    @property
+    def dir_path(self) -> str:
+        return (
+            self.group_id.replace(".", "/")
+            + "/"
+            + self.artifact_id
+            + "/"
+            + str(self.version)
+        )
+
+    def file_name(self, extension="jar", suffix=None, check_sum=None):
+        real_suffix = f"-{suffix}" if suffix else ""
+        real_check_sum = f".{check_sum}" if check_sum else ""
+        return f"{self.artifact_id}-{self.version}{real_suffix}.{extension}{real_check_sum}"
+
+    def file_path(self, extension="jar", suffix=None, check_sum=None):
+        return f"{self.dir_path}/{self.file_name(extension, suffix, check_sum)}"
+
+    @property
+    def javadoc_jar_name(self):
+        return self.file_name(suffix="javadoc", extension="jar")
+
+    @property
+    def javadoc_jar_url(self):
+        return f"{MAVEN_CENTRAL_URL}/{self.dir_path}/{self.javadoc_jar_name}"
+
+    @property
+    def is_pom(self) -> bool:
+        return (
+            self.artifact_id.endswith("-bom")
+            or self.artifact_id.endswith("-dependencies")
+            or self.artifact_id.endswith("-parent")
+        )
+
     def __str__(self):
         return self.long_id
+
+    @staticmethod
+    def of(
+        repository_config: RepositoryConfig, module_config: ModuleConfig, version: str
+    ) -> "Artifact":
+        return Artifact(repository_config.group_id, module_config.artifact_id, version)
 
 
 @dataclass
@@ -156,10 +180,10 @@ def _parse_dependency_tree(repository_path: Path, dep_tree_path: Path) -> Projec
         raise Exception(
             f"{project_path}: could not find {DEPENDENCY_TREE_TXT}: {please_run_dtree}"
         )
-    if dep_tree_path.stat().st_mtime < pom_path.stat().st_mtime:
-        raise Exception(
-            f"{project_path}: {POM_XML} is newer than {DEPENDENCY_TREE_TXT}: {please_run_dtree}"
-        )
+    # if dep_tree_path.stat().st_mtime < pom_path.stat().st_mtime:
+    #     raise Exception(
+    #         f"{project_path}: {POM_XML} is newer than {DEPENDENCY_TREE_TXT}: {please_run_dtree}"
+    #     )
     lines = dep_tree_path.read_text().splitlines()
     project_line = lines[0]
     dependency_lines = filter(lambda line: len(line.strip()) > 0, lines[1:])

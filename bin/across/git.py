@@ -27,7 +27,7 @@ class GitRepository:
     def __init__(self, config: RepositoryConfig, path: Path):
         self.config = config
         self.path = path
-        self.name = config.name
+        self.name = config.id
         self.repo = Repo(path)
 
     @property
@@ -142,7 +142,7 @@ class GitRepositoryCollection:
         self.config = config
         for repository_config in config.repositories:
             repository = GitRepository(
-                repository_config, Path(directory, repository_config.name)
+                repository_config, Path(directory, repository_config.id)
             )
             self.repositories_by_name[repository.name] = repository
             self.repositories.append(repository)
@@ -207,7 +207,6 @@ class GitRepositoryCollection:
 
 @dataclass
 class RepositoryVersions:
-    # path: Path
     versions: dict[str, Version]
 
     def print(self, explanation):
@@ -225,7 +224,7 @@ class RepositoryVersions:
         releases = dict()
         wrong_repo_names = list()
         for repo_name, version in tmp.items():
-            if repo_name not in config.repository_names:
+            if repo_name not in config.repository_ids:
                 wrong_repo_names.append(repo_name)
             releases[repo_name] = Version.parse(version)
         if wrong_repo_names:
@@ -279,6 +278,24 @@ class RepositoryVersions:
                 output2.write(f"{prefix}{name}.version={version}\n")
         else:
             raise Exception(f"Cannot write to {output_or_path.__class__}")
+
+
+@dataclass
+class ReleasePlan:
+    path: Path
+    repository_versions: RepositoryVersions
+
+    @property
+    def name(self) -> str:
+        return os.path.basename(self.path.stem)
+
+    @property
+    def versions(self) -> dict[str, Version]:
+        return self.repository_versions.versions
+
+    @staticmethod
+    def parse(config: AcrossConfig, path: Path) -> "ReleasePlan":
+        return ReleasePlan(path, RepositoryVersions.parse(config, path))
 
 
 def create_repos(

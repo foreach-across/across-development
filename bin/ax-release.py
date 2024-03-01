@@ -6,9 +6,10 @@ import typer
 
 from across.build import AcrossGitLab
 from across.config import AcrossConfig
-from across.git import GitRepositoryCollection, RepositoryVersions
+from across.git import GitRepositoryCollection, RepositoryVersions, ReleasePlan
 from across.maven import maven_clean_install_without_tests
 from across.util import system, eprint
+from across.javadoc import JavadocPublisher
 
 app = typer.Typer()
 
@@ -95,6 +96,15 @@ def _tag_and_build(ci, new_repository, repo_version):
 @app.command()
 def finish():
     print(f"TODO: Finish release")
+
+
+@app.command()
+def javadoc(release_plan_path: str, push: bool = True):
+    directory, config = AcrossConfig.load()
+    release_plan = ReleasePlan.parse(config, Path(release_plan_path))
+    release_plan.repository_versions.print("Release plan is:")
+    javadoc = JavadocPublisher(config, release_plan, push)
+    javadoc.publish()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,15 @@
+<div>
+
+    {{ $repo_id := index .Params 0 }}
+    {{ $module_id := index .Params 1 }}
+    {{ $across := .Site.Data.across }}
+
+    {{ $repos := where $across.repositories ".id" "eq" $repo_id }}
+    {{ with index $repos 0 }}
+    {{ $modules := where .modules ".id" "eq" $module_id }}
+    {{ partial "module.html" (dict "repo" (index $repos 0) "module" (index $modules 0)) }}
+    {{ else }}
+    {{ errorf $module_id " not found in " $repos .Position }}
+    {{ end }}
+
+</div>

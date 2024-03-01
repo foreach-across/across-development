@@ -12,18 +12,18 @@ app = typer.Typer(
 def repositories():
     _, config = AcrossConfig.load()
     for repo_config in config.repositories:
-        print(repo_config.name)
+        print(repo_config.id)
 
 
 @app.command(help="List modules names")
 def modules(with_repo: bool = False):
     _, config = AcrossConfig.load()
     for repo_config in config.repositories:
-        for module_name in repo_config.modules:
+        for module in repo_config.modules:
             if with_repo:
-                line = f"{repo_config.name}/{module_name}"
+                line = f"{repo_config.id}/{module.id}"
             else:
-                line = module_name
+                line = module.id
             print(line)
 
 

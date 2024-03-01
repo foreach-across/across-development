@@ -1,5 +1,4 @@
-# TODO: https://beforeach.github.io/across
-baseURL = 'https://dvsp-iodigital.github.io/'
+baseURL = 'https://foreach-across.github.io/'
 languageCode = 'en-us'
 title = 'Foreach Across'
 theme = 'ananke'
@@ -10,6 +9,7 @@ theme = 'ananke'
 #theme = 'paige'
 #theme = 'hugo-geekdoc'
 sectionPagesMenu = 'main'
+paginate = 20
 
 [module]
 
@@ -26,52 +26,98 @@ target = 'content/release-notes'
 
 [[module.mounts]]
 source = '../docs'
-target = 'content/docs'
+target = 'content/maintenance'
 
 [[module.mounts]]
 source = '..'
 target = 'data'
 includeFiles = '*.yml'
 
-[Params]
+[permalinks]
+
+[permalinks.page]
+blog = "/:section/:year/:month/:slug/"
+#docs = "/modules5/:sections[1:]/:filename"
+#[permalinks.section]
+##posts = '/articles/'
+#docs = '/modules5/:sections[1:]'
+
+[params]
+#site_logo = "img/logo.svg" # Ananke, but doesn't work
 logo = "img/logo.svg"
 favicon = "img/favicon-32x32.ico"
-# mainSections = ["post","posts"]
+# Shows the release notes on the home page
+mainSections = ["release-note", "release-notes", "blog", "blogs"]
 
 # https://github.com/halogenica/beautifulhugo?tab=readme-ov-file#self-hosted-assets-for-gdpr--eu-dsgvo-compliance:
 selfHosted = true
 
+[[params.ananke_socials]]
+name = "Foreach"
+url = "https://foreach.be/"
+
+# Ananke adds a share button for each post, so disabling this:
+#[[params.ananke_socials]]
+#name = "linkedin"
+#url = "https://www.linkedin.com/company/iodigital-com/"
+
+[[params.ananke_socials]]
+name = "youtube"
+url = "https://www.youtube.com/watch?v=00Jn3d12L2M"
+
+[[params.ananke_socials]]
+name = "github"
+url = "https://github.com/foreach-across/"
+
+
 [Author]
 github = "ForeachOS"
-website = "https://across.dev"
+website = "https://foreach-across.github.io"
 
 [menus]
+
 [[menus.main]]
 name = 'Home'
 pageRef = '/'
 weight = 10
+
 [[menus.main]]
 name = 'Overview'
-#url = 'https://docs.across.dev/across-site/production/'
 pageRef = '/overview'
 weight = 20
+
+#[[menus.main]]
+#name = 'Modules'
+#pageRef = '/modules'
+#weight = 30
+
 [[menus.main]]
-name = 'Modules'
-pageRef = '/modules'
-weight = 30
+name = 'Docs'
+url = 'https://foreach-across.github.io/ref-docs-5/across/'
+weight = 40
+
 #[[menus.main]]
 #name = 'Release notes'
 #pageRef = '/release-notes'
-#weight = 40
+#weight = 50
+
 #[[menus.main]]
 #name = 'Blog'
 #pageRef = '/blog'
-#weight = 50
+#weight = 60
+
+#[[menus.main]]
+#name = 'Maintenance'
+#pageRef = '/docs'
+#weight = 70
+
+#[[menus.main]]
+#name = 'FAQ'
+#pageRef = '/faq'
+#weight = 80
+
 [[menus.main]]
-name = 'FAQ'
-pageRef = '/faq'
-weight = 60
-[[menus.docs]]
-name = 'Docs'
-pageRef = '/docs'
-weight = 70
+name = 'Old'
+#pageRef = '/old'
+url = '/old'
+weight = 90

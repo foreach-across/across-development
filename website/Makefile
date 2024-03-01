@@ -6,7 +6,7 @@ help:
 	@echo For development, use: make start
 
 start:
-	hugo server --buildDrafts --buildFuture
+	hugo server --buildDrafts --buildFuture --disableFastRender
 
 develop:
 	rm -rf public/*

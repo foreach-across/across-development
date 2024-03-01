@@ -76,7 +76,7 @@ def to_table(modules: Sequence[str]) -> PrettyTable:
             [
                 link(
                     module,
-                    f"https://docs.across.dev/across-site/production/{doc_module}/",
+                    f"https://foreach-across.github.io/ref-docs-5/{doc_module}/",
                 ),
                 link("TODO", f"https://example.com"),
                 link(

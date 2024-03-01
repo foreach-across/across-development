@@ -17,7 +17,6 @@ See also: https://confluence.hosted-tools.com/display/AX/Across+Alternatives
 
 Refer to https://spring.io/projects/spring-modulith
 
-
 # Some alternatives
 
 ## User authentication and management
@@ -36,23 +35,29 @@ social logins for you.
 
 There are also open source platforms such as Keycloak, Apache Shiro or
 Spring Authorization Server ... But ask yourself: do you really want
-to manage passwords, multi-factor-authentication, passkeys, dealing
-with new vulnerabilities every week, fending off hackers or even
-nation-state cyberwarfare? In a platform you manage yourself?
-
+to manage passwords, multi-factor-authentication, the up-and-coming
+passkeys, dealing with new vulnerabilities every week, fending off
+hackers or even nation-state cyberwarfare? In a platform you manage
+yourself?
 
 ## Image Server
 
-- Akamai image optimization
+- [Cloudinary](https://cloudinary.com/)
 
-- https://www.cloudflare.com/developer-platform/cloudflare-images/
+- [Akamai image optimization](https://techdocs.akamai.com/ivm/docs/optimize-images)
 
+- [Cloudflare Images](https://www.cloudflare.com/developer-platform/cloudflare-images/)
 
 ## File Manager
 
-Take a look at Apache JClouds, but you may want to check if you can
-easily use it with a cloud-native identity library such as
-`azure-identity`, or at least with a secret vault.
+Take a look at [Apache JClouds blob store
+support](https://jclouds.apache.org/start/blobstore/), but you may
+want to check if you can easily use it with a cloud-native
+authentication (such as [Azure Managed
+Identities](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
+and [Azure Workload
+Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=java),
+or at least with a secret vault.
 
 <!--
 Maybe mention:

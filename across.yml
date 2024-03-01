@@ -1,56 +1,179 @@
 ---
+# Module:
+# id: maven artifactId.
+# key: Jira project key at https://foreach.atlassian.net/jira/projects
+# name: legacy name; should not be used because it's highly inconsistent.
+# java-class: Java class name; matches the module name used in the code.
+# java-package: Java package where the Java class is located.
+
 git_root_url: https://gitlab.isaac.nl/antwerpen/across
 repositories:
-  - name: across-framework
+  - id: across-framework
+    group: com.foreach.across
+    key: AX
+    bitbucket: across
+    refdoc: across
     modules:
-      - across-core
-      - across-web
-      - across-test
+      - id: across-core
+      - id: across-web
+      - id: across-test
 
-  - name: across-autoconfigure
+  - id: across-autoconfigure
+    group: com.foreach.across
     modules:
-      - across-autoconfigure
+      - id: across-autoconfigure
+        name: Across Auto
 
-  - name: across-base-modules
+  - id: across-base-modules
+    group: com.foreach.across.modules
     color: orange
     modules:
-      - across-hibernate-module
-      - spring-security-module
-      - debug-web-module
-      - ehcache-module
-      - logging-module
+      - id: across-hibernate-module
+        name: Hibernate JPA module # https://across.dev/modules/hibernate-jpa-module
+        key: AXAHM
+        java-package: com.foreach.across.modules.hibernate.jpa
+        java-class: AcrossHibernateJpaModule
+        refdoc: hibernate-jpa-module
+        javadoc: AcrossHibernateModule
+      - id: spring-security-module
+        name: Spring Security module
+        key: AXSSM
+        java-package: com.foreach.across.modules.spring.security
+        java-class: SpringSecurityModule
+      - id: debug-web-module
+        name: DebugWebModule
+        key: AXDWM
+        java-package: com.foreach.across.modules.debugweb
+        java-class: DebugWebModule
+      - id: ehcache-module
+        name: EhcacheModule
+        key: AXEM
+        java-package: com.foreach.across.modules.ehcache
+        java-class: EhcacheModule
+      - id: logging-module
+        name: LoggingModule
+        key: AXLM
+        java-package: com.foreach.across.modules.logging
+        java-class: LoggingModule
 
-  - name: across-entity-admin-modules
+  - id: across-entity-admin-modules
+    group: com.foreach.across.modules
     color: green
     modules:
-      - ax-bootstrap-4-utilities
-      - ax-bootstrap-theme
-      - bootstrap-ui-module
-      - admin-web-module
-      - entity-module
-      - application-info-module
-      - properties-module
+      - id: ax-bootstrap-4-utilities
+        name: Across Bootstrap 4 Utilities
+        #key:
+        #java-package:
+        #java-class:
+      - id: ax-bootstrap-theme
+        name: Across Bootstrap Theme
+        # key:
+        java-package: com.foreach.across.modules.adminwebthemes
+        java-class: AdminWebThemesModule
+        bitbucket: admin-web-bootstrap4
+      - id: bootstrap-ui-module
+        name: Bootstrap UI
+        key: AXBUM
+        java-package: com.foreach.across.modules.bootstrapui
+        java-class: BootstrapUiModule
+      - id: admin-web-module
+        name: Admin Web
+        key: AXAWM
+        java-package: com.foreach.across.modules.adminweb
+        java-class: AdminWebModule
+      - id: entity-module
+        name: EntityModule
+        key: AXEUM
+        java-package: com.foreach.across.modules.entity
+        java-class: EntityModule
+        bitbucket: entity-ui-module
+      - id: application-info-module
+        name: ApplicationInfoModule
+        key: AXAIM
+        java-package: com.foreach.across.modules.applicationinfo
+        java-class: ApplicationInfoModule
+      - id: properties-module
+        name: PropertiesModule
+        key: AXPM
+        java-package: com.foreach.across.modules.properties
+        java-class: PropertiesModule
 
-  - name: across-user-auth-modules
+  - id: across-user-auth-modules
+    group: com.foreach.across.modules
     color: red
     modules:
-      - spring-security-acl-module
-      - user-module
-      - ldap-module
-      - oauth2-module
+      - id: spring-security-acl-module
+        name: Access Control module
+        key: AXSSAM
+        java-package: com.foreach.across.modules.spring.security.acl
+        java-class: SpringSecurityAclModule
+      - id: user-module
+        name: UserModule
+        key: AXUM
+        java-package: com.foreach.across.modules.user
+        java-class: UserModule
+      - id: ldap-module
+        name: LDAP support
+        key: AXLDAP
+        java-package: com.foreach.across.modules.ldap
+        java-class: LdapModule
+      - id: oauth2-module
+        name: OAuth2Module
+        key: AXOA2M
+        java-package: com.foreach.across.modules.oauth2
+        java-class: OAuth2Module
+        description: |
+          Provides OAuth2 related domain model and infrastructure using Spring security OAuth2 and the UserModule domain model.
 
-  - name: across-media-modules
+
+  - id: across-media-modules
+    group: com.foreach.across.modules
     color: blue
     modules:
-      - file-manager-module
-      - imageserver-client
-      - imageserver-core
-      - imageserver-admin
-      - web-cms-module
+      - id: file-manager-module
+        name: FileManagerModule
+        key: AXFFM
+        java-package: com.foreach.across.modules.filemanager
+        java-class: FileManagerModule
+        description: |
+          Across standard module that provides a set of uniform services for managing files in different types of repositories.
+      - id: imageserver-client
+        name: ImageServer Client
+        # key:
+        # java-package:
+        # java-class:
+        bitbucket: across-imageserver-modules
+      - id: imageserver-core
+        name: ImageServer Core
+        # key:
+        java-package: com.foreach.imageserver.core
+        java-class: ImageServerCoreModule
+        bitbucket: across-imageserver-modules
+      - id: imageserver-admin
+        name: ImageServerAdminWebModule
+        #key:
+        java-package: com.foreach.imageserver.admin
+        java-class: ImageServerAdminWebModule
+        bitbucket: across-imageserver-modules
+        description: |
+          ImageServerAdminWebModule adds some Admin Web controllers for managing basic things of your ImageServer:
+          - managing resolutions
+          - uploading an image
+          - viewing an image by its unique key
+          Apart from AdminWebModule, an ImageServer client instance is required.
+      - id: web-cms-module
+        name: Web Content Management
+        key: AXWCM
+        java-package: com.foreach.across.modules.webcms
+        java-class: WebCmsModule
 
-  - name: across-platform
+  - id: across-platform
+    key: AXP
+    group: com.foreach.across
+    refdoc: across
+    bitbucket: across-platform
     modules:
-      - across-application-parent
-      - across-module-parent
-      - across-platform-bom
-      - across-platform-dependencies
+      - id: across-application-parent
+      - id: across-module-parent
+      - id: across-platform-bom
+      - id: across-platform-dependencies

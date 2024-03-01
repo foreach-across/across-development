@@ -2,6 +2,7 @@
 title: Out of memory
 weight: 20
 toc: true
+draft: true
 ---
 
 This is a tale of an interesting GitLab job that fails because the Linux `oom-killer` killed Maven Surefire JVM ...

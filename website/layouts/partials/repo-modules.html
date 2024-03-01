@@ -1,63 +1,146 @@
 {{ $repo := . }}
 
-<p>TODO</p>
-<ul>
-    <li>across-hibernate-module -> hibernate-jpa-module; Or fix on docs.across.dev</li>
-    <li>Javadoc links use camel-case names.</li>
-    <li>Add Jira key in repo and/or modules</li>
-</ul>
+<style>
+    tr.m-quick__link {
+        display: block;
+        margin: .6rem 0rem;
+        padding: 10px;
+        border: 1px solid #DBE0E1;
+        background-color: #f9f9fA;
+        text-decoration: none;
+        font-size: 1rem;
+        color: #1F3141;
+        font-weight: 600;
+    }
+    td.m-quick__link {
+        /*
+        display: block;
+        */
+        margin: .6rem 0rem;
+        padding: 10px;
+        border: 1px solid #DBE0E1;
+        background-color: #f9f9fA;
+        text-decoration: none;
+        font-size: 1rem;
+        color: #1F3141;
+        font-weight: 600;
+    }
+</style>
 
-<table>
+<table width="100%">
     <tr>
+        <!--
         <td>
             <img src="/img/logos/github-mark.svg" height="32"/>
         </td>
-        <td>
-            <a href="https://github.com/ForeachOS/{{ $repo.name }}">GitHub</a>
+        -->
+        <td width="50%" align="center" class="m-quick__link">
+            <a href="https://github.com/ForeachOS/{{ $repo.id }}" target="github-{{ $repo.id }}">
+                GitHub
+            </a>
         </td>
-    </tr>
-    <tr>
+        <!--
         <td>
             <img src="/img/logos/gitlab-mark.svg" height="40"/>
         </td>
-        <td>
-            <a href="https://gitlab.isaac.nl/antwerpen/across/{{ $repo.name }}">GitLab</a> (Internal only!)
+        -->
+        <td width="50%" align="center" class="m-quick__link">
+            <a href="https://gitlab.isaac.nl/antwerpen/across/{{ $repo.id }}" target="gitlab-{{ $repo.id }}">
+                GitLab
+            </a>
         </td>
     </tr>
 </table>
 
 <table width="100%">
     {{ range .modules }}
-    <tr>
-        <td>
-            {{ . }}
+    {{ $module := . }}
+    {{ $module_id := .id }}
+    {{ $bitbucket_repo := cond (.bitbucket | not | not) .bitbucket .id }}
+    {{ $group_id := cond ($repo.group | not | not) $repo.group "com.foreach.across.modules" }}
+
+    {{ $page := $module.id }}
+    {{ if in (slice "ax-bootstrap-4-utilities" "ax-bootstrap-theme") $module.id }}
+    {{ $page = "" }}
+    {{ else if in (slice "across-framework" "across-autoconfigure" "across-platform") $repo.id }}
+    {{ if ne $module.id "across-web" }}
+    {{ $page = "" }}
+    {{ end }}
+    {{ end }}
+
+    {{ $ref_doc := $module.id }}
+    {{ if in (slice "ax-bootstrap-4-utilities" "ax-bootstrap-theme") $module.id }}
+    {{ $ref_doc = "" }}
+    {{ else if $module.refdoc }}
+    {{ $ref_doc = $module.refdoc }}
+    {{ else if $repo.refdoc }}
+    {{ $ref_doc = $repo.refdoc }}
+    {{ end }}
+
+    {{ $java_doc := printf "%s/%s/current/" $repo.group $module.id }}
+    {{ if in (slice "ax-bootstrap-4-utilities" "ax-bootstrap-theme") $module.id }}
+    {{ $java_doc = "" }}
+    {{ else if eq $repo.id "across-platform" }}
+    {{ $java_doc = "" }}
+    {{ end }}
+
+    {{ $bitbucket := $module.id }}
+    {{ if $module.bitbucket }}
+    {{ $bitbucket = $module.bitbucket }}
+    {{ else if $repo.bitbucket }}
+    {{ $bitbucket = $repo.bitbucket }}
+    {{ end }}
+    <tr class="m-quick__link">
+        <td width="30%" align="left">
+            {{ if $page }}
+            <a class="m-quick__link" href="{{ $page }}">{{ $page }}</a>
+            {{ else }}
+            {{ $module.id }}
+            {{ end }}
         </td>
-        <td>
-            <a href="https://docs.across.dev/across-site/production/{{ . }}">Reference</a>
+        <td width="7.5%" align="center">
+            {{ if $ref_doc }}
+            <a href="https://foreach-across.github.io/ref-docs-5/{{ $ref_doc }}" target="refdoc-{{ .id }}">
+                Docs
+            </a>
+            {{ end }}
         </td>
-        <td>
-            <!-- TODO This uses the camel-case name: e.g. BootstrapUiModule -->
-            <a href="https://docs.across.dev/across-standard-modules/{{ . }}/">API</a>
+        <td width="7.5%" align="center">
+            {{ if $java_doc }}
+            <a href="https://foreach-across.github.io/api-docs-5/{{ $java_doc }}" target="javadoc-{{ .id }}">
+                API
+            </a>
+            {{ end }}
         </td>
-        <td>
-            <a href="https://central.sonatype.com/artifact/com.foreach.across.modules/{{ . }}/">
-                <img src="https://img.shields.io/maven-central/v/com.foreach.across.modules/{{ . }}"
-                     alt="Maven central link for {{ . }}"/>
+        <td width="20%" align="center">
+            <a href="https://central.sonatype.com/artifact/{{ $group_id }}/{{ .id }}"
+               target="maven-central-{{ .id }}">
+                <img style="vertical-align: middle"
+                     src="https://img.shields.io/maven-central/v/{{ $group_id }}/{{ .id }}"
+                     alt="Maven central link for {{ .id }}"/>
             </a>
         </td>
         <!--
-                <td>
-                    <a href="https://github.com/ForeachOS/{{ $repo.name }}">
-                        <img src="/img/github-mark.svg" width="32" alt="GitHub for {{ . }}"/>
+        <td>
+            <a href="https://github.com/ForeachOS/{{ $repo.id }}/tree/__branch__/{{ .id }}" target="github-{{ $module_id }}">
+                <img src="/img/logos/github.png" height="32" alt="GitHub for {{ . }}"/>
+            </a>
+        </td>
+        -->
+        <!--
+                <td width="20%">
+                    <a href="https://bitbucket.org/beforeach/{{ $bitbucket }}" target="bitbucket-{{ $module_id }}">
+                        <img src="/img/logos/bitbucket.svg" alt="Bitbucket project for {{ $module_id }}"/>
                     </a>
                 </td>
+                <td width="10%">
+                    {{ if .key }}
+                    <a href="https://foreach.atlassian.net/projects/{{ .key }}/issues" target="jira-{{ $module_id }}">
+                        <img src="/img/logos/jira.svg" alt="Jira project for {{ $module_id }}"/>
+                    </a>
+                    {{ end }}
+                </td>
         -->
-        <td>
-            <a href="https://bitbucket.org/beforeach/{{ . }}">Bitbucket</a></td>
-        <td>
-            <!-- TODO: Add Jira key in repo and/or modules -->
-            <a href="https://foreach.atlassian.net/projects/TODO/issues">Jira</a>
-        </td>
     </tr>
     {{ end }}
 </table>

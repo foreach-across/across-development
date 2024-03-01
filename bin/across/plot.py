@@ -34,8 +34,11 @@ class Plotter:
 
     def build_repo_graph(self) -> gv.Digraph:
         g = gv.Digraph(
-            comment="Across repo dependencies"
-        )  # , graph_attr={"rankdir": "LR"})
+            comment="Across repo dependencies",
+            graph_attr={
+                "bgcolor": "transparent",
+            },
+        )
         for repo in self.repositories:
             node_label = repo.name
             if self.versions:
@@ -56,8 +59,11 @@ class Plotter:
     def build_module_graph(self) -> gv.Digraph:
         show_versions: bool = self.versions
         g = gv.Digraph(
-            comment="Across module dependencies"
-        )  # , graph_attr={"rankdir": "LR"})
+            comment="Across module dependencies",
+            graph_attr={
+                "bgcolor": "transparent",
+            },
+        )
         for repo in self.repositories:
             repo_config = self.config.find_repository_config(repo.name)
             for project in repo.projects.values():
@@ -71,6 +77,8 @@ class Plotter:
                         project.artifact_id,
                         label=node_label,
                         color=repo_config.color if repo_config else None,
+                        href="https://foreach-across.github.io/modules/"
+                        + project.artifact_id,
                     )
                     for dep in project.direct_dependencies:
                         if dep.is_foreach() and (
@@ -113,7 +121,6 @@ class Plotter:
 
 
 app = typer.Typer()
-
 
 if __name__ == "__main__":
     app()

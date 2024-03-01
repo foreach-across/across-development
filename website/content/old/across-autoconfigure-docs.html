@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Across &amp;amp; Spring Boot auto-configuration support - Across</title>
+    <meta name="generator" content="Antora 2.0.0">
+    <link rel="stylesheet" href="https://foreach-across.github.io/ref-docs-5/_/css/site.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<meta name="og:title" content="Across Documentation"/>
+<meta name="og:image" content="https://across.foreach.be/across/resources/static/acrossWebsite/img/og-image-across.jpg"/>
+<link rel="icon" type="image/png" sizes="16x16" href="https://across.foreach.be/across/resources/static/acrossWebsite/img/favicon/favicon-16x16.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="https://across.foreach.be/across/resources/static/acrossWebsite/img/favicon/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="96x96" href="https://across.foreach.be/across/resources/static/acrossWebsite/img/favicon/favicon-96x96.png"/>
+<link rel="apple-touch-icon" type="image/png" href="https://across.foreach.be/across/resources/static/acrossWebsite/img/favicon/apple-icon-120x120.png"/>
+<link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://across.foreach.be/across/resources/static/acrossWebsite/img/favicon/apple-icon-152x152.png"/>
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://across.foreach.be/across/resources/static/acrossWebsite/img/favicon/apple-icon-180x180.png"/>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <div class="m-mobile-menu__button js-overlay-menu-button" data-target="mobile-menu">
+    <span class="m-mobile-menu__line"></span>
+    <span class="m-mobile-menu__line"></span>
+    <span class="m-mobile-menu__line"></span>
+  </div>
+
+  <div class="m-mobile-menu">
+    <div class="m-mobile-menu__logo">
+      <a class="m-nav__logo" href="https://docs.across.dev/">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.9 95.7">
+          <title>logo-across</title>
+          <path fill="#3CA873" d="M0 23.9l15.9-9.2 41.5 23.9-16 9.2"></path>
+          <path fill="#0093D8" d="M25.5 9.2L41.4 0l41.5 23.9-16 9.2"></path>
+          <path fill="#53DD99" d="M41.4 95.7l16-9.3V38.6l-16 9.2"></path>
+          <path fill="#22CEFA" d="M66.9 80.9l16-9.2V23.9l-16 9.2"></path>
+          <path fill="#257A50" d="M12.5 64.5L28.9 55l-16.4-9.4"></path>
+          <path fill="#4DBC86" d="M12.5 64.5L28.9 74V55"></path>
+        </svg>
+        <span>Across</span>
+      </a>
+    </div>
+  </div>
+  <div class="m-mobile-menu__container js-mobile-menu-overlay" id="mobile-menu">
+    <nav class="m-mobile-menu__list">
+      <a href="https://across.foreach.be/blog">Blog</a>
+      <a href="https://across.foreach.be/documentation" class="is-active">Docs</a>
+      <a href="https://across.foreach.be/modules">Modules</a>
+      <a href="https://across.foreach.be/faq">FAQ</a>
+      <a href="http://start-across.foreach.be">Get started</a>
+    </nav>
+  </div>
+  <nav class="m-nav is-sticky">
+    <a class="m-nav__logo" href="reference-docs%3Fsection=refreshing.html">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.9 95.7">
+        <title>logo-across</title>
+        <path fill="#3CA873" d="M0 23.9l15.9-9.2 41.5 23.9-16 9.2"></path>
+        <path fill="#0093D8" d="M25.5 9.2L41.4 0l41.5 23.9-16 9.2"></path>
+        <path fill="#53DD99" d="M41.4 95.7l16-9.3V38.6l-16 9.2"></path>
+        <path fill="#22CEFA" d="M66.9 80.9l16-9.2V23.9l-16 9.2"></path>
+        <path fill="#257A50" d="M12.5 64.5L28.9 55l-16.4-9.4"></path>
+        <path fill="#4DBC86" d="M12.5 64.5L28.9 74V55"></path>
+      </svg>
+      <span>Across</span>
+    </a>
+
+    <div class="m-nav__link-group">
+      <a href="https://across.foreach.be/blog">Blog</a>
+      <a href="https://across.foreach.be/documentation" class="is-active">Docs</a>
+      <a href="https://across.foreach.be/modules">Modules</a>
+      <a href="https://across.foreach.be/faq">FAQ</a>
+      <a href="http://start-across.foreach.be">Get started</a>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="across-autoconfigure" data-version="1.0.2">
+  <aside class="navigation">
+    <div class="panels">
+      <div id="search-box" class="search-box is-active">
+        <input id="search-input" type="text" placeholder="Search the documentation">
+      </div>
+      <div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="across-autoconfigure-docs.html">Auto-configuration Support</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="across-autoconfigure-docs.html">Across &amp; Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/adding-auto-configuration-support.html">Adding auto-configuration support</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/adding-auto-configuration-support.html#challenges">Typical challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/adding-auto-configuration-support.html#across-configuration">META-INF/across.configuration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/starters/index.html">Supported starters and libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/starters/official-starters.html">Official Spring Boot starters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/starters/spring-cloud.html">Spring Cloud</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/starters/spring-data.html">Spring Data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/starters/contributed-starters.html">Contributed starters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/starters/other-libraries.html">Other libraries</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/unsupported.html">Unsupported auto-configurations</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+      <div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Auto-configuration Support</span>
+    <span class="version">1.0.2</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">Across Platform</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/across/2.1.4/index.html">2.1.4</a>
+        </li>
+        <li class="version">
+          <a href="https://foreach-across.github.io/ref-docs-5/across/2.1.3/index.html">2.1.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Application Guides</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/guides/2.1.2/index.html">2.1.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">Auto-configuration Support</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="across-autoconfigure-docs.html">1.0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Migration guides</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/migration/2.1.2/index.html">2.1.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Admin Web</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/admin-web-module/3.1.1/index.html">3.1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Application Info</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/application-info-module/1.0.1/index.html">1.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Batch Processing</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/spring-batch-module/1.0.2/index.html">1.0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Bootstrap UI</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/bootstrap-ui-module/2.2.1/index.html">2.2.1</a>
+        </li>
+        <li class="version">
+          <a href="https://foreach-across.github.io/ref-docs-5/bootstrap-ui-module/2.1.1/index.html">2.1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Caching - Ehcache</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/ehcache-module/1.0.1/index.html">1.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Debug Web</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/debug-web-module/2.0.0/index.html">2.0.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Documents & Forms</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/dynamic-forms-module/0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="https://foreach-across.github.io/ref-docs-5/dynamic-forms-module/0.0.2/index.html">0.0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Entity Management</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/entity-module/3.3.0/index.html">3.3.0</a>
+        </li>
+        <li class="version">
+          <a href="https://foreach-across.github.io/ref-docs-5/entity-module/3.2.0/index.html">3.2.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: File Management</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/file-manager-module/1.4.0/index.html">1.4.0</a>
+        </li>
+        <li class="version">
+          <a href="https://foreach-across.github.io/ref-docs-5/file-manager-module/1.3.0/index.html">1.3.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Hibernate JPA</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/hibernate-jpa-module/3.0.0/index.html">3.0.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: LDAP Support</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/ldap-module/1.0.1/index.html">1.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Logging</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/logging-module/1.1.0/index.html">1.1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Mobile Support</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/spring-mobile-module/2.0.0/index.html">2.0.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Properties</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/properties-module/1.1.1/index.html">1.1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Security</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/spring-security-module/3.0.2/index.html">3.0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Security - ACLs</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/spring-security-acl-module/3.0.2/index.html">3.0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Security - OAuth2</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/oauth2-module/2.1.1/index.html">2.1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: User Management</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/user-module/3.1.1/index.html">3.1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Web CMS</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="https://foreach-across.github.io/ref-docs-5/web-cms-module/0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="https://foreach-across.github.io/ref-docs-5/web-cms-module/0.0.6/index.html">0.0.6</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+    <script>
+      var indexName = window.location.href.indexOf('across-site/production/')>0 ? 'antora-across-site-production' : 'antora-across-site-preview';
+      docsearch({
+                  appId: 'YNK2RERBV5',
+                  apiKey: '201d66bbf44a6c62002472e491d74568',
+                  indexName: indexName,
+                  inputSelector: '#search-input',
+                  algoliaOptions: { hitsPerPage: 10 }
+                })
+    </script>
+  </aside>
+</div>
+  <main class="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="https://foreach-across.github.io/ref-docs-5/across/2.1.4/index.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="across-autoconfigure-docs.html">Auto-configuration Support</a></li>
+    <li class="crumb"><a href="across-autoconfigure-docs.html">Across &amp; Spring Boot</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/ForeachOS/ax-docs-across-autoconfigure/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+</div>
+<article class="doc"><a name="section-top"></a>
+      <h1>Across &amp; Spring Boot auto-configuration support</h1>
+    <div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+<div class="paragraph">
+<p>You can use <code>@AcrossApplication</code> to execute as a Spring Boot application and use auto-configuration of your application infrastructure.
+However not all auto-configuration classes are supported in an Across application.</p>
+</div>
+<div class="paragraph">
+<p>This document explains why that is and how developers can provide compatibility adapters for existing configurations.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spring_boot_auto_configuration_compatibility"><a class="anchor" href="across-autoconfigure-docs.html#_spring_boot_auto_configuration_compatibility"></a>Spring Boot auto-configuration compatibility</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most Spring related libraries are fine-tuned to easily work in a single Spring <code>ApplicationContext</code>.
+This is also very much the case with the default Spring Boot auto-configuration classes.</p>
+</div>
+<div class="paragraph">
+<p>An Across application has a more complex <code>ApplicationContext</code> hierarchy:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>every module has its own <code>ApplicationContext</code>: <strong>module level</strong></p>
+</li>
+<li>
+<p>the Across context has single <code>ApplicationContext</code> that is the parent of all modules: <strong>Across context level</strong></p>
+</li>
+<li>
+<p>in case of executing as Spring Boot (using <code>@AcrossApplication</code>) there is an additional <code>ApplicationContext</code> that is the parent of the Across context: <strong>application (infrastructure) level</strong></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There is a difference between the <strong>application</strong> and the <strong>application module</strong>.
+The latter is a single module in the Across context.
+Please read the chapter on <a href="https://foreach-across.github.io/ref-docs-5/across/2.1.4/developing-applications/creating-an-application/project-structure.html" class="page">Across application project structure</a> if you do not clearly understand this difference.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Because of the hierarchy, visibility, dependencies and creation order of beans are more important.
+This helps you define clearly dependant modules, but it adds additional complexity compared to a single <code>ApplicationContext</code> application.</p>
+</div>
+<div class="paragraph">
+<p>Default Spring Boot auto-configuration classes only work in the top-level <code>ApplicationContext</code>, the application level.
+Often we require them to activate behaviour in modules, as such they usually do not work out-of-the-box and need to be adapted.</p>
+</div>
+<div class="paragraph">
+<p>Across provides some ways to <a href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/adding-auto-configuration-support.html" class="page">add auto-configuration compatibility</a> for Across applications.
+This can allow developers to use the same starters and libraries in an Across application, often with no (or very little) difference.</p>
+</div>
+<div class="paragraph">
+<p>Not every library or auto-configuration works as easily in an Across application.
+The Across auto-configure artifact contains compatibility configuration for common starters and libraries, to ease the transition for developers.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="artifact"><a class="anchor" href="across-autoconfigure-docs.html#artifact"></a>Across auto-configure project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Across auto-configure project adds Across support for many commonly used Spring Boot starters.
+The adapters are available in the separate <code>across-autoconfigure</code> artifact.
+This artifact is part of the Across Platform and usually added to any Across application.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.foreach.across&lt;/groupId&gt;
+    &lt;artifactId&gt;across-autoconfigure&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The chapter on <a href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/starters/index.html" class="page">supported starters and libraries</a> gives an overview of what is supported by the auto-configure artifact.</p>
+</div>
+</div>
+</div>
+    <div class="article-footer-nav">
+            <span class="article-footer-nav-current">Across &amp; Spring Boot</span>
+        <a class="article-footer-nav-next" href="https://foreach-across.github.io/ref-docs-5/across-autoconfigure/1.0.2/adding-auto-configuration-support.html">Adding auto-configuration support &raquo;</a>
+    </div>
+</article>
+<aside class="article-aside hidden" role="navigation">
+  <h3 class="toc-title">Contents</h3>
+  <div id="article-toc"></div>
+</aside>
+  </main>
+</div>
+<footer class="footer">
+  <p>The Across documentation site is generated using <a href="https://antora.org" target="_blank">Antora</a>.</p>
+  <div class="footer-totop">
+    <!--srcset="/acrossWebsite/img/foreach-logo@2x.png 2x"-->
+    <a class="footer-partner" href="http://foreach.be/" target="_blank">
+      sponsored by <svg width="20" height="20" viewBox="0 0 277 311" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" fill-rule="evenodd">
+          <path d="M27 307.3V133.5H.9V92.7H27v-8.8c0-24.1 4.3-46.5 19.7-64.1C58.2 6.6 74.7.1 92.9.1c13.4 0 23.7 2.2 31.2 4.8l-5.9 44.8c-3.9-1.8-9.5-2.6-15.8-2.6-17.4 0-23.7 16.7-23.7 35.5v10.1h33.6v40.8H78.7v173.8H27z" fill="#FFCE01" fill-rule="nonzero"></path>
+          <path d="M229.2 181c0-27.6-6.3-49.1-21.7-49.1-17 0-23.7 27.7-24.1 49.1h45.8zM183 221.4c.8 33.4 18.2 45.6 41.1 45.6 14.6 0 27.6-3.5 36.7-7l7.1 41.2c-13.4 5.7-33.6 9.7-53.3 9.7-52.5 0-81.4-38.6-81.4-105.8 0-72 33.6-115 77.4-115 41.5 0 65.6 36.4 65.6 101.4 0 15.4-.4 23.7-1.6 29.8H183v.1z" fill="#FFF" fill-rule="nonzero"></path>
+        </g>
+      </svg>
+    </a>
+    <a href="across-autoconfigure-docs.html#section-top">
+      <svg width="34" height="34" viewBox="0 0 62 62" xmlns="http://www.w3.org/2000/svg">
+        <title>icon</title>
+        <g transform="rotate(-90 30.5 30.5)" fill="none" fill-rule="evenodd">
+          <circle stroke="#ffffff" fill="#1D2A3A" transform="rotate(180 30.007 30.942)" cx="30.007" cy="30.942" r="30"></circle>
+          <path fill="#ffffff" d="M25 38.884h3.713l6.3-7.797-6.3-8.087-3.713.064 6.155 7.972"></path>
+        </g>
+      </svg>
+    </a>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script src="https://foreach-across.github.io/ref-docs-5/_/js/site.js"></script>
+<script src="https://foreach-across.github.io/ref-docs-5/_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                 tocSelector: '#article-toc',
+                 contentSelector: 'article',
+                 headingSelector: 'h2, h3, h4',
+                 collapseDepth: 3,
+                 positionFixedSelector: '#article-toc',
+                 scrollSmooth: false
+               } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>

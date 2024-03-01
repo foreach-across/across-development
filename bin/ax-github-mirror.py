@@ -35,10 +35,8 @@ def configure(gh_user_name: str):
     )
     gl.auth()
     for repo_config in config.repositories:
-        print(repo_config.name)
-        repo_name = repo_config.name
-        # if repo_name != "across-framework":
-        #     return
+        print(repo_config.id)
+        repo_name = repo_config.id
         _update_repo(gl, repo_name, gh_pat, gh_user_name)
     _update_repo(gl, "across-development", gh_pat, gh_user_name)
 
@@ -46,7 +44,9 @@ def configure(gh_user_name: str):
 def _update_repo(gl, repo_name, gh_pat, gh_user_name):
     project = gl.projects.get(f"antwerpen/across/{repo_name}")
     mirror_mgr = project.remote_mirrors
-    gh_url = f"https://{gh_user_name}:{gh_pat}@github.com/foreach-across/{repo_name}.git"
+    gh_url = (
+        f"https://{gh_user_name}:{gh_pat}@github.com/foreach-across/{repo_name}.git"
+    )
     result = None
     for m in mirror_mgr.list():
         if "/foreach-across/" in m.url:
@@ -54,11 +54,13 @@ def _update_repo(gl, repo_name, gh_pat, gh_user_name):
         else:
             print(m.url)
     if not result:
-        result = mirror_mgr.create({
-            "url": gh_url,
-            "enabled": True,
-            "auth_method": "password",
-        })
+        result = mirror_mgr.create(
+            {
+                "url": gh_url,
+                "enabled": True,
+                "auth_method": "password",
+            }
+        )
     pprint.pp(result)
 
 
