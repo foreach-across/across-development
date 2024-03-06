@@ -25,7 +25,7 @@ source = '../release-notes'
 target = 'content/release-notes'
 
 [[module.mounts]]
-source = '../docs'
+source = '../maintenance'
 target = 'content/maintenance'
 
 [[module.mounts]]
@@ -91,10 +91,10 @@ weight = 20
 #pageRef = '/modules'
 #weight = 30
 
-[[menus.main]]
-name = 'Docs'
-url = 'https://foreach-across.github.io/ref-docs-5/across/'
-weight = 40
+#[[menus.main]]
+#name = 'Docs'
+#url = 'https://foreach-across.github.io/ref-docs-5/across/'
+#weight = 40
 
 #[[menus.main]]
 #name = 'Release notes'

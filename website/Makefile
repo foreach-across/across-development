@@ -14,7 +14,7 @@ develop:
 
 production:
 	rm -rf public/*
-	hugo
+	HUGO_ENV=production hugo
 
 deploy:
 	@echo To deploy, run the script: ./deploy.sh "<GIT_COMMENT>"
