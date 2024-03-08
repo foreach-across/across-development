@@ -43,8 +43,10 @@ def start(
     print()
     new_repository = orig_repository.clone(stash_clone)
     new_repository.update_pom_files(dependency_versions, repo_version)
-    _ask_user_confirmation(repo_name, repo_version)
+    # must be before generate_dependencies(), otherwise the release version doesn't exist yet:
     maven_clean_install_without_tests()
+    new_repository.generate_dependencies()
+    _ask_user_confirmation(repo_name, repo_version)
     _commit_and_build(ci, new_repository, repo_version)
     _tag_and_build(ci, new_repository, repo_version)
     print(
@@ -106,7 +108,9 @@ def javadoc(release_plan_path: str, push: bool = True):
     javadoc = JavadocPublisher(config, release_plan, push)
     javadoc.publish()
     if push:
-        print("Check the deploy progress at: https://github.com/foreach-across/api-docs-5/settings/pages")
+        print(
+            "Check the deploy progress at: https://github.com/foreach-across/api-docs-5/settings/pages"
+        )
 
 
 if __name__ == "__main__":

@@ -15,7 +15,7 @@ from .maven import (
     update_parent,
     update_version_properties,
 )
-from .util import system
+from .util import system, system_error
 
 
 class GitRepository:
@@ -130,6 +130,18 @@ class GitRepository:
         self.repo.remote("origin").push(tag.name)
         return tag
 
+    def generate_dependencies(self):
+        self.chdir()
+        cmd = "generate-dependencies.sh"
+        exit_code = os.system(cmd)
+        if exit_code != 0:
+            if self.name == "across-autoconfigure":
+                print(
+                    "generate-dependencies.sh failed in across-autoconfigure, but that's OK"
+                )
+            else:
+                system_error(cmd, exit_code)
+
 
 class GitRepositoryCollection:
     directory: Path
@@ -185,7 +197,7 @@ class GitRepositoryCollection:
         dirty_repos = list()
         for repository in self.repositories:
             if repository.repo.is_dirty():
-                dirty_repos += repository.name
+                dirty_repos.append(repository.name)
         if dirty_repos:
             raise Exception(f"{dirty_repos} are dirty (uncommitted changes)!")
 

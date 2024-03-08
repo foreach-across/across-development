@@ -257,3 +257,24 @@ Since this is very small, deployment will be fast, but you can follow
 the progress here:
 
 https://github.com/foreach-across/foreach-across.github.io/actions
+
+
+## Reset versions to --SNAPSHOT
+
+1. Make sure you are still in the same `across-development` repository
+   as the one where you performed the release, and that the 7
+   repositories are still on the same branch as used for the release.
+
+2. Ensure you have the latest commit for the release branch of each
+   repository (See the [Tips and tricks]({{< ref "tips-and-tricks"
+   >}}) for details about these commands:
+
+		ax-exec.sh git fetch -p
+		ax-exec.sh git pull --ff-only
+
+3. Next:
+
+		ax-set-snapshot-versions.py
+
+4. Lastly, you'll need to commit and push each repository separately
+   again (TODO: Automate this).

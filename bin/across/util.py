@@ -37,7 +37,11 @@ def repository_name(repo_dir: Path) -> str:
 def system(cmd):
     exit_code = os.system(cmd)
     if exit_code != 0:
-        raise Exception(f"Command exited with {exit_code}: {cmd}")
+        system_error(cmd, exit_code)
+
+
+def system_error(cmd, exit_code):
+    raise Exception(f"Command exited with {exit_code}: {cmd}")
 
 
 def write_index_html(directory: Path, name: str, entries=None) -> Path:

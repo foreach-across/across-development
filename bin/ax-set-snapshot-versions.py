@@ -24,6 +24,7 @@ def start():
         revision = snapshot_versions.versions[repository.name]
         repository.update_pom_files(snapshot_versions, revision)
         maven_clean_install_without_tests()
+        repository.generate_dependencies()
     repo_collection.execute_for_each("git status; git diff")
     print("Changed versions: OK")
     print("Maven build w/o tests: OK")
