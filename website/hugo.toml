@@ -11,6 +11,9 @@ theme = 'ananke'
 sectionPagesMenu = 'main'
 paginate = 20
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [module]
 
 #[[module.imports]]
@@ -48,6 +51,7 @@ logo = "img/logo.svg"
 favicon = "img/favicon-32x32.ico"
 # Shows the release notes on the home page
 mainSections = ["release-note", "release-notes", "blog", "blogs"]
+#custom_css = ["custom.css"]
 
 # https://github.com/halogenica/beautifulhugo?tab=readme-ov-file#self-hosted-assets-for-gdpr--eu-dsgvo-compliance:
 selfHosted = true
