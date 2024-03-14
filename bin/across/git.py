@@ -221,6 +221,10 @@ class GitRepositoryCollection:
 class RepositoryVersions:
     versions: dict[str, Version]
 
+    @property
+    def repo_names(self) -> List[str]:
+        return list(self.versions.keys())
+
     def print(self, explanation):
         if not self.versions:
             print(explanation, "None found!")

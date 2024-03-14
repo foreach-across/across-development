@@ -18,3 +18,6 @@ git restore google*.html
 git add *
 git commit -a -m "$comment"
 git push
+
+echo "You can follow the deploy progress at:"
+echo "https://github.com/foreach-across/foreach-across.github.io/actions"
