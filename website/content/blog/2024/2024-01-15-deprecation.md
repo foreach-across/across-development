@@ -40,6 +40,7 @@ passkeys, dealing with new vulnerabilities every week, fending off
 hackers or even nation-state cyberwarfare? In a platform you manage
 yourself?
 
+
 ## Image Server
 
 - [Cloudinary](https://cloudinary.com/)
@@ -47,6 +48,46 @@ yourself?
 - [Akamai image optimization](https://techdocs.akamai.com/ivm/docs/optimize-images)
 
 - [Cloudflare Images](https://www.cloudflare.com/developer-platform/cloudflare-images/)
+
+Self hosted options, see for instance:
+https://github.com/topics/image-server
+
+There are lots of Golang-based options, all using `libvips` underneath:
+
+- [imgproxy](https://github.com/imgproxy/imgproxy) seems like the
+  leader of the pack. It used the MIT-license for the open source
+  version, and the commercial version has [much more
+  features](https://imgproxy.net/features/) (not that we need those,
+  except perhaps the option to select the resizing
+  algorithm). Supports Azure Blob Storage, which most others don't.
+
+- [imaginary](https://github.com/h2non/imaginary): development seems
+  to still happen, but there hasn't be a release since mid-2020, which
+  is also the last time the [docker
+  image](https://hub.docker.com/r/h2non/imaginary) was updated.
+
+- [Imagor](https://github.com/cshum/imagor) looks like another great option:
+
+  - Written in Go, with an official docker image available (<100MB)
+
+  - Uses Thumbor URL syntax for which there is a good-looking Java client for
+    this, which includes handling the HMAC:
+    https://github.com/square/pollexor
+
+Then there is [Thumbor](https://www.thumbor.org/) itself of course
+(Python, MIT license).
+
+In Java, there is [Cantaloupe](https://cantaloupe-project.github.io/)
+(custom license, seems BSD/MIT style).
+
+https://www.imageflow.io/, C++/Rust core library, with a [dotNET based
+server](https://github.com/imazen/imageflow-dotnet-server) (AGPL).
+
+[Scrimage](https://sksamuel.github.io/scrimage/) is a
+Java/Kotlin/Scala library for image manipulation (Apache 2.0 license).
+
+See also: https://github.com/libvips/libvips/wiki/Projects-using-libvips
+
 
 ## File Manager
 
