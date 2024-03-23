@@ -177,3 +177,99 @@ run it twice, during the `deploy` job. Or alternatively, do that in a
 separate job. This actually fails at the moment:
 
 https://gitlab.isaac.nl/antwerpen/across/across/-/jobs/476201
+
+
+# dev-SNAPSHOT
+
+I would like to open all projects in a single IntelliJ project,
+probably with `across-development` at the top. The problem with this
+is: IntelliJ cannot handle the `revision` properties having different
+values. It just gets hopelessly confused.
+
+The cheap solution is obviously: just use the same version
+everywhere. Problem is that image server already used 6.x, which
+forced `across-media-modules` to use that as well. And I really want
+to use 6.x for Spring Boot 3.x, with Spring Framework 6, Spring
+Security 6 and Hibernate 6. Workaround for that is to just switch to
+5.10 now, and start from 6.10 for 6.x.
+
+There might be another option: use `dev-SNAPSHOT` for `revision` and
+all `.version` properties, and then use search and replace:
+
+`<revision>dev-SNAPSHOT</revision>`: Always the version of the current
+repository.
+
+`<version>dev-SNAPSHOT</version>` -> always the version of
+`across-framework`, because it's only used in `<parent>` sections, and
+in `across-autoconfigure/test-projects/pom.xml` to define the version
+of `across-test`, but that's still `across-framework`. Ideally there
+should be an `across-framework.version` property in
+`across-autoconfigure`.
+
+`<across-xyz-modules.version>dev-SNAPSHOT</...>` -> always the version
+of that repository.
+
+So it's real easy with Python or even `sed` to automatically search
+and replace these values. It's almost possible in the other direction
+as well, except that you can't just replace
+`<version>whatever</version>`.
+
+This solves the "the `parent` `version` cannot use a property" problem
+that more or less forces us to commit modified `pom.xml` files to Git,
+which I prefer to avoid. Counter point: in the current release build
+procedure, pushing that commit is what triggers the tests (although
+they've already run, but against snapshots, so not entirely
+reliable). Update: there will still be a commit, but with the version
+numbers changing in the environment variables in the `.gitlab-ci.yml`
+file.
+
+Not committing the changed `pom.xml` files to Git is key for this.
+
+So the question becomes: can be easily do this in an init step for
+each GitLab CI job?
+
+- We don't need this in the front-end jobs.
+
+- We do use `before_script:` in 4 places, which is always at the job
+  level. Could we use `before_script` at the top-level, without it
+  being overwritten by the job-level ones? Nope, that's not how it
+  works:
+  https://docs.gitlab.com/ee/ci/yaml/script.html#set-a-default-before_script-or-after_script-for-all-jobs
+
+- If it's a simple line, say just execute a script, we can live with
+  the duplication.
+
+- Getting that script is typically the problem, but we can write it
+  once, and just copy it to each of the seven repo's. Or `curl|bash`
+  it, but the job token will only have access to the project being
+  built, not to `across-development`. A [Group access
+  token|https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html]
+  is probably an option. Downloading the script from Nexus is an
+  option too.
+
+- Or finally do switch to `submodules` (shudder) to get scripts etc in
+  the build?
+
+- The script could be written in Python if the maven image contains
+  `python` or `python3`: as expected, that's not the case for
+  `maven:3.9.6-eclipse-temurin-8`, but it does have `sed`. Or we could
+  define our own build image, also clean up some apt installs
+  (graphicsmagick, gpg), but that would be yet another skill an Across
+  maintainer would need to have.
+
+- All options to download the script from somewhere will be annoying
+  to duplicate in the job-level `before_script`.
+
+`sed` seems like the winner here, with (a variant of) the script
+duplicated in each repo, and the versions declared as environment
+variables in the per-project `.gitlab-ci.yml` file. The script could
+be called `ci-before.sh` or something like that, and conditionally
+executed if it exists or not. Easy to duplicate in the per-job
+`before_script` as well.
+
+One thing to watch out for is the release build procedure: the
+"pre-build" must also run the script, and commit the changes to
+`.gitlab-ci.yml`, but not those to the `pom.xml` files.
+
+Or switch to Gradle, but since we have little in-house Gradle
+experience, it doesn't seem like a sustainable option.
