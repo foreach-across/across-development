@@ -10,6 +10,7 @@ theme = 'ananke'
 #theme = 'hugo-geekdoc'
 sectionPagesMenu = 'main'
 paginate = 20
+enableRobotsTXT = true
 
 [markup.goldmark.renderer]
 unsafe = true
