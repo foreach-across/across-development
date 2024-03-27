@@ -5,6 +5,7 @@
   variables:
     TZ: "UTC" # Generally recommended for reproducible builds, and we're skipping tests in this job anyway.
   before_script:
+    - if [[ -f ci-before.sh ]]; then ./ci-before.sh; fi
     - apt-get update
     - apt-get -y install gpg
     - gpg --pinentry-mode loopback --passphrase $ACROSS_GPG_PASSPHRASE --import $ACROSS_GPG_PRIVATE_KEY

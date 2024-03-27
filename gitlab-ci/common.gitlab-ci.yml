@@ -67,8 +67,12 @@ cache:
   paths:
     - $MAVEN_REPO_DIR
 
-after_script:
-  - rm -rf $MAVEN_REPO_DIR/com/foreach || echo "Nothing to delete" # Don't cache this
+default:
+  before_script:
+    - if [[ -f ci-before.sh ]]; then ./ci-before.sh; fi
+
+  after_script:
+    - rm -rf $MAVEN_REPO_DIR/com/foreach || echo "Nothing to delete" # Don't cache this
   # It appears 4GB is not enough for some of the tests with Oracle (but that's not really the case ...):
   # - I've seen the oracle job duration vary widely from 5 to 20 min. I've seen it 'hang' (no output) for a long time: this might be swapping.
   # - I've seen at least two cases where maven was killed, probably by the OOM killer (but nothing to really confirm that):

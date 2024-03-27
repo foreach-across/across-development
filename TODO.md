@@ -273,3 +273,89 @@ One thing to watch out for is the release build procedure: the
 
 Or switch to Gradle, but since we have little in-house Gradle
 experience, it doesn't seem like a sustainable option.
+
+Timing for a top level build on an i7 13800H (6Px2T+8E cores) laptop:
+
+	mciwt      00:57
+	mciwt -1TC 00:30
+	mci        09:38
+	mci -T1C   06:07
+
+Integration tests:
+
+	axitest                                    06:02
+	axitest -T1C                               03:10
+	axitest -DacrossTest.datasource=mysql      05:02
+	axitest -DacrossTest.datasource=mysql -T1C 02:23 FAIL
+
+Parallel integration tests only work with H2, because that's in memory
+and can easily use a separate "database" or "server" for each Maven
+module. As expected, with a real database, all parallel tests using
+the same server/schema/database will just hopelessly mess up that
+database.
+
+
+# Spring Boot applications not starting in the top-level project
+
+`PlatformTestApplication` doesn't start from the overall 5.5 IntelliJ
+project:
+
+	Caused by: java.lang.IllegalAccessError:
+	tried to access class
+	org.springframework.data.repository.config.RepositoryBeanDefinitionBuilder
+	from class
+	org.springframework.data.repository.config.AcrossRepositoryConfigurationDelegate
+
+And yes, that's an Across class in a Spring Data package!
+
+The weird things are:
+
+- It does start in an IntelliJ project opened from the
+  `across-platform/pom.xml`, and the Java and Java command line
+  arguments are exactly the same (haven't checked the entire classpath
+  though).
+
+- It does work in `ITPlatformTestApplication`, which runs the exact
+  same line without a problem.
+
+- We're running with JDK8, so this shouldn't be a JDK9 modules thing.
+
+The problem is probably: in the global project, the
+`AcrossRepositoryConfigurationDelegate` class is loaded by the
+`RestartClassLoader`, while the rest of that package is loaded from
+the `spring-data-jpa.jar` using a different class loader. It makes
+sense that the tests work, because those are unlikely to run in a
+restarting class loader. And indeed: when removing
+`spring-boot-devtools` from the classpath of `platform-bom-test`, it
+starts just fine.
+
+
+# 5.5
+
+Not a priority at all: Is now possible to use the
+`spring-boot-security-starter`? Without adding it to
+`across-autoconfigure`? Perhaps only at the application level (check
+with Cama first)?
+
+It works with Cama, now test with another application.
+
+`@EnableWebSecurity` is required on `AcrossWebSecurityConfiguration`,
+but it's also still required on some/the applications and tests
+etc. Why?
+
+First perhaps do a cleanup, with the minimal changes:
+
+- Delete AcrossWebSecurityConfigurer
+
+- Ensure that everything which creates a `SecurityFilterChain` or a
+  `UserDetailsService` is in an `@ModuleConfiguration` extending
+  `SpringSecurityModule`, keeping in mind that those need to be in a
+  `extensions` package to be picked up automatically.
+
+`DebugWebSecurityConfiguration`: make the entire bean conditional on a
+debug password being configured? Or just keep it as is?
+
+Check the `@Disabled` tests, perhaps they can be made to work now?
+
+Move the `dev-SNAPSHOT` out of this TODO, and into the maintenance
+documentation.
