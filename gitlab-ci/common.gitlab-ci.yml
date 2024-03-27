@@ -107,5 +107,5 @@ after_script:
 
 #curl:nexus-foreach:
 #  script:
-#    - curl --connect-timeout 10 https://repository.foreach.be/nexus/repository/public/archetype-catalog.xml
+#    - curl --connect-timeout 10 https://repository.antwerpen.io-external.com/nexus/repository/public/archetype-catalog.xml
 #    - echo "Success Nexus Foreach"

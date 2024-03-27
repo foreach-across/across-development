@@ -74,4 +74,4 @@ ImageServer requires either:
 
 to be present on the system. The location of the binaries can be
 configured using the [module
-settings](https://repository.foreach.be/projects/image-server/4.0.0.RELEASE/reference/#_module_settings).
+settings](https://repository.antwerpen.io-external.com/projects/image-server/4.0.0.RELEASE/reference/#_module_settings).
