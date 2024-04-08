@@ -40,6 +40,27 @@ passkeys, dealing with new vulnerabilities every week, fending off
 hackers or even nation-state cyberwarfare? In a platform you manage
 yourself?
 
+There are many others as well, often written in Go:
+
+- https://casdoor.org/
+
+- https://github.com/JanssenProject/jans: Project behind
+  [Gluu](https://gluu.org/foss/)
+
+- https://github.com/aerobase
+
+- https://www.shibboleth.net/
+
+- https://github.com/ory (Germany)
+
+- https://github.com/authelia/authelia
+
+- https://github.com/zitadel/zitadel (Switzerland)
+
+- https://github.com/goauthentik/authentik (not Go, but Python)
+
+and a whole bunch of others.
+
 
 ## Image Server
 
