@@ -18,7 +18,6 @@ for repo in ${repos}; do
   echo
   pwd
   echo
-  # shellcheck disable=SC2068
-  $@
+  "$@"
   cd - >/dev/null
 done
