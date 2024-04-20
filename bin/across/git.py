@@ -104,20 +104,41 @@ class GitRepository:
     def chdir(self):
         os.chdir(self.path)
 
-    def update_pom_files(self, dependency_versions: "RepositoryVersions", revision):
+    def update_gitlab_ci_variables(
+        self, dependency_versions: "RepositoryVersions", revision
+    ) -> Dict[str, Version]:
         self.chdir()
-        version_properties_path = dependency_versions.write_versions_properties(
-            self.path, revision
-        )
-        if self.name == "across-platform":
-            os.chdir(Path(self.path, "across-platform-dependencies"))
-            update_parent(dependency_versions.versions["across-framework"])
-        elif self.name != "across-framework":
-            # The parent pom of across-framework is Spring Boot, so nothing to do in that case.
-            # For all other repositories, the parent pom is across-framework:
-            update_parent(dependency_versions.versions["across-framework"])
+        variables = dict()
+        for repo_name, version in dependency_versions.versions.items():
+            name = repo_name.upper().replace("-", "_") + "_VERSION"
+            variables[name] = version
+        variables["REVISION"] = revision
+        with open(".gitlab-ci.yml", "r") as ins:
+            lines = ins.readlines()
+        for i, line in enumerate(lines):
+            for name, value in variables.items():
+                # This makes some assumptions about formatting,
+                # but that helps to avoid accidentally replacing
+                # something that shouldn't be replaced:
+                prefix = f"  {name}:"
+                if line.startswith(prefix):
+                    lines[i] = f"{prefix} {value}\n"
+        with open(".gitlab-ci.yml", "w") as outs:
+            outs.writelines(lines)
+        return variables
+
+    def run_ci_before(self, variables: Dict[str, str]):
         self.chdir()
-        update_version_properties(version_properties_path)
+        env_vars = ""
+        for name, value in variables.items():
+            env_vars += f"{name}={value} "
+        cmd = env_vars + "./ci-before.sh"
+        print(cmd)
+        system(cmd)
+
+    def undo_pom_changes(self):
+        self.chdir()
+        system("git checkout `find . -name pom.xml`")
 
     def commit_and_push(self, version: Version) -> Commit:
         self.repo.git.add(update=True)  # git add -u
@@ -273,28 +294,6 @@ class RepositoryVersions:
                 result[dependency_repo.name] = self.versions[dependency_repo.name]
         return RepositoryVersions(result)
 
-    def write_versions_properties(
-        self,
-        output_or_path: Union[Path, TextIO],
-        revision: Version | None,
-        prefix="",
-    ):
-        if isinstance(output_or_path, Path):
-            directory: Path = output_or_path
-            path = Path(directory, "versions.properties")
-            print(f"Writing {path}")
-            with open(path, "w") as output1:
-                self.write_versions_properties(output1, revision, prefix)
-            return path
-        elif isinstance(output_or_path, TextIOWrapper):
-            output2: TextIO = output_or_path
-            if revision:
-                output2.write(f"{prefix}revision={revision}\n")
-            for name, version in self.versions.items():
-                output2.write(f"{prefix}{name}.version={version}\n")
-        else:
-            raise Exception(f"Cannot write to {output_or_path.__class__}")
-
 
 @dataclass
 class ReleasePlan:
@@ -348,4 +347,7 @@ def find_repo_paths(directory: Path, repo_names: Sequence[str] = []) -> List[Pat
 
 
 def _message(version: Version) -> str:
-    return f"Release {version} by ax-release.py"
+    if version.is_snapshot:
+        return f"revision={version}"
+    else:
+        return f"Release {version} by ax-release.py"

@@ -337,25 +337,10 @@ Not a priority at all: Is now possible to use the
 `across-autoconfigure`? Perhaps only at the application level (check
 with Cama first)?
 
-It works with Cama, now test with another application.
+Migrate to the non-legacy option, as explained in [the migration blog]
+(https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter):
 
-`@EnableWebSecurity` is required on `AcrossWebSecurityConfiguration`,
-but it's also still required on some/the applications and tests
-etc. Why?
+    public void configureGlobal( AuthenticationManagerBuilder auth ) throws Exception {
 
-First perhaps do a cleanup, with the minimal changes:
-
-- Delete AcrossWebSecurityConfigurer
-
-- Ensure that everything which creates a `SecurityFilterChain` or a
-  `UserDetailsService` is in an `@ModuleConfiguration` extending
-  `SpringSecurityModule`, keeping in mind that those need to be in a
-  `extensions` package to be picked up automatically.
-
-`DebugWebSecurityConfiguration`: make the entire bean conditional on a
-debug password being configured? Or just keep it as is?
-
-Check the `@Disabled` tests, perhaps they can be made to work now?
-
-Move the `dev-SNAPSHOT` out of this TODO, and into the maintenance
+Move the `dev-SNAPSHOT` discussion out of this TODO, and into the maintenance
 documentation.

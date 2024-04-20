@@ -12,15 +12,19 @@ class Version(semver.Version):
     def parse(s: str) -> "Version":  # type: ignore[override]
         if s.count(".") == 1:
             # assuming it's X.Y:
-            s += ".666"
+            s += ".999"
         sv = semver.Version.parse(s)
         return Version(sv.major, sv.minor, sv.patch, sv.prerelease, sv.build)
 
     def __str__(self):
         result = super().__str__()
-        if self.patch == 666:
-            return result.replace(".666", "")
+        if self.patch == 999:
+            return result.replace(".999", "")
         return result
+
+    @property
+    def is_snapshot(self):
+        return self.prerelease == "SNAPSHOT"
 
 
 def eprint(*args, **kwargs):
