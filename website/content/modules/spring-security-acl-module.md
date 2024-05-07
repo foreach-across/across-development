@@ -18,6 +18,9 @@ datasource to create the tables for holding the ACL data.
 Components are also provided to easily build a user interface for
 updating ACLs using [EntityModule]({{< relref "entity-module.md" >}}).
 
+This module has been removed from [Across 5.5]({{< relref
+"../release-notes/5.5.0.md#removed-modules" >}}).
+
 
 ### Artifacts
 

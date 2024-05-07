@@ -24,8 +24,7 @@ td, th {
 | [Tomcat](https://tomcat.apache.org/)                            | 9.0 | 9.0  | 9.0        | 9.0  | 9.0  | 10.x  |
 | [Java](https://openjdk.org/)                                    | 8   | 8-11 | 8-11       | 8-17 | 8-21 | 17-21 |
 
-[5.2 and 5.3 are essentially the same]({{< relref 5.3.0.md >}}). 5.5
-is still under development. 6.0 is planned.
+[5.2 and 5.3 are essentially the same]({{< relref 5.3.0.md >}}). 6.0 is planned.
 
 Note that JDK 21 is supported by recent versions of Spring Boot 2.7 as well! In general:
 

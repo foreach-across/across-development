@@ -7,11 +7,14 @@ module-name: OAuth2Module
 ---
 
 Provides [OAuth 2](https://oauth.net/2/) related domain model and
-infrastructure using [Spring Security OAuth
-2](https://spring.io/projects/spring-security-oauth) and the
-[UserModule]({{< relref "user-module.md" >}}) domain model.
+infrastructure using the deprecated [Spring Security OAuth
+2](https://github.com/spring-attic/spring-security-oauth) project and
+the [UserModule]({{< relref "user-module.md" >}}) domain model.
 
 <!--more-->
+
+This module has been removed from [Across 5.5]({{< relref
+"../release-notes/5.5.0.md#removed-modules" >}}).
 
 
 ### Artifacts

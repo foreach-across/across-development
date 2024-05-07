@@ -102,11 +102,11 @@ repositories:
     group: com.foreach.across.modules
     color: red
     modules:
-      - id: spring-security-acl-module
-        name: Access Control module
-        key: AXSSAM
-        java-package: com.foreach.across.modules.spring.security.acl
-        java-class: SpringSecurityAclModule
+#      - id: spring-security-acl-module
+#        name: Access Control module
+#        key: AXSSAM
+#        java-package: com.foreach.across.modules.spring.security.acl
+#        java-class: SpringSecurityAclModule
       - id: user-module
         name: UserModule
         key: AXUM
@@ -117,13 +117,13 @@ repositories:
         key: AXLDAP
         java-package: com.foreach.across.modules.ldap
         java-class: LdapModule
-      - id: oauth2-module
-        name: OAuth2Module
-        key: AXOA2M
-        java-package: com.foreach.across.modules.oauth2
-        java-class: OAuth2Module
-        description: |
-          Provides OAuth2 related domain model and infrastructure using Spring security OAuth2 and the UserModule domain model.
+#      - id: oauth2-module
+#        name: OAuth2Module
+#        key: AXOA2M
+#        java-package: com.foreach.across.modules.oauth2
+#        java-class: OAuth2Module
+#        description: |
+#          Provides OAuth2 related domain model and infrastructure using Spring security OAuth2 and the UserModule domain model.
 
 
   - id: across-media-modules
