@@ -17,22 +17,7 @@
   rules:
     - if: $CI_COMMIT_TAG == null
 
-verify:jdk8:
+verify:unit-tests:
   extends:
     - .verify
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/maven:3.9-eclipse-temurin-8
-
-#verify:jdk11:
-#  extends:
-#    - .verify
-#  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/maven:3.9-eclipse-temurin-11
-#
-#verify:jdk17:
-#  extends:
-#    - .verify
-#  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/maven:3.9-eclipse-temurin-17
-#
-#verify:jdk21:
-#  extends:
-#    - .verify
-#  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/maven:3.9-eclipse-temurin-21
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/maven:3.9-eclipse-temurin-${JAVA_VERSION}
