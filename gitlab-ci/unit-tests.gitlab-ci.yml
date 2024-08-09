@@ -6,6 +6,7 @@
 .verify:
   stage: test
   script:
+    - uname -a
     # - 'mvn $MAVEN_CLI_OPTS dependency:purge-local-repository -DmanualInclude=com.foreach -DreResolve=false'
     - find $CI_PROJECT_DIR/.m2/repository/com/foreach/ -type d -name "*-SNAPSHOT" | xargs rm -rf || echo "No snapshots to delete"
     - 'mvn $MAVEN_CLI_OPTS verify'
@@ -20,4 +21,4 @@
 verify:unit-tests:
   extends:
     - .verify
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/maven:3.9-eclipse-temurin-${JAVA_VERSION}
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/maven:3.9.8-eclipse-temurin-${JAVA_VERSION}

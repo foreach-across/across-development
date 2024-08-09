@@ -57,7 +57,7 @@ workflow:
 
 # Keep version and apt-get commands in sync between .gitlab-ci.yml, Dockerfiles and .java files
 # (for testcontainers, see for instance ImageServerTestContainer.java in across-media-modules):
-image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/maven:3.9-eclipse-temurin-${JAVA_VERSION}
+image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/maven:3.9.8-eclipse-temurin-${JAVA_VERSION}
 
 # Cache downloaded dependencies and plugins between builds.
 # To keep cache across branches add 'key: "$CI_JOB_NAME"'
