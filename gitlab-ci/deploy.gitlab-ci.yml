@@ -13,8 +13,8 @@
   script:
     # For reproducible builds, we have to run the build twice:
     - mvn $MAVEN_CLI_OPTS clean install -DskipTests
-    - mvn $MAVEN_CLI_OPTS clean verify artifact:compare -DskipTests
-    - mvn $MAVEN_CLI_OPTS --settings ci_settings.xml --activate-profiles deploy,$MAVEN_PROFILE deploy -DskipTests
+    - mvn $MAVEN_CLI_OPTS clean verify artifact:compare -DskipTests -Dreference.repo=foreach-mirror
+    - mvn $MAVEN_CLI_OPTS --activate-profiles deploy,$MAVEN_PROFILE deploy -DskipTests
 
 deploy:foreach:
   extends:

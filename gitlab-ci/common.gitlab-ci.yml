@@ -17,6 +17,7 @@ variables:
   # of the `Slf4jMavenTransferListener` is no longer necessary.
   # `installAtEnd` and `deployAtEnd` are only effective with recent version of the corresponding plugins.
   MAVEN_CLI_OPTS: >-
+    --settings=$MVN_SETTINGS
     --batch-mode
     --errors
     --fail-at-end
