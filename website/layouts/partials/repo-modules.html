@@ -93,14 +93,14 @@
     <tr class="m-quick__link">
         <td width="30%" align="left">
             {{ if $page }}
-            <a class="m-quick__link" href="{{ $page }}">{{ $page }}</a>
+            <a class="m-quick__link" href="{{ $page }}/">{{ $page }}</a>
             {{ else }}
             {{ $module.id }}
             {{ end }}
         </td>
         <td width="7.5%" align="center">
             {{ if $ref_doc }}
-            <a href="https://foreach-across.github.io/ref-docs-5/{{ $ref_doc }}" target="refdoc-{{ .id }}">
+            <a href="https://foreach-across.github.io/ref-docs-5/{{ $ref_doc }}/" target="refdoc-{{ .id }}">
                 Docs
             </a>
             {{ end }}
