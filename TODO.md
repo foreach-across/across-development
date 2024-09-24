@@ -176,7 +176,7 @@ To be relatively sure the build is reproducible, we probably need to
 run it twice, during the `deploy` job. Or alternatively, do that in a
 separate job. This actually fails at the moment:
 
-https://gitlab.isaac.nl/antwerpen/across/across/-/jobs/476201
+https://gitlab.eindhoven.io-internal.dev/antwerpen/across/across/-/jobs/476201
 
 
 # dev-SNAPSHOT

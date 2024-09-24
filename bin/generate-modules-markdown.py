@@ -29,7 +29,7 @@ title: Modules
         print(f"[GitHub](https://github.com/foreach-across/{group})")
         print()
         print(
-            f"[GitLab (internal only!)](https://gitlab.isaac.nl/antwerpen/across/{group})"
+            f"[GitLab (internal only!)](https://gitlab.eindhoven.io-internal.dev/antwerpen/across/{group})"
         )
         print()
         print(table)

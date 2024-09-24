@@ -6,7 +6,7 @@
 # java-class: Java class name; matches the module name used in the code.
 # java-package: Java package where the Java class is located.
 
-git_root_url: https://gitlab.isaac.nl/antwerpen/across
+git_root_url: https://gitlab.eindhoven.io-internal.dev/antwerpen/across
 repositories:
   - id: across-framework
     group: com.foreach.across

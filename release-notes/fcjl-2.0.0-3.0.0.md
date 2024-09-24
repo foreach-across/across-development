@@ -1,6 +1,6 @@
 ---
 title: "Foreach Common Java Libraries 2.0 / 3.0 Release notes"
-date: 2024-09-01
+date: 2024-09-12
 author: Davy
 toc: true
 ---
@@ -43,8 +43,8 @@ but that should have zero impact.
 
 Lastly, a [Bill-of-Materials (BOM)
 `pom.xml`](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#bill-of-materials-bom-poms)
-was introduced, so consuming libraries and applications can easily
-import a consist set of libraries.
+was introduced, so that consuming libraries and applications can
+easily import a consist set of libraries.
 
 Releases can be found on Maven Central:
 
@@ -165,8 +165,8 @@ Migration steps:
 ## Git repository is moved
 
 The legacy repository is at Bitbucket:
-https://bitbucket.org/beforeach/common-java-libraries This will not be
-updated anymore.
+https://bitbucket.org/beforeach/common-java-libraries. This will not
+be updated anymore.
 
 The internal repository where development happens is at:
 https://gitlab.eindhoven.io-internal.dev/antwerpen/common/foreach-common-java-libraries

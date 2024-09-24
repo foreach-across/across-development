@@ -22,7 +22,7 @@ class AcrossGitLab:
                 f"Environment variable {GITLAB_PAT} (personal access token) is not set."
             )
         self.gitlab = gitlab.Gitlab(
-            url="https://gitlab.isaac.nl",  # TODO remove hardcoded URL
+            url="https://gitlab.eindhoven.io-internal.dev",  # TODO remove hardcoded URL
             private_token=pat,
             user_agent="antwerpen/across.py",
         )

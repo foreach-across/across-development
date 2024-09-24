@@ -77,9 +77,9 @@ default:
   # It appears 4GB is not enough for some of the tests with Oracle (but that's not really the case ...):
   # - I've seen the oracle job duration vary widely from 5 to 20 min. I've seen it 'hang' (no output) for a long time: this might be swapping.
   # - I've seen at least two cases where maven was killed, probably by the OOM killer (but nothing to really confirm that):
-  #   https://gitlab.isaac.nl/antwerpen/across/across-media-modules/-/jobs/475011
-  #   https://gitlab.isaac.nl/antwerpen/across/across-media-modules/-/jobs/475134
-  # From a dmesg from a later job (https://gitlab.isaac.nl/antwerpen/across/across-media-modules/-/jobs/475188),
+  #   https://gitlab.eindhoven.io-internal.dev/antwerpen/across/across-media-modules/-/jobs/475011
+  #   https://gitlab.eindhoven.io-internal.dev/antwerpen/across/across-media-modules/-/jobs/475134
+  # From a dmesg from a later job (https://gitlab.eindhoven.io-internal.dev/antwerpen/across/across-media-modules/-/jobs/475188),
   # I could see there was at least once a java process killed by the OOM killer:
   #   [19004.343810] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/docker/c480de908f743e035dec8a9b846eba3f435b4d713bef9aba16b3c50cb4789d7c,task=java,pid=54980,uid=0
   #   [19004.343853] Out of memory: Killed process 54980 (java) total-vm:3435944kB, anon-rss:674984kB, file-rss:0kB, shmem-rss:0kB, UID:0 pgtables:1644kB oom_score_adj:0

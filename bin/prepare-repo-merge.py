@@ -43,7 +43,7 @@ def main(group_repo_name: str):
     print(f"{group_repo_name}: {module_repo_names}")
     # if os.path.exists(TMP_DIR):
     #     shutil.rmtree(TMP_DIR)
-    group_repo_url = f"https://gitlab.isaac.nl/antwerpen/across/{group_repo_name}.git"
+    group_repo_url = f"https://gitlab.eindhoven.io-internal.dev/antwerpen/across/{group_repo_name}.git"
     os.makedirs(TMP_DIR, exist_ok=True)
     for module_repo_name in module_repo_names:
         handle_module_repo(group_repo_name, group_repo_url, module_repo_name)
