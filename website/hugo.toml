@@ -56,6 +56,7 @@ mainSections = ["release-note", "release-notes", "blog", "blogs"]
 
 # https://github.com/halogenica/beautifulhugo?tab=readme-ov-file#self-hosted-assets-for-gdpr--eu-dsgvo-compliance:
 selfHosted = true
+#show_reading_time = true
 
 [[params.ananke_socials]]
 name = "Foreach"

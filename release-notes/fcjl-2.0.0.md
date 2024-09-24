@@ -1,5 +1,5 @@
 ---
-title: "Foreach Common Java Libraries 2.0 / 3.0 Release notes"
+title: "Foreach Common Java Libraries 2.0.0 Release Notes"
 date: 2024-09-12
 author: Davy
 toc: true
@@ -41,14 +41,16 @@ removed.
 Across 5.5.1 will update the dependencies on FCJL from 1.1 to 2.0.0,
 but that should have zero impact.
 
-Lastly, a [Bill-of-Materials (BOM)
-`pom.xml`](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#bill-of-materials-bom-poms)
-was introduced, so that consuming libraries and applications can
-easily import a consist set of libraries.
-
-Releases can be found on Maven Central:
+FCJL releases can be found on Maven Central:
 
 https://central.sonatype.com/search?q=g:com.foreach.libs
+
+Lastly, a [Bill-of-Materials (BOM)
+`pom.xml`](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#bill-of-materials-bom-poms)
+was introduced, so that other libraries and applications can easily
+import a consist set of libraries. The next section explains how use
+the
+[`commons-bom`](https://central.sonatype.com/artifact/com.foreach.libs/common-bom).
 
 
 ## Using FCJL as dependencies in Maven
@@ -96,28 +98,35 @@ can take another look at what the best option forward is.
 The Across {{< module-ref file-manager-module >}} actually consisted
 of three layers:
 
-1. `FileManager` and `FileRepository` and all the implementations
-   (local files, (S)FTP, Amazon S3 and Azure Blob storage).
+1. The lowest layer consists of the `FileManager` and `FileRepository`
+   interfaces and all the implementations (local files, (S)FTP, Amazon
+   S3 and Azure Blob storage).
 
-2. `FileReference`, which is a JPA entity. Unfortunately, it is hard
-   to factor out because of all the dependencies on the {{< module-ref
+2. The middle layer depends on the `FileManager` etc, and introduces
+   the `FileReference` JPA entity. Unfortunately, it is hard to factor
+   out because of all the dependencies it has on the {{< module-ref
    across-hibernate-module >}} and the {{< module-ref
    properties-module >}}. This isn't used by projects C nor G, but it
    is used by project MI. `FileReferenceProperties` does not appear to
    be used anywhere.
 
-3. The admin UI, based on `entity-module` and `admin-web-module`,
-   which allows for browsing the file repositories. Obviously we won't
-   migrate this as is, but we won't provide a web UI at all. You can
-   just use the native tools (such as the [Azure Storage
-   Exporer](https://azure.microsoft.com/en-us/products/storage/storage-explorer))
-   or use the [IntelliJ Remote File Systems
-   plugin](https://plugins.jetbrains.com/plugin/21706-remote-file-systems),
-   which supports local files, SFTP, and object storage for all major
-   providers. It does not appear to support plain FTP, but there are
-   many browsers for that, such as
-   [FileZilla](https://filezilla-project.org/) (which supports FTP,
-   FTP over TLS (FTPS) and SFTP)
+3. The top layer consists of the admin UI, based on `entity-module`
+   and `admin-web-module`, which allows for browsing the file
+   repositories. Obviously we won't migrate this as is: in fact we
+   won't provide a web UI at all. You have many alternatives:
+   
+   - You can just use the native tools, such as the [Azure Storage
+	 Exporer](https://azure.microsoft.com/en-us/products/storage/storage-explorer).
+ 
+   - Use the [IntelliJ Remote File Systems
+	 plugin](https://plugins.jetbrains.com/plugin/21706-remote-file-systems),
+	 which supports local files, SFTP, and object storage for all
+	 major providers.
+	 
+   - That plugin does not appear to support plain FTP, but there are
+	 many browsers for that, such as
+	 [FileZilla](https://filezilla-project.org/) (which supports FTP,
+	 FTP over TLS (FTPS) and SFTP)
 
 So for now, we factored out only layer 1, into the
 `common-file-manager` module. Layer 2 could become
@@ -164,7 +173,7 @@ Migration steps:
 
 ## Git repository is moved
 
-The legacy repository is at Bitbucket:
+The legacy repository for FCJL is at Bitbucket:
 https://bitbucket.org/beforeach/common-java-libraries. This will not
 be updated anymore.
 
