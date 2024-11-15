@@ -44,6 +44,12 @@ New migration guides are in the [Release notes](/release-notes).
 
 ## across-media-modules
 
+
+Note that these modules are no longer supported in Across 6. To
+replace `file-manager-module`, you can take a look at the
+`common-file-manager` module in the [Release notes for Foreach Common
+Java Libraries 2.x/3.x]({{< ref "/release-notes/fcjl-2.0.0.md" >}}).
+
 {{< repo-modules across-media-modules >}}
 
 

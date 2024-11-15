@@ -29,6 +29,7 @@ class ModuleConfig:
 @dataclass
 class RepositoryConfig:
     id: str
+    deleted: bool
     color: Optional[str]
     modules: List[ModuleConfig]
     key: Optional[str]

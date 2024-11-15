@@ -344,3 +344,24 @@ Migrate to the non-legacy option, as explained in [the migration blog]
 
 Move the `dev-SNAPSHOT` discussion out of this TODO, and into the maintenance
 documentation.
+
+
+# 6.0
+
+Undo java.locale.providers=COMPAT and use CLDR by default
+
+
+# Version numbers
+
+Align all repositories on version 6.0.0?
+
+This makes it possible to get rid of `dev-SNAPSHOT`, but that in turn
+might not make the release procedure simpler ...
+
+
+# Migration guides
+
+Write docs about how to migrate to the `across-platform-bom` + update
+old release notes. Also explain the reasoning.
+
+Use `common-file-manager` instead of `file-manager-module`.

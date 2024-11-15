@@ -9,6 +9,7 @@
 git_root_url: https://gitlab.eindhoven.io-internal.dev/antwerpen/across
 repositories:
   - id: across-framework
+    deleted: false
     group: com.foreach.across
     key: AX
     bitbucket: across
@@ -19,12 +20,14 @@ repositories:
       - id: across-test
 
   - id: across-autoconfigure
+    deleted: false
     group: com.foreach.across
     modules:
       - id: across-autoconfigure
         name: Across Auto
 
   - id: across-base-modules
+    deleted: false
     group: com.foreach.across.modules
     color: orange
     modules:
@@ -57,6 +60,7 @@ repositories:
         java-class: LoggingModule
 
   - id: across-entity-admin-modules
+    deleted: false
     group: com.foreach.across.modules
     color: green
     modules:
@@ -99,6 +103,7 @@ repositories:
         java-class: PropertiesModule
 
   - id: across-user-auth-modules
+    deleted: false
     group: com.foreach.across.modules
     color: red
     modules:
@@ -127,6 +132,7 @@ repositories:
 
 
   - id: across-media-modules
+    deleted: true
     group: com.foreach.across.modules
     color: blue
     modules:
@@ -168,6 +174,7 @@ repositories:
         java-class: WebCmsModule
 
   - id: across-platform
+    deleted: false
     key: AXP
     group: com.foreach.across
     refdoc: across

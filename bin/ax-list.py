@@ -9,22 +9,24 @@ app = typer.Typer(
 
 
 @app.command(help="List git repository names")
-def repositories():
+def repositories(deleted: bool = False):
     _, config = AcrossConfig.load()
     for repo_config in config.repositories:
-        print(repo_config.id)
+        if not repo_config.deleted or deleted:
+            print(repo_config.id)
 
 
 @app.command(help="List modules names")
-def modules(with_repo: bool = False):
+def modules(with_repo: bool = False, deleted: bool = False):
     _, config = AcrossConfig.load()
     for repo_config in config.repositories:
-        for module in repo_config.modules:
-            if with_repo:
-                line = f"{repo_config.id}/{module.id}"
-            else:
-                line = module.id
-            print(line)
+        if not repo_config.deleted or deleted:
+            for module in repo_config.modules:
+                if with_repo:
+                    line = f"{repo_config.id}/{module.id}"
+                else:
+                    line = module.id
+                print(line)
 
 
 if __name__ == "__main__":
