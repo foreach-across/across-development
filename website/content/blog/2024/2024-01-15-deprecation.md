@@ -70,20 +70,20 @@ and a whole bunch of others.
 
 - [Cloudflare Images](https://www.cloudflare.com/developer-platform/cloudflare-images/)
 
-Self hosted options, see for instance:
+Self-hosted options, see for instance:
 https://github.com/topics/image-server
 
 There are lots of Golang-based options, all using `libvips` underneath:
 
 - [imgproxy](https://github.com/imgproxy/imgproxy) seems like the
-  leader of the pack. It used the MIT-license for the open source
+  leader of the pack. It uses the MIT-license for the open source
   version, and the commercial version has [much more
   features](https://imgproxy.net/features/) (not that we need those,
   except perhaps the option to select the resizing
   algorithm). Supports Azure Blob Storage, which most others don't.
 
 - [imaginary](https://github.com/h2non/imaginary): development seems
-  to still happen, but there hasn't be a release since mid-2020, which
+  to still happen, but there hasn't been a release since mid-2020, which
   is also the last time the [docker
   image](https://hub.docker.com/r/h2non/imaginary) was updated.
 

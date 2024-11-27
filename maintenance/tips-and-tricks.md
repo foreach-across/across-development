@@ -1,12 +1,24 @@
 ---
 title: Tips and tricks
-weight: 40
+weight: 80
 toc: true
 ---
 
 Some tips and tricks for maintaining Across.
 
 <!--more-->
+
+## Maven problems with Across snapshots
+
+If you run into more (seemingly unexplainable) errors with Maven and
+Across snapshots, a good option is to brute-force clean your local
+Maven repository of all artifacts in any `com.foreach.*` group:
+
+	rm -rf ~/.m2/repository/com/foreach
+
+I assume you are a power user, and are smart enough to not wipe out
+your entire home directory, by accidentally putting a space after the
+`~/` in that previous command :-)
 
 
 ## ax-exec.sh

@@ -11,7 +11,7 @@ export JAVA11_HOME=~/.jdks/11
 export JAVA17_HOME=~/.jdks/17
 export JAVA21_HOME=~/.jdks/21
 
-export JAVA_HOME=$JAVA8_HOME
+export JAVA_HOME=$JAVA17_HOME
 export PATH=$JAVA_HOME/bin:$PATH
 
 export ACROSS_DEV_DIR

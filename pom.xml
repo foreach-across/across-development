@@ -57,7 +57,9 @@
 		<module>across-base-modules</module>
 		<module>across-entity-admin-modules</module>
 		<module>across-user-auth-modules</module>
+		<!--
 		<module>across-media-modules</module>
+		-->
 		<module>across-platform</module>
 	</modules>
 
