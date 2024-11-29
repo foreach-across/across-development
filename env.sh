@@ -11,6 +11,13 @@ export JAVA11_HOME=~/.jdks/11
 export JAVA17_HOME=~/.jdks/17
 export JAVA21_HOME=~/.jdks/21
 
+if [ "$(uname)" = 'Darwin' ]; then
+    export JAVA8_HOME=${JAVA8_HOME}/Contents/Home
+    export JAVA11_HOME=${JAVA11_HOME}/Contents/Home
+    export JAVA17_HOME=${JAVA17_HOME}/Contents/Home
+    export JAVA21_HOME=${JAVA21_HOME}/Contents/Home
+fi
+
 export JAVA_HOME=$JAVA17_HOME
 export PATH=$JAVA_HOME/bin:$PATH
 
