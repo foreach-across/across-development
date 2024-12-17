@@ -12,7 +12,7 @@ set -e
 repos=$(ax-list.py repositories)
 
 for repo in ${repos}; do
-  cd "${repo}"
+  cd "${repo/$'\r'/}"
   echo
   echo "---------------------------------------------"
   echo

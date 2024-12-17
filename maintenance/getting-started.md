@@ -106,6 +106,15 @@ Or, more idiomatically:
 
 	. ../venv-6/bin/activate
 
+On Windows, the activate script is in the Scripts/ directory:
+
+	source ../venv-6/Scripts/activate
+
+Note that on some installations there is no python3 executable in the virtual environment.
+If this is the case, make a symbolic link in the directory of the virtual environment:
+
+	ln-s python.exe python3.exe
+
 If you now run:
 
 	which python3
