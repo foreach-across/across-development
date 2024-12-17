@@ -68,7 +68,7 @@ There's a couple of ways you can do this:
     to wire a collection of beans that automatically gets refreshed.
 
 See the [reference documentation on
-Refreshing](../reference-docs%3Fsection=refreshing.html) for more
+Refreshing](../reference-docs-section-refreshing.html) for more
 information.
 
 

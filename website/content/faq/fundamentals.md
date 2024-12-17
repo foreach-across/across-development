@@ -88,11 +88,11 @@ case of a Spring Boot application, the Spring `ApplicationReadyEvent`
 gets published.
 
 Several Across [events are published during
-bootstrap](../reference-docs%3Fsection=bootstrap-events.html), allowing
+bootstrap](../reference-docs-section-bootstrap-events.html), allowing
 modules to interact with each other.
 
 See the [reference documentation section on the Across
-bootstrap](../reference-docs%3Fsection=across-bootstrap.html) for more
+bootstrap](../reference-docs-section-across-bootstrap.html) for more
 details.
 
 
@@ -121,7 +121,7 @@ resources key are modified. See the `AcrossModule` class for details on
 the overridable methods.
 
 See the [reference documentation on Creating an Across
-module](../reference-docs%3Fsection=creating-an-acrossmodule.html) for
+module](../reference-docs-section-creating-an-acrossmodule.html) for
 more information.
 
 
@@ -159,7 +159,7 @@ multiple applications using the same RDBMS can rely on installers being
 executed only once.
 
 See the [reference documentation section on
-Installers](../reference-docs%3Fsection=installers.html) for more
+Installers](../reference-docs-section-installers.html) for more
 details.
 
 
@@ -181,7 +181,7 @@ All modules have the same parent `ApplicationContext`, so bean
 definitions in the parent are available to all modules.
 
 See the [reference documentation on Exposing
-beans](../reference-docs%3Fsection=exposing-beans.html) for more
+beans](../reference-docs-section-exposing-beans.html) for more
 details.
 
 
@@ -209,5 +209,5 @@ it will negatively impact performance and might even pose a security
 risk.
 
 See the [reference documentation on Development
-mode](../reference-docs%3Fsection=development-mode.html) for more
+mode](../reference-docs-section-development-mode.html) for more
 details.
