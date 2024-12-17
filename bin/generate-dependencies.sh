@@ -11,7 +11,7 @@ set -e
 # We keep both files under version control, so it's easy to compare them
 # when doing upgrades (Across, Spring, ...)
 
-PLUGIN_VERSION=3.6.1
+PLUGIN_VERSION=3.8.1
 
 # Ascii-based sorting, using the traditional C locale; otherwise sorting will be dependant on the user's locale:
 export LC_ALL=C

@@ -358,6 +358,10 @@ Align all repositories on version 6.0.0?
 This makes it possible to get rid of `dev-SNAPSHOT`, but that in turn
 might not make the release procedure simpler ...
 
+Done: Indeed line up to 6.0.0. Keep the `dev-SNAPSHOT`, because it is
+likely that there are still 5.5.z releases needed, and you want to
+avoid having to maintain two versions of the release scripts.
+
 
 # Migration guides
 
@@ -365,3 +369,17 @@ Write docs about how to migrate to the `across-platform-bom` + update
 old release notes. Also explain the reasoning.
 
 Use `common-file-manager` instead of `file-manager-module`.
+
+
+# Feedback Vieri devenv setup
+
+`. env.sh` does not work in `zsh`: this works `source env.sh`
+
+See https://medium.com/@sdbutalla/what-really-is-the-difference-between-the-source-and-dot-commands-in-bash-zshell-736896bc26a3
+
+`gvenzl/oracle-xe` crashes at startup on macOS (arm64) even with `latest`.
+
+MSSQL 2017-latest crashes on macOS (arm64) and also on Linux with
+kernel >= 6.8.
+
+Done: MSSQL 2019-latest works for both cases.
