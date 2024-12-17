@@ -147,7 +147,7 @@
                 <p>Yes.</p>
 <p>There are 3 ways a module can change the configuration of another module before it gets started:</p>
 <ol>
-<li>Your module can provide a <code>@ModuleConfiguration</code> class in its extension packages. A <code>@ModuleConfiguration</code> is like a regular <code>@Configuration</code> which will be added to the target module instead of the module that declares it.&nbsp; See the <a href="../reference-docs%3Fsection=moduleconfiguration.html">reference documentation on <code>@ModuleConfiguration</code></a> for more information.</li>
+<li>Your module can provide a <code>@ModuleConfiguration</code> class in its extension packages. A <code>@ModuleConfiguration</code> is like a regular <code>@Configuration</code> which will be added to the target module instead of the module that declares it.&nbsp; See the <a href="../reference-docs-section-moduleconfiguration.html">reference documentation on <code>@ModuleConfiguration</code></a> for more information.</li>
 <li>Your module descriptor can implement the <code>prepareForBootstrap()</code> method, which also allows registering additional configuration classes on other modules.</li>
 <li>Your module can subscribe to the <code>AcrossModuleBeforeBootstrapEvent</code> and modify the module configuration at that point. Please note this requires your own module to have been started. You will only receive this event for modules that start after your own.</li>
 </ol>

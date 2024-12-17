@@ -50,7 +50,7 @@ Across itself creates only a minimal set of tables and will do so only
 when required, that is when installers need executing.
 
 See the [reference documentation section on
-Installers](../reference-docs%3Fsection=installers.html) for more
+Installers](../reference-docs-section-installers.html) for more
 details.
 
 
@@ -146,4 +146,4 @@ All created components will automatically be scanned for event handler
 methods.
 
 See the [reference documentation section on
-Events](../reference-docs%3Fsection=events.html) for more details.
+Events](../reference-docs-section-events.html) for more details.

@@ -12,7 +12,7 @@ all components and the descriptor to a shared JAR. A module usually
 corresponds to a single JAR, but this is not a requirement.
 
 See the [reference documentation section on Development Across
-modules](../reference-docs%3Fsection=developing-across-modules.html) for
+modules](../reference-docs-section-developing-across-modules.html) for
 general information on developing modules.  
 See also the question [What is a good project structure for an Across
 module?](what-is-a-good-project-structure-for-an-across-module.html) for
@@ -80,7 +80,7 @@ other modules:
 There is a separate artifact called **across-test** that contains
 several utility classes for integration testing your module.  
 See the [reference documentation on
-Testing](../reference-docs%3Fsection=across-test.html) for more details.
+Testing](../reference-docs-section-across-test.html) for more details.
 
 
 ### Can my module extend another module's configuration?
@@ -94,7 +94,7 @@ before it gets started:
     extension packages. A `@ModuleConfiguration` is like a regular
     `@Configuration` which will be added to the target module instead of
     the module that declares it.  See the [reference documentation on
-    `@ModuleConfiguration`](../reference-docs%3Fsection=moduleconfiguration.html)
+    `@ModuleConfiguration`](../reference-docs-section-moduleconfiguration.html)
     for more information.
 2.  Your module descriptor can implement the `prepareForBootstrap()`
     method, which also allows registering additional configuration
