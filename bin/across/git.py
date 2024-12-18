@@ -174,11 +174,12 @@ class GitRepositoryCollection:
         self.directory = directory
         self.config = config
         for repository_config in config.repositories:
-            repository = GitRepository(
-                repository_config, Path(directory, repository_config.id)
-            )
-            self.repositories_by_name[repository.name] = repository
-            self.repositories.append(repository)
+            if not repository_config.deleted:
+                repository = GitRepository(
+                    repository_config, Path(directory, repository_config.id)
+                )
+                self.repositories_by_name[repository.name] = repository
+                self.repositories.append(repository)
 
     def fetch_all(self):
         for repository in self.repositories:
@@ -293,6 +294,28 @@ class RepositoryVersions:
             if dependency_repo.name in self.versions:
                 result[dependency_repo.name] = self.versions[dependency_repo.name]
         return RepositoryVersions(result)
+
+    def write_versions_properties(
+        self,
+        output_or_path: Union[Path, TextIO],
+        revision: Version | None,
+        prefix="",
+    ):
+        if isinstance(output_or_path, Path):
+            directory: Path = output_or_path
+            path = Path(directory, "versions.properties")
+            print(f"Writing {path}")
+            with open(path, "w") as output1:
+                self.write_versions_properties(output1, revision, prefix)
+            return path
+        elif isinstance(output_or_path, TextIOWrapper):
+            output2: TextIO = output_or_path
+            if revision:
+                output2.write(f"{prefix}revision={revision}\n")
+            for name, version in self.versions.items():
+                output2.write(f"{prefix}{name}.version={version}\n")
+        else:
+            raise Exception(f"Cannot write to {output_or_path.__class__}")
 
 
 @dataclass

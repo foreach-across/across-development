@@ -97,8 +97,9 @@ IntelliJ:
 
 Next you have to activate the `venv-6` environment in your current
 shell (and any other terminal that you open), by sourcing the
-`activate` script, which should work for both `bash` and `zsh` (there
-is a separate `activate.fish` script if you like `fish`):
+`activate` script, which should work for both `bash` and `zsh` on
+Linux and macOS (there is a separate `activate.fish` script if you
+like the `fish` shell):
 
 	source ../venv-6/bin/activate
 
@@ -297,7 +298,7 @@ Or each one individually:
 
 ### Maven integration tests
 
-To run the integration tests locally, run either of:
+To run the integration tests locally, run either (or all) of:
 
 	axitest -DacrossTest.datasource=h2
 	axitest -DacrossTest.datasource=mssql

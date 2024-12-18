@@ -12,7 +12,7 @@ from .git import ReleasePlan
 from .maven import Artifact
 from .util import system, write_index_html, get_index_versions, Version
 
-API_DOCS_GIT_URL = "git@github.com:foreach-across/api-docs-5.git"
+API_DOCS_GIT_URL = "git@github.com:foreach-across/api-docs-6.git"
 
 
 class JavadocPublisher:
@@ -26,7 +26,7 @@ class JavadocPublisher:
         self.cache_dir = Path(self.tmp_dir, "cache")
         if not self.cache_dir.exists():
             self.cache_dir.mkdir()
-        self.repo_dir = Path(self.tmp_dir, "api-docs-5")
+        self.repo_dir = Path(self.tmp_dir, "api-docs-6")
 
     def publish(self):
         repo = self.clone()

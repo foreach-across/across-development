@@ -77,7 +77,8 @@ class Plotter:
                         project.artifact_id,
                         label=node_label,
                         color=repo_config.color if repo_config else None,
-                        href="https://foreach-across.github.io/modules/%s/" % project.artifact_id,
+                        href="https://foreach-across.github.io/modules/%s/"
+                        % project.artifact_id,
                     )
                     for dep in project.direct_dependencies:
                         if dep.is_foreach() and (

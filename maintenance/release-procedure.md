@@ -189,7 +189,7 @@ https://repo1.maven.org/maven2/
 
 The API Javadocs are hosted using GitHub Pages, using this repository:
 
-https://github.com/foreach-across/api-docs-5
+https://github.com/foreach-across/api-docs-6
 
 Run the equivalent of:
 
@@ -215,12 +215,12 @@ This will:
 When the changes are pushed, GitHub Pages will automatically
 re-deploy the site to:
 
-https://foreach-across.github.io/api-docs-5/
+https://foreach-across.github.io/api-docs-6/
 
 This may take a minute or two. With the right permissions, you can
 check when the site was last deployed at:
 
-https://github.com/foreach-across/api-docs-5/actions
+https://github.com/foreach-across/api-docs-6/actions
 
 
 ## Write and deploy release notes
@@ -250,7 +250,7 @@ If this is an X.Y.0 release, do not forget to add a new X.Y column in
 the table at the start of the [Release notes]({{<relref
 release-notes>}}) page.
 
-Once your releases notes are finished you can deploy the changes to
+Once your release notes are finished you can deploy the changes to
 the website (you will need write access to the [website
 repository](https://github.com/foreach-across/foreach-across.github.io)):
 
@@ -271,7 +271,7 @@ https://github.com/foreach-across/foreach-across.github.io/actions
 
 2. Ensure you have the latest commit for the release branch of each
    repository (See the [Tips and tricks]({{< ref "tips-and-tricks"
-   >}}) for details about these commands:
+   >}}) for details about these commands):
 
 		ax-exec.sh git fetch -p
 		ax-exec.sh git pull --ff-only

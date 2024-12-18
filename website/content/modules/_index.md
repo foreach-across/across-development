@@ -10,7 +10,7 @@ toc: true
 
 [Legacy migration guides](https://foreach-across.github.io/ref-docs-5/migration/)
 
-[API Javadocs](https://foreach-across.github.io/api-docs-5/)
+[API Javadocs](https://foreach-across.github.io/api-docs-6/)
 
 New migration guides are in the [Release notes](/release-notes).
 

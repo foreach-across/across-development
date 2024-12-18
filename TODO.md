@@ -348,7 +348,7 @@ documentation.
 
 # 6.0
 
-Undo java.locale.providers=COMPAT and use CLDR by default
+Done: Undo java.locale.providers=COMPAT and use CLDR by default
 
 
 # Version numbers
@@ -365,10 +365,10 @@ avoid having to maintain two versions of the release scripts.
 
 # Migration guides
 
-Write docs about how to migrate to the `across-platform-bom` + update
-old release notes. Also explain the reasoning.
+Done: Write docs about how to migrate to the `across-platform-bom` +
+update old release notes. Also explain the reasoning.
 
-Use `common-file-manager` instead of `file-manager-module`.
+Done: Use `common-file-manager` instead of `file-manager-module`.
 
 
 # Feedback Vieri devenv setup

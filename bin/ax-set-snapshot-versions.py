@@ -22,7 +22,7 @@ def start():
     print()
     for repository in repo_collection.repositories:
         revision = snapshot_versions.versions[repository.name]
-        repository.update_pom_files(snapshot_versions, revision)
+        repository.update_gitlab_ci_variables(snapshot_versions, revision)
         maven_clean_install_without_tests()
         repository.generate_dependencies()
     repo_collection.execute_for_each("git status; git diff")

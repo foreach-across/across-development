@@ -1,12 +1,22 @@
 ---
 title: "Across deprecation"
 date: 2024-01-11T13:00:00+01:00
+lastmod: 2024-12-17T13:00:00+01:00
 author: Davy
-draft: true
+toc: true
 pin: true
 ---
 
-TODO: summary
+Across development will be very limited from now on, basically only
+upgrading to newer Spring Boot versions. Modules that are not used
+anymore, will be gradually removed as applications will migrate away
+from Across.
+
+You should definitely not start any new projects with Across.
+
+A more lightweight alternative is [Spring
+Modulith](https://spring.io/projects/spring-modulith).
+
 
 <!--more-->
 
@@ -15,9 +25,11 @@ TODO: summary
 See also: https://confluence.hosted-tools.com/display/AX/Across+Alternatives
 -->
 
-Refer to https://spring.io/projects/spring-modulith
 
 # Some alternatives
+
+Here are some alternatives for the functionality provided by some of
+the Across modules.
 
 ## User authentication and management
 
@@ -109,11 +121,23 @@ Java/Kotlin/Scala library for image manipulation (Apache 2.0 license).
 
 See also: https://github.com/libvips/libvips/wiki/Projects-using-libvips
 
+The Caddy web server has a number of modules for manipulating images,
+resize, crop, etc: Search for "image" in the [list of
+modules](https://caddyserver.com/docs/modules/).
+
 
 ## File Manager
 
-Take a look at [Apache JClouds blob store
-support](https://jclouds.apache.org/start/blobstore/), but you may
+Most of the functionality of the Across {{< module-ref
+file-manager-module >}} has been extracted to a Maven module in the
+[Foreach Common Java Libraries (FCJL)]({{< relref fcjl-2.0.0.md >}}),
+with no dependencies on Across, so if you rely on specific behaviour
+of the `file-manager-module`, such as the
+[`CachingFileRepository`](https://foreach-across.github.io/ref-docs-5/file-manager-module/file-repositories/caching.html),
+this is your best alternative.
+
+Another interesting option is the [Apache JClouds blob store
+support](https://jclouds.apache.org/start/blobstore/). But you may
 want to check if you can easily use it with a cloud-native
 authentication (such as [Azure Managed
 Identities](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
@@ -121,9 +145,43 @@ and [Azure Workload
 Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=java),
 or at least with a secret vault.
 
+
 <!--
 Maybe mention:
 https://en.wikipedia.org/wiki/Law_of_the_handicap_of_a_head_start (first-mover disadvantage)
 https://nl.wikipedia.org/wiki/Wet_van_de_remmende_voorsprong
 -->
 
+
+## Admin Panels for entity management
+
+Basically many low-code/no-code tools provide this. There are some
+open source low-code/no-code tools as
+well. [Supabase](https://supabase.com/) for instance has [75kstars on
+GitHub](https://github.com/supabase/supabase)
+
+If want to stick to the Java world, there is:
+
+- [Jmix](https://www.jmix.io/), based on Vaadin
+- [Apache Causeway](https://causeway.apache.org/), based on Apache Wicket
+
+Outside the Java world, there's of course the originals:
+
+- [Ruby on Rails](https://rubyonrails.org/)
+- [Python Django](https://www.djangoproject.com/)
+
+The most promising option comes from the front-end / React world: 
+
+[React-admin](https://marmelab.com/react-admin/) (check out the
+[demo's](https://marmelab.com/react-admin/Demos.html)!), which can
+easily be combined with a Java backend. The open-source version
+provides much of what you need, but you probably need the entreprise
+version: the pricing is fair, and they have [a pretty good blog series
+about how they got to their business model and
+goals](https://marmelab.com/blog/2023/11/08/open-source-profit-1.html).
+
+Another interesting option is the combination of React-admin,
+PostgreSQL, and [PostgREST](https://postgrest.org). Marmelab has a
+[good
+blog](https://marmelab.com/blog/2024/11/04/postgrest-revolutionizing-web-development-with-instant-apis.html)
+about that too. Supabase is also based on PostgREST.

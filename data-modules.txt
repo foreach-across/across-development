@@ -15,8 +15,3 @@ across-user-auth-modules/spring-security-acl-module
 across-user-auth-modules/user-module
 across-user-auth-modules/ldap-module
 across-user-auth-modules/oauth2-module
-across-media-modules/file-manager-module
-across-media-modules/imageserver-client
-across-media-modules/imageserver-core
-across-media-modules/imageserver-admin
-across-media-modules/web-cms-module

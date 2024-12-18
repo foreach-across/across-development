@@ -1,6 +1,7 @@
 ---
-title: "Foreach Common Java Libraries 2.0.0 Release Notes"
+title: "Foreach Common Java Libraries 2.0.0/3.0.0 Release Notes"
 date: 2024-09-12
+lastmod: 2024-12-17
 author: Davy
 toc: true
 ---
@@ -112,21 +113,26 @@ of three layers:
 
 3. The top layer consists of the admin UI, based on `entity-module`
    and `admin-web-module`, which allows for browsing the file
-   repositories. Obviously we won't migrate this as is: in fact we
-   won't provide a web UI at all. You have many alternatives:
+   repositories. The
+   [documentation](https://foreach-across.github.io/ref-docs-5/file-manager-module/developer-tools.html)
+   has an explicitly warning about this: "Only use the development
+   browser for developer testing as it is neither optimized for
+   performance, nor secured against illegal access".
+
+   Obviously we won't migrate this as is: in fact we won't provide a
+   web UI at all. You have many alternatives:
    
    - You can just use the native tools, such as the [Azure Storage
 	 Exporer](https://azure.microsoft.com/en-us/products/storage/storage-explorer).
- 
    - Use the [IntelliJ Remote File Systems
 	 plugin](https://plugins.jetbrains.com/plugin/21706-remote-file-systems),
 	 which supports local files, SFTP, and object storage for all
 	 major providers.
-	 
    - That plugin does not appear to support plain FTP, but there are
 	 many browsers for that, such as
 	 [FileZilla](https://filezilla-project.org/) (which supports FTP,
-	 FTP over TLS (FTPS) and SFTP)
+	 FTP over TLS (FTPS) and SFTP). And of course, you should not be
+	 using plain insecured FTP at all anymore.
 
 So for now, we factored out only layer 1, into the
 `common-file-manager` module. Layer 2 could become
@@ -171,6 +177,21 @@ Migration steps:
    anymore. You will need to replace this with your own configuration.
 
 
+## Differences between 2.0.0 and 3.0.0
+
+These are limited to changes that are required because all
+dependencies are upgraded to line up with Spring Boot 3.2:
+
+- Some tests are changed due to Mockito API changes.
+
+- The Amazon and Azure SDK's are upgraded to the latest versions.
+
+- The biggest impact is on the SFTP support in the
+  `common-file-manager` module, because [Spring Integration 6 migrated
+  from JSch to Apache Mina for
+  SFTP](https://github.com/spring-projects/spring-integration/wiki/Spring-Integration-5.x-to-6.0-Migration-Guide#migrate-sftp-module-from-jsch-to-apache-mina)
+
+
 ## Git repository is moved
 
 The legacy repository for FCJL is at Bitbucket:
@@ -185,3 +206,21 @@ https://github.com/ForeachOS/foreach-common-java-libraries
 
 There is also an old Jira project, but that is not used anymore:
 https://foreach.atlassian.net/browse/FJCL
+
+
+## Documentation
+
+Most of the documentation of the Across {{< module-ref
+file-manager-module >}} still applies, and is still available at:
+
+https://foreach-across.github.io/ref-docs-5/file-manager-module/
+
+The main parts that no longer apply are:
+
+- [Linking to files using
+  `FileReference`](https://foreach-across.github.io/ref-docs-5/file-manager-module/file-reference/),
+  aka, the "middle layer" mentioned before.
+
+- [Developer
+  tools](https://foreach-across.github.io/ref-docs-5/file-manager-module/developer-tools.html),
+  which is the UI in the "top layer" above.

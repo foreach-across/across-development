@@ -13,7 +13,7 @@ def repositories(deleted: bool = False):
     _, config = AcrossConfig.load()
     for repo_config in config.repositories:
         if not repo_config.deleted or deleted:
-            print(repo_config.id, end='\n')
+            print(repo_config.id, end="\n")
 
 
 @app.command(help="List modules names")
@@ -26,7 +26,7 @@ def modules(with_repo: bool = False, deleted: bool = False):
                     line = f"{repo_config.id}/{module.id}"
                 else:
                     line = module.id
-                print(line, end='\n')
+                print(line, end="\n")
 
 
 if __name__ == "__main__":

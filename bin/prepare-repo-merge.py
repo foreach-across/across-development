@@ -30,11 +30,6 @@ GROUP_MODULES = {
         "ldap-module",
         "oauth2-module",
     ],
-    "across-media-modules": [
-        "file-manager-module",
-        "across-imageserver-modules",
-        "web-cms-module",
-    ],
 }
 
 

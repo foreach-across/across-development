@@ -234,7 +234,7 @@ def javadoc(release_plan_path: str, push: bool = True):
     javadoc.publish()
     if push:
         print(
-            "Check the deploy progress at: https://github.com/foreach-across/api-docs-5/settings/pages"
+            "Check the deploy progress at: https://github.com/foreach-across/api-docs-6/settings/pages"
         )
 
 

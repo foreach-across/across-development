@@ -5,5 +5,4 @@ across-autoconfigure
 across-base-modules
 across-entity-admin-modules
 across-user-auth-modules
-across-media-modules
 across-platform
