@@ -57,6 +57,18 @@ do this is:
 - Then create symlinks so the `~/.jdks/1.8` and `~/.jdks/17` point to
   the latest 1.8 and 17 in the `~/.jdks` directory.
 
+So you should end up with a directory structure like this:
+
+    $ ls -l ~/.jdks/
+    lrwxrwxrwx 1 dvsp dvsp   15 aug  9 17:45 17 -> temurin-17.0.12
+    lrwxrwxrwx 1 dvsp dvsp   18 jun 27  2022 1.8 -> temurin-1.8.0_332/
+    drwxrwxr-x 9 dvsp dvsp 4096 aug  9 17:42 temurin-17.0.12
+    drwxrwxr-x 8 dvsp dvsp 4096 jun 27  2022 temurin-1.8.0_332
+
+On macOS, IntelliJ installs the JDKS somewhere else in your home
+directory; just make sure that the `1.8` and `17` links in `~/.jdks`
+point to the those directories and you will be find.
+
 
 ## Clone the repositories
 
@@ -103,7 +115,8 @@ like the `fish` shell):
 
 	source ../venv-6/bin/activate
 
-Or, more idiomatically:
+Or, more idiomatically in the `bash` shell (This does not work in the
+`zsh` shell):
 
 	. ../venv-6/bin/activate
 
@@ -111,10 +124,11 @@ On Windows, the activate script is in the Scripts/ directory:
 
 	source ../venv-6/Scripts/activate
 
-Note that on some installations there is no python3 executable in the virtual environment.
-If this is the case, make a symbolic link in the directory of the virtual environment:
+Note that on some installations there is no python3 executable in the
+virtual environment.  If this is the case, make a symbolic link in the
+directory of the virtual environment:
 
-	ln-s python.exe python3.exe
+    ln -s python.exe python3.exe
 
 If you now run:
 
@@ -140,7 +154,7 @@ Try the following commands:
 	ax-list.py repositories
 
 These commands should list the modules and repositories, in the order
-that they are build (and are [listed on the website]({{<ref
+that they need to be build (and are [listed on the website]({{<ref
 modules.md>}})).
 
 The order of the repositories is something you need to know by heart,
