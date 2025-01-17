@@ -235,6 +235,13 @@ instance by starting from an older release note:
 Change the title, date and author (if necessary) in the header of the
 new document.
 
+Second, if this is an X.Y.0 release (e.g. a new minor release of
+Across), then you also have to update the overview table at the start
+of `release-notes/_index.md` (which is rendered at the top of the
+[Release notes page]({{<relref release-notes.md>}}). You need to add a
+new column for the new Across version, with the corresponding versions
+of Spring Boot, Spring Framework, etc.
+
 Start the [Hugo static site generator](https://gohugo.io) in
 development mode:
 
@@ -245,10 +252,6 @@ Open [http://localhost:1313/](http://localhost:1313/) in your browser
 and navigate to your new release notes. Whenever you edit the Markdown
 file (in your editor), it will immediately be rerendered in the
 browser.
-
-If this is an X.Y.0 release, do not forget to add a new X.Y column in
-the table at the start of the [Release notes]({{<relref
-release-notes>}}) page.
 
 Once your release notes are finished you can deploy the changes to
 the website (you will need write access to the [website
