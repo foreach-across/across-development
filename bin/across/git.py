@@ -258,9 +258,9 @@ class RepositoryVersions:
     @staticmethod
     def parse(config: AcrossConfig, path: Path) -> "RepositoryVersions":
         with open(path) as ins:
-            tmp = yaml.load(ins, Loader=yaml.CLoader)
+            tmp = yaml.load(ins, Loader=yaml.Loader)
         releases = dict()
-        wrong_repo_names = list()
+        wrong_repo_names = list()_
         for repo_name, version in tmp.items():
             if repo_name not in config.repository_ids:
                 wrong_repo_names.append(repo_name)
