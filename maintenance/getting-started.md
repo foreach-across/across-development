@@ -36,13 +36,28 @@ you can often use Chocolatey.
 
 - [GraphViz](https://graphviz.org/download/)
 
-- [Hugo](https://gohugo.io/) static site generator: use the extended
-  version.
+- [Hugo](https://gohugo.io/) static site generator: You *need* version
+  [`0.121.2`](https://github.com/gohugoio/hugo/releases/tag/v0.121.2),
+  and it MUST be the *extended* version of `hugo`.
 
-- Go (if using a Hugo theme which requires Go modules)
+  On macOS, it should be possible to use (this is the extended version):
 
-IntelliJ: install the [Hugo
-plugin](https://plugins.jetbrains.com/plugin/13215-hugo-integration)
+      brew install hugo@0.121.2
+	  brew pin hugo
+
+  On Windows, you can use Chocolatey:
+
+	  choco install hugo-extended --version=0.121.2
+	  choco pin add hugo-extended
+
+  Alternatively, `hugo` is easy to install by hand, since it's just a
+  single binary (it's written in Go). Just download the extended
+  version from the link above (near the bottom of the list) and put it
+  in your `~/bin` (if you have that in your `PATH`) or
+  `/usr/local/bin`.
+
+- Optional: Install the [Hugo plugin for
+  IntelliJ](https://plugins.jetbrains.com/plugin/13215-hugo-integration)
 
 
 ## JDK installation instructions
@@ -186,6 +201,21 @@ Since we want to work on 6.0, and the 6.0 branches already exist, you
 can now do:
 
 	ax-exec.sh git checkout 6.0
+
+
+### Clone the Ananke theme for the website
+
+From the top-level directory:
+
+	git submodule init
+	git submodule update --remote
+
+At the moment the website is built with the commit
+`91df000ca82769a7578df81fa142d1a18e446bc0`, so to be safe,
+you best checkout that specific version:
+
+	cd website/themes/ananke/
+	git checkout 91df000ca82769a7578df81fa142d1a18e446bc0
 
 
 ### Clone the website repository

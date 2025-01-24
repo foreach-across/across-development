@@ -260,7 +260,7 @@ class RepositoryVersions:
         with open(path) as ins:
             tmp = yaml.load(ins, Loader=yaml.Loader)
         releases = dict()
-        wrong_repo_names = list()_
+        wrong_repo_names = list()
         for repo_name, version in tmp.items():
             if repo_name not in config.repository_ids:
                 wrong_repo_names.append(repo_name)

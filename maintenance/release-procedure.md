@@ -49,6 +49,11 @@ and the order in which the repositories are to be released.
 
 ## Run the release script for each repository
 
+Warning: This is a procedure that takes a fairly long time (think 1.5
+to 2 hours), so the recommendation is *NOT* use the terminal in
+IntelliJ, but an OS-native terminal ("Terminal" in macOS, Gnome
+terminal, Windows Terminal etc).
+
 First of all, make sure you have sourced the right Python virtual
 environments, and your `JAVA_HOME` and `PATH` environment variables
 point to the right JDK (1.8 for Across 5, 17 for Across 6). For my
@@ -267,6 +272,11 @@ https://github.com/foreach-across/foreach-across.github.io/actions
 
 
 ## Reset versions to --SNAPSHOT
+
+Warning: This is a procedure that takes a fairly long time (think 1.5
+to 2 hours), so the recommendation is *NOT* use the terminal in
+IntelliJ, but an OS-native terminal ("Terminal" in macOS, Gnome
+terminal, Windows Terminal etc).
 
 1. Make sure you are still in the same `across-development` repository
    as the one where you performed the release, and that the 7
